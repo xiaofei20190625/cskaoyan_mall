@@ -18,7 +18,8 @@ target/
 *.iws
 *.iml
 *.ipr
-
+src/main/resources/generatorConfig.xml
+src/main/java/com/cskaoyan/mall/generator/
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/

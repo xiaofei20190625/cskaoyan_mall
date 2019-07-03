@@ -21,10 +21,14 @@ public class RegionController {
     @Autowired
     RegionService regionService;
 
-    /*@RequestMapping("region/list")
+    @RequestMapping("region/list")
     @ResponseBody
-    public ResponseVO<> getRegionList(){
-
-
-    }*/
+    public ResponseVO<List> getRegionList(){
+        ResponseVO<List> listResponseVO = new ResponseVO<>();
+        List<Province> allRegion = regionService.getAllRegion();
+        listResponseVO.setData(allRegion);
+        listResponseVO.setErrmsg("成功");
+        listResponseVO.setErrno(0);
+        return listResponseVO;
+    }
 }

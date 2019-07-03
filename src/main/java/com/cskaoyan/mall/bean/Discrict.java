@@ -11,7 +11,6 @@ public class Discrict {
     String name;
     Integer type;
     Integer code;
-
     public Discrict() {
     }
 

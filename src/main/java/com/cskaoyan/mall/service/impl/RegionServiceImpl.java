@@ -18,7 +18,7 @@ public class RegionServiceImpl implements RegionService {
     RegionMapper regionMapper;
 
     @Override
-    public List<Province> getRegionList() {
-        return null;
+    public List<Province> getAllRegion() {
+        return regionMapper.queryAllProvince();
     }
 }

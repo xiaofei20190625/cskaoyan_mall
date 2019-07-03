@@ -9,5 +9,5 @@ import java.util.List;
  * Date 2019/7/3 Time 17:03
  */
 public interface RegionService {
-    List<Province> getRegionList();
+    List<Province> getAllRegion();
 }

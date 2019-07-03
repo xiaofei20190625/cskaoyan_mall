@@ -14,6 +14,6 @@ admin:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/project_mall?characterEncoding=utf-8
+    url: jdbc:mysql://localhost:3306/cskaoyanmall?characterEncoding=utf-8
     username: root
     password: 325601

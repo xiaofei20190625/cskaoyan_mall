@@ -28,4 +28,9 @@ public class BrandServiceImpl implements BrandService {
         PageVO<Brand> pageVO = new PageVO<>(pageInfo.getTotal(), pageInfo.getList());
         return pageVO;
     }
+
+    @Override
+    public int deleteBrandById(Brand brand) {
+        return brandMapper.deleteBrandById(brand.getId());
+    }
 }

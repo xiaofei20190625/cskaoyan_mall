@@ -12,4 +12,5 @@ import java.util.List;
  */
 public interface BrandService {
     PageVO<Brand> getPageBrand(int page, int limit, String sort, String order, String id, String name);
+    int deleteBrandById(Brand brand);
 }

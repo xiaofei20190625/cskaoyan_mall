@@ -1,5 +1,8 @@
 package com.cskaoyan.mall.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jdk.nashorn.internal.objects.annotations.Getter;
+import jdk.nashorn.internal.objects.annotations.Setter;
 import org.springframework.context.annotation.Bean;
 
 import java.util.Date;
@@ -8,6 +11,7 @@ import java.util.Date;
  * Created by IceFloe_Rot
  * Date 2019/7/3 Time 22:09
  */
+
 public class Brand {
     Integer id;
     String name;
@@ -15,7 +19,9 @@ public class Brand {
     String picUrl;
     Integer sortOrder;
     Double floorPrice;
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     Date addTime;
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     Date updateTime;
     Boolean deleted;
 

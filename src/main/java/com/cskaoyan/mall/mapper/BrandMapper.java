@@ -12,4 +12,6 @@ import java.util.List;
 public interface BrandMapper {
     List<Brand> queryPageBrand(@Param("sort")String sort, @Param("order")String order,
                                @Param("id")String id, @Param("name")String name);
+
+    int deleteBrandById(@Param("id")int id);
 }

@@ -15,7 +15,11 @@
     <select id="queryPageBrand" resultMap="brandMap">
         SELECT id,name,`desc`,pic_url,sort_order,floor_price,add_time,update_time,deleted
         from cskaoyan_mall_brand
-        where id like "%"#{id}"%" and name like "%"#{name}"%"
+        where deleted = 0 and id like "%"#{id}"%" and name like "%"#{name}"%"
         order by #{sort} #{order}
     </select>
+
+    <update id="deleteBrandById">
+        update cskaoyan_mall_brand set deleted = 1 where id = #{id}
+    </update>
 </mapper>

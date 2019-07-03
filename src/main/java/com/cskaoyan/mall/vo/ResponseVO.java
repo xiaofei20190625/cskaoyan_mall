@@ -1,8 +1,7 @@
 package com.cskaoyan.mall.vo;
 
-import org.springframework.stereotype.Component;
 
-@Component
+
 public class ResponseVO<T> {
     T data;
     String errmsg;

@@ -1,3 +1,4 @@
+.gitignore
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
@@ -29,3 +30,5 @@ build/
 
 ### VS Code ###
 .vscode/
+src/main/resources/application.yml
+src/main/resources/123.properties

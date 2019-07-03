@@ -3,23 +3,23 @@ package com.cskaoyan.mall.vo;
 import java.util.List;
 
 public class PageVO<T> {
-    long total;
+    Long total;
 
     List<T> items;
 
     public PageVO() {
     }
 
-    public PageVO(long total, List<T> items) {
+    public PageVO(Long total, List<T> items) {
         this.total = total;
         this.items = items;
     }
 
-    public long getTotal() {
+    public Long getTotal() {
         return total;
     }
 
-    public void setTotal(long total) {
+    public void setTotal(Long total) {
         this.total = total;
     }
 
@@ -29,5 +29,13 @@ public class PageVO<T> {
 
     public void setItems(List<T> items) {
         this.items = items;
+    }
+
+    @Override
+    public String toString() {
+        return "PageVO{" +
+                "total=" + total +
+                ", items=" + items +
+                '}';
     }
 }

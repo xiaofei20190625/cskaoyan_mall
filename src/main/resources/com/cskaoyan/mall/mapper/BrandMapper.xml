@@ -138,4 +138,29 @@
       deleted = #{deleted,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+    <resultMap id="brandMap" type="com.cskaoyan.mall.bean.Brand">
+        <result property="id" column="id"/>
+        <result property="desc" column="desc"/>
+        <result property="picUrl" column="pic_url"/>
+        <result property="sortOrder" column="sort_order"/>
+        <result property="floorPrice" column="floor_price"/>
+        <result property="addTime" column="add_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="deleted" column="deleted"/>
+    </resultMap>
+    <select id="queryPageBrand" resultMap="brandMap">
+        SELECT id,name,`desc`,pic_url,sort_order,floor_price,add_time,update_time,deleted
+        from cskaoyan_mall_brand
+        where deleted = 0 and id like "%"#{id}"%" and name like "%"#{name}"%"
+        order by #{sort} #{order}
+    </select>
+
+    <update id="deleteBrandById">
+        update cskaoyan_mall_brand set deleted = 1 where id = #{id}
+    </update>
+
+    <insert id="insertBrand">
+        insert into cskaoyan_mall_brand (id,)
+    </insert>
 </mapper>

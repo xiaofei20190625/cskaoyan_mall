@@ -1,26 +1,33 @@
 package com.cskaoyan.mall.bean;
-
-import java.math.BigDecimal;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
-
 public class Brand {
-    private Integer id;
+    Integer id;
+    String name;
+    String desc;
+    String picUrl;
+    Integer sortOrder;
+    Double floorPrice;
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+    Date addTime;
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+    Date updateTime;
+    Boolean deleted;
 
-    private String name;
+    public Brand() {
+    }
 
-    private String desc;
-
-    private String picUrl;
-
-    private Byte sortOrder;
-
-    private BigDecimal floorPrice;
-
-    private Date addTime;
-
-    private Date updateTime;
-
-    private Boolean deleted;
+    public Brand(Integer id, String name, String desc, String picUrl, Integer sortOrder, Double floorPrice, Date addTime, Date updateTime, Boolean deleted) {
+        this.id = id;
+        this.name = name;
+        this.desc = desc;
+        this.picUrl = picUrl;
+        this.sortOrder = sortOrder;
+        this.floorPrice = floorPrice;
+        this.addTime = addTime;
+        this.updateTime = updateTime;
+        this.deleted = deleted;
+    }
 
     public Integer getId() {
         return id;
@@ -35,7 +42,7 @@ public class Brand {
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.name = name;
     }
 
     public String getDesc() {
@@ -43,7 +50,7 @@ public class Brand {
     }
 
     public void setDesc(String desc) {
-        this.desc = desc == null ? null : desc.trim();
+        this.desc = desc;
     }
 
     public String getPicUrl() {
@@ -51,22 +58,22 @@ public class Brand {
     }
 
     public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl == null ? null : picUrl.trim();
+        this.picUrl = picUrl;
     }
 
-    public Byte getSortOrder() {
+    public Integer getSortOrder() {
         return sortOrder;
     }
 
-    public void setSortOrder(Byte sortOrder) {
+    public void setSortOrder(Integer sortOrder) {
         this.sortOrder = sortOrder;
     }
 
-    public BigDecimal getFloorPrice() {
+    public Double getFloorPrice() {
         return floorPrice;
     }
 
-    public void setFloorPrice(BigDecimal floorPrice) {
+    public void setFloorPrice(Double floorPrice) {
         this.floorPrice = floorPrice;
     }
 

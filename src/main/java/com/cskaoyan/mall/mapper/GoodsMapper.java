@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface GoodsMapper {
     List<Goods> queryAll();
+
+    int insert(Goods goods);
 }

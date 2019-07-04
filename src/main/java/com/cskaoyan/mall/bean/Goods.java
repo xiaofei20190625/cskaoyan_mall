@@ -36,6 +36,13 @@ public class Goods {
     String picUrl;
 
     String shareUrl;
+    double retailPrice;
+
+    int sortOrder;
+
+    String unit;
+
+    Date updateTime;
 
     public String[] getGallery() {
         return gallery;
@@ -53,13 +60,6 @@ public class Goods {
         this.shareUrl = shareUrl;
     }
 
-    double retailPrice;
-
-    int sortOrder;
-
-    String unit;
-
-    Date updateTime;
 
     public Date getAddTime() {
         return addTime;

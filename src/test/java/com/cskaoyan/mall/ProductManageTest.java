@@ -62,4 +62,15 @@ public class ProductManageTest {
         int i = storageService.insert(storage);
         System.out.println(storage);
     }
+
+    @Test
+    public void mytest6() {
+        Goods goods = new Goods();
+        goods.setGallery(new String[]{"123", "asdas"});
+        goods.setHot(false);
+        goods.setGoodsSn("asdasd");
+        goods.setName("asdasd");
+        int insert = goodsMapper.insert(goods);
+        System.out.println(insert);
+    }
 }

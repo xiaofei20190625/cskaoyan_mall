@@ -25,4 +25,9 @@ public class GoodsServiceImpl implements GoodsService {
         ResponseVO<PageVO<Goods>> responseVO = new ResponseVO<>(pageVO, "成功", 0);
         return responseVO;
     }
+
+    @Override
+    public int insert(Goods goods) {
+        return goodsMapper.insert(goods);
+    }
 }

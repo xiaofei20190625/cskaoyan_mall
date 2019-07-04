@@ -5,6 +5,14 @@ public class OperationVO {
 
     String errmsg;
 
+    public OperationVO() {
+    }
+
+    public OperationVO(int errno, String errmsg) {
+        this.errno = errno;
+        this.errmsg = errmsg;
+    }
+
     public int getErrno() {
         return errno;
     }

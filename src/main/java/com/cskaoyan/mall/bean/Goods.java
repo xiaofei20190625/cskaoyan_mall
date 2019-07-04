@@ -17,7 +17,7 @@ public class Goods {
 
     String detail;
 
-    String gallery;
+    String[] gallery;
 
     String goodsSn;
 
@@ -36,6 +36,14 @@ public class Goods {
     String picUrl;
 
     String shareUrl;
+
+    public String[] getGallery() {
+        return gallery;
+    }
+
+    public void setGallery(String[] gallery) {
+        this.gallery = gallery;
+    }
 
     public String getShareUrl() {
         return shareUrl;
@@ -107,14 +115,6 @@ public class Goods {
 
     public void setDetail(String detail) {
         this.detail = detail;
-    }
-
-    public String getGallery() {
-        return gallery;
-    }
-
-    public void setGallery(String gallery) {
-        this.gallery = gallery;
     }
 
     public String getGoodsSn() {

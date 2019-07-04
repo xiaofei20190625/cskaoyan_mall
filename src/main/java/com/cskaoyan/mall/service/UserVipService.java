@@ -5,5 +5,6 @@ import com.cskaoyan.mall.vo.PageVO;
 
 
 public interface UserVipService {
-    PageVO<UserVip> findUserVipPage(int pag, int limit);
+
+    PageVO<UserVip> findUserVipPageByUsernameAndMobile(int page, int limit, String username, String mobile, String sort, String order);
 }

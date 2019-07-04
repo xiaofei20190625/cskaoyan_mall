@@ -1,17 +1,6 @@
 package com.cskaoyan.mall.bean;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jdk.nashorn.internal.objects.annotations.Getter;
-import jdk.nashorn.internal.objects.annotations.Setter;
-import org.springframework.context.annotation.Bean;
-
 import java.util.Date;
-
-/**
- * Created by IceFloe_Rot
- * Date 2019/7/3 Time 22:09
- */
-
 public class Brand {
     Integer id;
     String name;

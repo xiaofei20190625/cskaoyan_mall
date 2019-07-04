@@ -4,7 +4,16 @@ import java.util.List;
 
 public class PageVO<T> {
     Long total;
+
     List<T> items;
+
+    public PageVO() {
+    }
+
+    public PageVO(Long total, List<T> items) {
+        this.total = total;
+        this.items = items;
+    }
 
     public Long getTotal() {
         return total;
@@ -22,8 +31,11 @@ public class PageVO<T> {
         this.items = items;
     }
 
-    public PageVO(Long total, List<T> items) {
-        this.total = total;
-        this.items = items;
+    @Override
+    public String toString() {
+        return "PageVO{" +
+                "total=" + total +
+                ", items=" + items +
+                '}';
     }
 }

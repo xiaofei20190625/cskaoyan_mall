@@ -17,30 +17,10 @@ import java.util.List;
 public class CollectServiceImpl implements CollectService {
     @Autowired
     CollectMapper collectMapper;
-    @Override
-    public PageVO<Collect> findCollectPage(int page, int limit) {
-        List<Collect> collects = collectMapper.findCollectPage();
-        PageVO<Collect> collectPageVO = new PageUtil<Collect>().pagevo(page,limit,collects);
-        return collectPageVO;
-    }
 
     @Override
-    public PageVO<Collect> findCollectByUserId(int page, int limit, String userId) {
-        List<Collect> collects = collectMapper.findCollectByUserId(userId);
-        PageVO<Collect> collectPageVO = new PageUtil<Collect>().pagevo(page,limit,collects);
-        return collectPageVO;
-    }
-
-    @Override
-    public PageVO<Collect> findCollectPageByValueIdAndUserId(int page, int limit, String userId, String valueId) {
-        List<Collect> collects = collectMapper.findCollectPageByValueIdAndUserId(userId,valueId);
-        PageVO<Collect> collectPageVO = new PageUtil<Collect>().pagevo(page,limit,collects);
-        return collectPageVO;
-    }
-
-    @Override
-    public PageVO<Collect> findCollectPageByValueId(int page, int limit, String valueId) {
-        List<Collect> collects = collectMapper.findCollectPageByValueId(valueId);
+    public PageVO<Collect> findCollectPageByValueIdAndUserId(int page, int limit, String userId, String valueId, String sort, String order) {
+        List<Collect> collects = collectMapper.findCollectPageByValueIdAndUserId(userId,valueId,sort,order);
         PageVO<Collect> collectPageVO = new PageUtil<Collect>().pagevo(page,limit,collects);
         return collectPageVO;
     }

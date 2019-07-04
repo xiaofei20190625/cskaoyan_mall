@@ -1,66 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cskaoyan.mall.mapper.FootprintMapper">
-  <resultMap id="BaseResultMap" type="com.cskaoyan.mall.bean.Footprint">
+<mapper namespace="com.cskaoyan.mall.mapper.SpecificationMapper">
+  <resultMap id="BaseResultMap" type="com.cskaoyan.mall.bean.Specification">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="specification" jdbcType="VARCHAR" property="specification" />
+    <result column="value" jdbcType="VARCHAR" property="value" />
+    <result column="pic_url" jdbcType="VARCHAR" property="picUrl" />
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="deleted" jdbcType="BIT" property="deleted" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, user_id, goods_id, add_time, update_time, deleted
+    id, goods_id, specification, value, pic_url, add_time, update_time, deleted
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from cskaoyan_mall_footprint
+    from cskaoyan_mall_goods_specification
     where id = #{id,jdbcType=INTEGER}
   </select>
-
-
-
-  <select id="findFootprintPageByGoodsIdAndUserId" parameterType="string" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from cskaoyan_mall_footprint
-    <where>
-      <if test="userId != null">
-        user_id = #{userId,jdbcType=INTEGER}
-      </if>
-      <if test="goodsId != null">
-        and goods_id = #{goodsId,jdbcType=INTEGER}
-      </if>
-    </where>
-    order by #{sort} #{order}
-  </select>
-
-
-
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from cskaoyan_mall_footprint
+    delete from cskaoyan_mall_goods_specification
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.cskaoyan.mall.bean.Footprint">
-    insert into cskaoyan_mall_footprint (id, user_id, goods_id, 
-      add_time, update_time, deleted
-      )
-    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, 
-      #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT}
-      )
+  <insert id="insert" parameterType="com.cskaoyan.mall.bean.Specification">
+    insert into cskaoyan_mall_goods_specification (id, goods_id, specification, 
+      value, pic_url, add_time, 
+      update_time, deleted)
+    values (#{id,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{specification,jdbcType=VARCHAR}, 
+      #{value,jdbcType=VARCHAR}, #{picUrl,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.cskaoyan.mall.bean.Footprint">
-    insert into cskaoyan_mall_footprint
+  <insert id="insertSelective" parameterType="com.cskaoyan.mall.bean.Specification">
+    insert into cskaoyan_mall_goods_specification
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
-      <if test="userId != null">
-        user_id,
-      </if>
       <if test="goodsId != null">
         goods_id,
+      </if>
+      <if test="specification != null">
+        specification,
+      </if>
+      <if test="value != null">
+        value,
+      </if>
+      <if test="picUrl != null">
+        pic_url,
       </if>
       <if test="addTime != null">
         add_time,
@@ -76,11 +64,17 @@
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="userId != null">
-        #{userId,jdbcType=INTEGER},
-      </if>
       <if test="goodsId != null">
         #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="specification != null">
+        #{specification,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="picUrl != null">
+        #{picUrl,jdbcType=VARCHAR},
       </if>
       <if test="addTime != null">
         #{addTime,jdbcType=TIMESTAMP},
@@ -93,14 +87,20 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.mall.bean.Footprint">
-    update cskaoyan_mall_footprint
+  <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.mall.bean.Specification">
+    update cskaoyan_mall_goods_specification
     <set>
-      <if test="userId != null">
-        user_id = #{userId,jdbcType=INTEGER},
-      </if>
       <if test="goodsId != null">
         goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="specification != null">
+        specification = #{specification,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        value = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="picUrl != null">
+        pic_url = #{picUrl,jdbcType=VARCHAR},
       </if>
       <if test="addTime != null">
         add_time = #{addTime,jdbcType=TIMESTAMP},
@@ -114,10 +114,12 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.mall.bean.Footprint">
-    update cskaoyan_mall_footprint
-    set user_id = #{userId,jdbcType=INTEGER},
-      goods_id = #{goodsId,jdbcType=INTEGER},
+  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.mall.bean.Specification">
+    update cskaoyan_mall_goods_specification
+    set goods_id = #{goodsId,jdbcType=INTEGER},
+      specification = #{specification,jdbcType=VARCHAR},
+      value = #{value,jdbcType=VARCHAR},
+      pic_url = #{picUrl,jdbcType=VARCHAR},
       add_time = #{addTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       deleted = #{deleted,jdbcType=BIT}

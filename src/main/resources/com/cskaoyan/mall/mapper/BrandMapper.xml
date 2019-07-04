@@ -24,6 +24,10 @@
     </update>
 
     <insert id="insertBrand">
-        insert into cskaoyan_mall_brand (id,)
+        INSERT INTO cskaoyan_mall_brand
+        id,`name`,`desc`,pic_url,sort_order,floor_price,add_time,update_time,deleted
+        VALUES
+        (#{brand.id},#{brand.name},#{brand.desc},#{brand.picUrl},
+        #{brand.sortOrder},#{brand.floorPrice},#{brand.addTime},#{brand.updateTime},#{brand.deleted})
     </insert>
 </mapper>

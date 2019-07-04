@@ -36,6 +36,6 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public int createBrand(Brand brand) {
-        return 0;
+        return brandMapper.insertBrand(brand);
     }
 }

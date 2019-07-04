@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mall.mapper.CategoryMapper">
+    <resultMap id="categoryL1Map" type="com.cskaoyan.mall.bean.CategoryL1">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="desc" column="desc"/>
+        <result property="pid" column="pid"/>
+        <result property="iconUrl" column="icon_url"/>
+        <result property="picUrl" column="pic_url"/>
+        <result property="level" column="level"/>
+        <result property="sortOrder" column="sort_order"/>
+        <result property="addTime" column="add_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="deleted" column="deleted"/>
+        <collection property="children" column="id" select="com.cskaoyan.mall.mapper.CategoryMapper.queryAllCategoriesL2"/>
+    </resultMap>
+    <select id="queryAllCategories" resultMap="categoryL1Map">
+        SELECT
+        id,name,`desc`,pid,icon_url,pic_url,`level`,sort_order,add_time,update_time,deleted
+        from cskaoyan_mall_category
+        where deleted = 0 and `level` = 'L1'
+    </select>
+
+    <resultMap id="categoryL2Map" type="com.cskaoyan.mall.bean.Category">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="desc" column="desc"/>
+        <result property="pid" column="pid"/>
+        <result property="iconUrl" column="icon_url"/>
+        <result property="picUrl" column="pic_url"/>
+        <result property="level" column="level"/>
+        <result property="sortOrder" column="sort_order"/>
+        <result property="addTime" column="add_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="deleted" column="deleted"/>
+    </resultMap>
+    <select id="queryAllCategoriesL2" resultMap="categoryL2Map">
+        SELECT
+        id,name,`desc`,pid,icon_url,pic_url,`level`,sort_order,add_time,update_time,deleted
+        from cskaoyan_mall_category
+        where deleted = 0 and `level` = 'L2' and pid = #{id}
+    </select>
+
+
+    <resultMap id="L1Map" type="com.cskaoyan.mall.bean.L1">
+        <result property="value" column="id"/>
+        <result property="label" column="name"/>
+    </resultMap>
+    <select id="queryAllL1" resultMap="L1Map">
+        select id,name from cskaoyan_mall_category where deleted = 0 and `level` = 'L1'
+    </select>
+
+
+    <update id="deleteCategory">
+        update cskaoyan_mall_category set deleted = 1 where id = #{id}
+    </update>
+</mapper>

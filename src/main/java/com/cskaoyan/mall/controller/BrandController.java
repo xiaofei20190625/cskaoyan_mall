@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -52,8 +53,15 @@ public class BrandController {
     @RequestMapping("brand/create")
     @ResponseBody
     public ResponseVO<Brand> createBrand(Brand brand){
+        Date date = new Date();
+        brand.setAddTime(date);
+        int create = brandService.createBrand(brand);
         ResponseVO<Brand> responseVO = new ResponseVO<>();
-
+        if (create == 1){
+            responseVO.setData(brand);
+            responseVO.setErrno(0);
+            responseVO.setErrmsg("成功");
+        }
         return responseVO;
     }
 }

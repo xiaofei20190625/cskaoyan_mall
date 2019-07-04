@@ -52,7 +52,7 @@ public class BrandController {
 
     @RequestMapping("brand/create")
     @ResponseBody
-    public ResponseVO<Brand> createBrand(Brand brand){
+    public ResponseVO<Brand> createBrand(@RequestBody Brand brand){
         Date date = new Date();
         brand.setAddTime(date);
         int create = brandService.createBrand(brand);

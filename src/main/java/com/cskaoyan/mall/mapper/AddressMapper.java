@@ -19,11 +19,9 @@ public interface AddressMapper {
 
     int updateByPrimaryKey(Address record);
 
-    List<Address> findAddressPage();
+    List<Address> findAddressPageByNameAndUserId(@Param("userId") String userId,
+                                                 @Param("name") String name,
+                                                 @Param("sort") String sort,
+                                                 @Param("order") String order);
 
-    List<Address> findAddressPageByName(String name);
-
-    List<Address> findAddressPageByNameAndUserId(@Param("userId") int userId, @Param("name") String name);
-
-    List<Address> findAddressPageByUserId(int userId);
 }

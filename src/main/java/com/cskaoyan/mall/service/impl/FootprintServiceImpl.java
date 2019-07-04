@@ -17,32 +17,11 @@ import java.util.List;
 public class FootprintServiceImpl implements FootprintService {
     @Autowired
     FootprintMapper footprintMapper;
-    @Override
-    public PageVO<Footprint> findFootprintPage(int page, int limit) {
-        List<Footprint> footprintPage = footprintMapper.findFootprintPage();
-        PageVO<Footprint> footprintPageVO = new PageUtil<Footprint>().pagevo(page,limit,footprintPage);
-        return footprintPageVO;
-    }
 
     @Override
-    public PageVO<Footprint> findFootprintByUserId(int page, int limit, String userId) {
-        List<Footprint> footprintByUserId = footprintMapper.findFootprintByUserId(userId);
-        PageVO<Footprint> pagevo = new PageUtil<Footprint>().pagevo(page, limit, footprintByUserId);
-        return pagevo;
-    }
-
-    @Override
-    public PageVO<Footprint> findFootprintPageByGoodsIdAndUserId(int page, int limit, String userId, String goodsId) {
-        List<Footprint> footprintPageByGoodsIdAndUserId = footprintMapper.findFootprintPageByGoodsIdAndUserId(userId, goodsId);
+    public PageVO<Footprint> findFootprintPageByGoodsIdAndUserId(int page, int limit, String userId, String goodsId, String sort, String order) {
+        List<Footprint> footprintPageByGoodsIdAndUserId = footprintMapper.findFootprintPageByGoodsIdAndUserId(userId, goodsId,sort,order);
         PageVO<Footprint> pagevo = new PageUtil<Footprint>().pagevo(page, limit, footprintPageByGoodsIdAndUserId);
         return pagevo;
     }
-
-    @Override
-    public PageVO<Footprint> findFootprintPageByGoodsId(int page, int limit, String goodsId) {
-        List<Footprint> footprintPageByGoodsId = footprintMapper.findFootprintPageByGoodsId(goodsId);
-        PageVO<Footprint> pagevo = new PageUtil<Footprint>().pagevo(page, limit, footprintPageByGoodsId);
-        return pagevo;
-    }
-
 }

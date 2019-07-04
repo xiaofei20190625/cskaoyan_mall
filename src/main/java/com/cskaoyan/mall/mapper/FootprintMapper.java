@@ -19,11 +19,9 @@ public interface FootprintMapper {
 
     int updateByPrimaryKey(Footprint record);
 
-    List<Footprint> findFootprintPage();
+    List<Footprint> findFootprintPageByGoodsIdAndUserId(@Param("userId") String userId,
+                                                        @Param("goodsId") String goodsId,
+                                                        @Param("sort") String sort,
+                                                        @Param("order") String order);
 
-    List<Footprint> findFootprintByUserId(String userId);
-
-    List<Footprint> findFootprintPageByGoodsIdAndUserId(@Param("userId") String userId, @Param("goodsId") String goodsId);
-
-    List<Footprint> findFootprintPageByGoodsId(String goodsId);
 }

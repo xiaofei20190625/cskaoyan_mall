@@ -2,6 +2,7 @@ package com.cskaoyan.mall.mapper;
 
 import com.cskaoyan.mall.bean.Feedback;
 import com.cskaoyan.mall.vo.PageVO;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -18,11 +19,9 @@ public interface FeedbackMapper {
 
     int updateByPrimaryKey(Feedback record);
 
-    List<Feedback> findFeedbackPage();
+    List<Feedback> findFeedbackPageByUsernameAndId(@Param("username") String username,
+                                                   @Param("id") Integer id,
+                                                   @Param("sort") String sort,
+                                                   @Param("order") String order);
 
-    List<Feedback> findFeedbackByUsername(String username);
-
-    List<Feedback> findFeedbackPageByUsernameAndId(String username, Integer id);
-
-    List<Feedback> findFeedbackPageById(Integer id);
 }

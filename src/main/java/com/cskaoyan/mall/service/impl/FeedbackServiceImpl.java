@@ -14,30 +14,11 @@ import java.util.List;
 public class FeedbackServiceImpl implements FeedbackService {
     @Autowired
     FeedbackMapper feedbackMapper;
-    @Override
-    public PageVO<Feedback> findFeedbackPage(int page, int limit) {
-        List<Feedback> feedbackPage = feedbackMapper.findFeedbackPage();
-        PageVO<Feedback> pagevo = new PageUtil<Feedback>().pagevo(page, limit, feedbackPage);
-        return pagevo;
-    }
+
 
     @Override
-    public PageVO<Feedback> findFeedbackByUsername(int page, int limit, String username) {
-        List<Feedback> feedbackPage = feedbackMapper.findFeedbackByUsername(username);
-        PageVO<Feedback> pagevo = new PageUtil<Feedback>().pagevo(page, limit, feedbackPage);
-        return pagevo;
-    }
-
-    @Override
-    public PageVO<Feedback> findFeedbackPageByUsernameAndId(int page, int limit, String username, Integer id) {
-        List<Feedback> feedbackPage = feedbackMapper.findFeedbackPageByUsernameAndId(username, id);
-        PageVO<Feedback> pagevo = new PageUtil<Feedback>().pagevo(page, limit, feedbackPage);
-        return pagevo;
-    }
-
-    @Override
-    public PageVO<Feedback> findFeedbackPageById(int page, int limit, Integer id) {
-        List<Feedback> feedbackPage = feedbackMapper.findFeedbackPageById(id);
+    public PageVO<Feedback> findFeedbackPageByUsernameAndId(int page, int limit, String username, Integer id, String sort, String order) {
+        List<Feedback> feedbackPage = feedbackMapper.findFeedbackPageByUsernameAndId(username, id, sort, order);
         PageVO<Feedback> pagevo = new PageUtil<Feedback>().pagevo(page, limit, feedbackPage);
         return pagevo;
     }

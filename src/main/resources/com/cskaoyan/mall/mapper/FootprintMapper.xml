@@ -19,32 +19,23 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
 
-  <select id="findFootprintPage"  resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from cskaoyan_mall_footprint
-  </select>
 
-  <select id="findFootprintByUserId" parameterType="string" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from cskaoyan_mall_footprint
-    where user_id = #{userId,jdbcType=INTEGER}
-  </select>
 
   <select id="findFootprintPageByGoodsIdAndUserId" parameterType="string" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from cskaoyan_mall_footprint
-    where user_id = #{userId,jdbcType=INTEGER} and goods_id = #{goodsId,jdbcType=INTEGER}
+    <where>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER}
+      </if>
+      <if test="goodsId != null">
+        and goods_id = #{goodsId,jdbcType=INTEGER}
+      </if>
+    </where>
+    order by #{sort} #{order}
   </select>
 
-  <select id="findFootprintPageByGoodsId" parameterType="string" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from cskaoyan_mall_footprint
-    where goods_id = #{goodsId,jdbcType=INTEGER}
-  </select>
 
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

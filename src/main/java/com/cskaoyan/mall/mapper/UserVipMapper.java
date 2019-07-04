@@ -18,11 +18,8 @@ public interface UserVipMapper {
 
     int updateByPrimaryKey(UserVip record);
 
-    List<UserVip> selectUserVip();
-
-    List<UserVip> selectUserVipByUsernameAndMobile(@Param("username") String username, @Param("mobile")String mobile);
-
-    List<UserVip> selectUserVipByUsername(String username);
-
-    List<UserVip> selectUserVipByMobile(String mobile);
+    List<UserVip> selectUserVipByUsernameAndMobile(@Param("username") String username,
+                                                   @Param("mobile")String mobile,
+                                                   @Param("sort") String sort,
+                                                   @Param("order") String order);
 }

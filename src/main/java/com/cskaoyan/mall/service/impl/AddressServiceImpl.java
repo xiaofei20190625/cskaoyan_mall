@@ -21,34 +21,9 @@ public class AddressServiceImpl implements AddressService {
 
 
     @Override
-    public PageVO<Address> findAddressPage(int page, int limit) {
-        List<Address> addressPage = addressMapper.findAddressPage();
-        PageVO<Address> addressPageVO = new PageUtil<Address>().pagevo(page,limit,addressPage);
-        return addressPageVO;
-    }
-
-    @Override
-    public PageVO<Address> findAddressPageByName(int page, int limit, String name) {
-        PageHelper.startPage(page,limit);
-        List<Address> addressPageByName = addressMapper.findAddressPageByName(name);
-        PageVO<Address> addressPageVO = new PageUtil<Address>().pagevo(page,limit,addressPageByName);
-        return addressPageVO;
-    }
-
-    @Override
-    public PageVO<Address> findAddressPageByNameAndUserId(int page, int limit, String userId, String name) {
-        int userId1 = Integer.parseInt(userId);
-        List<Address> addressPageByNameAndUserId = addressMapper.findAddressPageByNameAndUserId(userId1, name);
+    public PageVO<Address> findAddressPageByNameAndUserId(int page, int limit, String userId, String name, String sort, String order) {
+        List<Address> addressPageByNameAndUserId = addressMapper.findAddressPageByNameAndUserId(userId, name,sort,order);
         PageVO<Address> addressPageVO = new PageUtil<Address>().pagevo(page,limit,addressPageByNameAndUserId);
         return addressPageVO;
     }
-
-    @Override
-    public PageVO<Address> findAddressPageByUserId(int page, int limit, String userId) {
-        int userId1 = Integer.parseInt(userId);
-        List<Address> addressPageByUserId = addressMapper.findAddressPageByUserId(userId1);
-        PageVO<Address> addressPageVO = new PageUtil<Address>().pagevo(page,limit,addressPageByUserId);
-        return addressPageVO;
-    }
-
 }

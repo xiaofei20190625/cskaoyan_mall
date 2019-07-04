@@ -1,6 +1,7 @@
 package com.cskaoyan.mall.mapper;
 
 import com.cskaoyan.mall.bean.UserVip;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -18,4 +19,10 @@ public interface UserVipMapper {
     int updateByPrimaryKey(UserVip record);
 
     List<UserVip> selectUserVip();
+
+    List<UserVip> selectUserVipByUsernameAndMobile(@Param("username") String username, @Param("mobile")String mobile);
+
+    List<UserVip> selectUserVipByUsername(String username);
+
+    List<UserVip> selectUserVipByMobile(String mobile);
 }

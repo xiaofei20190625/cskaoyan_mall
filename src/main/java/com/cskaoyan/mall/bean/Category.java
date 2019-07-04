@@ -8,20 +8,33 @@ import java.util.Date;
  * Created by IceFloe_Rot
  * Date 2019/7/4 Time 16:32
  */
+
 public class Category {
-    Integer id;
-    String name;
-    String desc;
-    Integer pid;
-    String iconUrl;
-    String picUrl;
-    String level;
-    Integer sortOrder;
+    private Integer id;
+
+    private String name;
+
+    private String keywords;
+
+    private String desc;
+
+    private Integer pid;
+
+    private String iconUrl;
+
+    private String picUrl;
+
+    private String level;
+
+    private Byte sortOrder;
+
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
-    Date addTime;
+    private Date addTime;
+
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
-    Date updateTime;
-    Integer deleted;
+    private Date updateTime;
+
+    private Boolean deleted;
 
     public Category() {
     }
@@ -40,6 +53,14 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(String keywords) {
+        this.keywords = keywords;
     }
 
     public String getDesc() {
@@ -82,11 +103,11 @@ public class Category {
         this.level = level;
     }
 
-    public Integer getSortOrder() {
+    public Byte getSortOrder() {
         return sortOrder;
     }
 
-    public void setSortOrder(Integer sortOrder) {
+    public void setSortOrder(Byte sortOrder) {
         this.sortOrder = sortOrder;
     }
 
@@ -106,11 +127,12 @@ public class Category {
         this.updateTime = updateTime;
     }
 
-    public Integer getDeleted() {
+    public Boolean getDeleted() {
         return deleted;
     }
 
-    public void setDeleted(Integer deleted) {
+    public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
     }
 }
+

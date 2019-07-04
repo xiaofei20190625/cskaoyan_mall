@@ -25,4 +25,31 @@ public class UserVipServiceImpl implements UserVipService {
         PageVO<UserVip> userVipPageVO = new PageVO<>(userVipPageInfo.getTotal(), userVipPageInfo.getList());
         return userVipPageVO;
     }
+
+    @Override
+    public PageVO<UserVip> findUserVipPageByUsernameAndMobile(int page, int limit, String username, String mobile) {
+        PageHelper.startPage(page,limit);
+        List<UserVip> userVips = userVipMapper.selectUserVipByUsernameAndMobile(username, mobile);
+        PageInfo<UserVip> userVipPageInfo = new PageInfo<>(userVips);
+        PageVO<UserVip> userVipPageVO = new PageVO<>(userVipPageInfo.getTotal(), userVipPageInfo.getList());
+        return userVipPageVO;
+    }
+
+    @Override
+    public PageVO<UserVip> findUserVipPageByUsername(int page, int limit, String username) {
+        PageHelper.startPage(page,limit);
+        List<UserVip> userVips = userVipMapper.selectUserVipByUsername(username);
+        PageInfo<UserVip> userVipPageInfo = new PageInfo<>(userVips);
+        PageVO<UserVip> userVipPageVO = new PageVO<>(userVipPageInfo.getTotal(), userVipPageInfo.getList());
+        return userVipPageVO;
+    }
+
+    @Override
+    public PageVO<UserVip> findUserVipPageByMobile(int page, int limit, String mobile) {
+        PageHelper.startPage(page,limit);
+        List<UserVip> userVips = userVipMapper.selectUserVipByMobile(mobile);
+        PageInfo<UserVip> userVipPageInfo = new PageInfo<>(userVips);
+        PageVO<UserVip> userVipPageVO = new PageVO<>(userVipPageInfo.getTotal(), userVipPageInfo.getList());
+        return userVipPageVO;
+    }
 }

@@ -40,4 +40,5 @@ pom.xml
 
 src/main/resources/application.yml
 src/main/resources/123.properties
+src/main/resources/generatorConfig.xml
 

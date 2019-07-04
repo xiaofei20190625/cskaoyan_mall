@@ -36,6 +36,28 @@
     from cskaoyan_mall_user
   </select>
 
+
+  <select id="selectUserVipByUsernameAndMobile" parameterType="string" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from cskaoyan_mall_user
+    where username = #{username,jdbcType=INTEGER} and mobile = #{mobile,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectUserVipByUsername" parameterType="string" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from cskaoyan_mall_user
+    where username = #{username,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectUserVipByMobile" parameterType="string" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from cskaoyan_mall_user
+    where mobile = #{mobile,jdbcType=INTEGER}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from cskaoyan_mall_user
     where id = #{id,jdbcType=INTEGER}

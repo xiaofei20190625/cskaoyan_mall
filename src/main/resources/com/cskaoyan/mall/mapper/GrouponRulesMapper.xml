@@ -17,6 +17,26 @@
     id, goods_id, goods_name, pic_url, discount, discount_member, add_time, update_time, 
     expire_time, deleted
   </sql>
+
+  <sql id="Query_List">
+    add_time,
+deleted,
+discount,
+discount_member,
+expire_time,
+goods_id,
+goods_name,
+id,
+pic_url,
+update_time
+  </sql>
+  <!--getList-->
+  <select id="getList"  resultMap="BaseResultMap">
+    select  <include refid="Query_List"/>
+    from cskaoyan_mall_groupon_rules
+    where goods_id like "%" #{goodsId} "%"
+    order by #{sort}  #{order}
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

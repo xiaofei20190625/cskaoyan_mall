@@ -1,13 +1,11 @@
 package com.cskaoyan.mall.controller;
 
-import com.cskaoyan.mall.bean.CategorySpecific;
-import com.cskaoyan.mall.bean.EchoBrandAndCat;
-import com.cskaoyan.mall.bean.Goods;
-import com.cskaoyan.mall.bean.SpecificItem;
+import com.cskaoyan.mall.bean.*;
 import com.cskaoyan.mall.service.EchoBrandAndCatService;
 import com.cskaoyan.mall.service.GoodsService;
 import com.cskaoyan.mall.utils.FileNameUtils;
 import com.cskaoyan.mall.utils.FileUtils;
+import com.cskaoyan.mall.vo.OperationVO;
 import com.cskaoyan.mall.vo.PageVO;
 import com.cskaoyan.mall.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +42,15 @@ public class ProductManageController {
         ResponseVO<EchoBrandAndCat> responseVO = new ResponseVO<>(echoBrandAndCat, "成功", 0);
         return responseVO;
     }
+    //新增操作的执行
+    @RequestMapping("goods/create")
+    @ResponseBody
+    public OperationVO doInsert(List<Attribute> attributes, Goods goods, List<Product> products, List<Specification> specifications) {
+        return null;
+    }
+
+    /*----------编辑商品------------*/
+
 
 
 

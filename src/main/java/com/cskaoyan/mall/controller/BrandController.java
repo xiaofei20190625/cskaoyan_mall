@@ -48,4 +48,12 @@ public class BrandController {
         }
         return responseVO;
     }
+
+    @RequestMapping("brand/create")
+    @ResponseBody
+    public ResponseVO<Brand> createBrand(Brand brand){
+        ResponseVO<Brand> responseVO = new ResponseVO<>();
+
+        return responseVO;
+    }
 }

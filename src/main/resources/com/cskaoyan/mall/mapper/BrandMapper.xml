@@ -22,4 +22,8 @@
     <update id="deleteBrandById">
         update cskaoyan_mall_brand set deleted = 1 where id = #{id}
     </update>
+
+    <insert id="insertBrand">
+        insert into cskaoyan_mall_brand (id,)
+    </insert>
 </mapper>

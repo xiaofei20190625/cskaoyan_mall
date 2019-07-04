@@ -10,8 +10,10 @@ import java.util.List;
  * Date 2019/7/3 Time 22:13
  */
 public interface BrandMapper {
-    List<Brand> queryPageBrand(@Param("sort")String sort, @Param("order")String order,
-                               @Param("id")String id, @Param("name")String name);
+    List<Brand> queryPageBrand(@Param("sort") String sort, @Param("order") String order,
+                               @Param("id") String id, @Param("name") String name);
 
-    int deleteBrandById(@Param("id")int id);
+    int deleteBrandById(@Param("id") int id);
+
+    int insertBrand(@Param("brand") Brand brand);
 }

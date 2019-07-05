@@ -37,6 +37,12 @@
       <include refid="Base_Column_List"/>
       from cskaoyan_mall_goods
     </select>
+    <select id="queryOneById" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List"/>
+      from cskaoyan_mall_goods
+      where id = #{id}
+    </select>
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
         insert into cskaoyan_mall_goods
         (goods_sn,`name`,category_id,brand_id,
@@ -48,4 +54,9 @@
         #{keywords},#{brief},#{isOnSale},#{sortOrder},#{picUrl},#{shareUrl},#{isNew},#{isHot},
         #{unit},#{counterPrice},#{retailPrice},#{detail},#{addTime},#{updateTime},#{deleted})
     </insert>
+    <delete id="delete">
+        delete from cskaoyan_mall_goods
+        where id = #{goods.id}
+
+    </delete>
 </mapper>

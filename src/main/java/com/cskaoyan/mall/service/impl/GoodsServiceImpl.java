@@ -30,4 +30,14 @@ public class GoodsServiceImpl implements GoodsService {
     public int insert(Goods goods) {
         return goodsMapper.insert(goods);
     }
+
+    @Override
+    public int delete(Goods goods) {
+        return goodsMapper.delete(goods);
+    }
+
+    @Override
+    public Goods queryOneById(int id) {
+        return goodsMapper.queryOneById(id);
+    }
 }

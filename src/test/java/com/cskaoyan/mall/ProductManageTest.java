@@ -1,14 +1,8 @@
 package com.cskaoyan.mall;
 
-import com.cskaoyan.mall.bean.CategorySpecific;
-import com.cskaoyan.mall.bean.Goods;
-import com.cskaoyan.mall.bean.SpecificItem;
-import com.cskaoyan.mall.bean.Storage;
-import com.cskaoyan.mall.mapper.EchoBrandAndCatMapper;
-import com.cskaoyan.mall.mapper.GoodsMapper;
-import com.cskaoyan.mall.service.EchoBrandAndCatService;
-import com.cskaoyan.mall.service.GoodsService;
-import com.cskaoyan.mall.service.StorageService;
+import com.cskaoyan.mall.bean.*;
+import com.cskaoyan.mall.mapper.*;
+import com.cskaoyan.mall.service.*;
 import com.cskaoyan.mall.typeHandler.StringToStingrArrayHandler;
 import com.cskaoyan.mall.vo.PageVO;
 import com.cskaoyan.mall.vo.ResponseVO;
@@ -18,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -34,43 +29,34 @@ public class ProductManageTest {
     EchoBrandAndCatMapper echoBrandAndCatMapper;
     @Autowired
     StorageService storageService;
+    @Autowired
+    ProductMapper productMapper;
+    @Autowired
+    AttributeService attributeService;
+    @Autowired
+    AttributeMapper attributeMapper;
+    @Autowired
+    CategoryMapper categoryMapper;
+    @Autowired
+    CategoryService categoryService;
+    @Autowired
+    SpecificationMapper specificationMapper;
+    @Autowired
+    SpecificationService specificationService;
     @Test
     public void mytest1() {
         ResponseVO<PageVO<Goods>> responseVO = goodsService.queryAll(1, 10);
         System.out.println(responseVO);
     }
-
     @Test
     public void mytest2() {
-        List<SpecificItem> specificItems = echoBrandAndCatService.echoBrand();
-        System.out.println(specificItems);
+        List<Attribute> attributes = attributeService.queryByGoodsId(1006002);
+        System.out.println(attributes);
     }
     @Test
     public void mytest3() {
-        List<Goods> goods = goodsMapper.queryAll();
-        System.out.println(goods);
-    }
-    @Test
-    public void mytest4() {
-        StringToStingrArrayHandler stringToStingrArrayHandler = new StringToStingrArrayHandler();
-        String[] strings = stringToStingrArrayHandler.stringToStringArray("[\"http://yanxuan.nosdn.127.net/4eb09e08ac9de543d2291d27a6be0b54.jpg\", \"http://yanxuan.nosdn.127.net/0c9eb81c7594dbe42802ff1ebbece51a.jpg\", \"http://yanxuan.nosdn.127.net/8cfc7b6bfd28687ab3399da08e5ba61b.jpg\", \"http://yanxuan.nosdn.127.net/b98cfd7f197b62abd1679321eae253a6.jpg\"]");
-        System.out.println(strings);
-    }
-    @Test
-    public void mytest5() {
-        Storage storage = new Storage("asdasd", "asdqwe", "asdasd", 1111, "asdasd", new Date(), new Date(), false);
-        int i = storageService.insert(storage);
-        System.out.println(storage);
+        List<Product> products = productMapper.queryByGoodsId(1181000);
+        System.out.println(products);
     }
 
-    @Test
-    public void mytest6() {
-        Goods goods = new Goods();
-        goods.setGallery(new String[]{"123", "asdas"});
-        goods.setHot(false);
-        goods.setGoodsSn("asdasd");
-        goods.setName("asdasd");
-        int insert = goodsMapper.insert(goods);
-        System.out.println(insert);
-    }
 }

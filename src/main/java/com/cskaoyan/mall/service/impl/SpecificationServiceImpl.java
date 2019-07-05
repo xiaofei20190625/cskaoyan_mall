@@ -6,6 +6,8 @@ import com.cskaoyan.mall.service.SpecificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SpecificationServiceImpl implements SpecificationService {
     @Autowired
@@ -28,6 +30,11 @@ public class SpecificationServiceImpl implements SpecificationService {
     @Override
     public Specification selectByPrimaryKey(Integer id) {
         return null;
+    }
+
+    @Override
+    public List<Specification> queryByGoodsId(int goodsId) {
+        return specificationMapper.queryByGoodsId(goodsId);
     }
 
     @Override

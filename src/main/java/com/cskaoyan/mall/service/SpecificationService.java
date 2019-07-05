@@ -2,6 +2,8 @@ package com.cskaoyan.mall.service;
 
 import com.cskaoyan.mall.bean.Specification;
 
+import java.util.List;
+
 public interface SpecificationService {
     int deleteByPrimaryKey(Integer id);
 
@@ -10,6 +12,8 @@ public interface SpecificationService {
     int insertSelective(Specification record);
 
     Specification selectByPrimaryKey(Integer id);
+
+    List<Specification> queryByGoodsId(int goodsId);
 
     int updateByPrimaryKeySelective(Specification record);
 

@@ -6,6 +6,8 @@ import com.cskaoyan.mall.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProductServiceImpl implements ProductService {
     @Autowired
@@ -21,13 +23,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public int insertSelective(Product record) {
-        return productMapper.insertSelective(record);
+    public Product selectByPrimaryKey(Integer id) {
+        return null;
     }
 
     @Override
-    public Product selectByPrimaryKey(Integer id) {
-        return null;
+    public List<Product> queryByGoodsId(int goodsId) {
+        return productMapper.queryByGoodsId(goodsId);
     }
 
     @Override

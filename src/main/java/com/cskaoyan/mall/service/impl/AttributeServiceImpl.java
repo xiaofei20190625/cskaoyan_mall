@@ -6,6 +6,8 @@ import com.cskaoyan.mall.service.AttributeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AttributeServiceImpl implements AttributeService {
     @Autowired
@@ -29,6 +31,11 @@ public class AttributeServiceImpl implements AttributeService {
     @Override
     public Attribute selectByPrimaryKey(Integer id) {
         return null;
+    }
+
+    @Override
+    public List<Attribute> queryByGoodsId(int goodsId) {
+        return attributeMapper.queryByGoodsId(goodsId);
     }
 
     @Override

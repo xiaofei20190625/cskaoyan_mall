@@ -8,4 +8,8 @@ public interface GoodsService {
     ResponseVO<PageVO<Goods>> queryAll(int page, int limit);
 
     int insert(Goods goods);
+
+    int delete(Goods goods);
+
+    Goods queryOneById(int id);
 }

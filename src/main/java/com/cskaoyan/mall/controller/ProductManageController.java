@@ -26,6 +26,8 @@ public class ProductManageController {
     SpecificationService specificationService;
     @Autowired
     EchoBrandAndCatService echoBrandAndCatService;
+    @Autowired
+    CategoryService categoryService;
     /*----------查询商品列表-----------*/
     @RequestMapping("goods/list")
     @ResponseBody
@@ -74,7 +76,8 @@ public class ProductManageController {
             product.setGoodsId(goodsId);
             product.setAddTime(now);
             product.setUpdateTime(now);
-            insert2 = productService.insertSelective(product);
+            product.setDeleted(false);
+            insert2 = productService.insert(product);
         }
         //插入specification
         for (Specification specification : specifications) {
@@ -102,6 +105,35 @@ public class ProductManageController {
     }
 
     /*----------编辑商品------------*/
+    @RequestMapping("goods/detail")
+    @ResponseBody
+    public ResponseVO echoGoods(int id) {
+        Goods goods = goodsService.queryOneById(id);
+        int categoryId1 = goods.getCategoryId();
+        int categoryId2 = categoryService.queryPidById(categoryId1);
+        int[] categoryIds =  new int[]{categoryId2, categoryId1};
+        List<Attribute> attributes = attributeService.queryByGoodsId(id);
+        List<Product> products = productService.queryByGoodsId(id);
+        List<Specification> specifications = specificationService.queryByGoodsId(id);
+        GoodsDetail goodsDetail = new GoodsDetail(attributes, categoryIds, goods, products, specifications);
+        ResponseVO<GoodsDetail> responseVO = new ResponseVO<>(goodsDetail, "成功", 0);
+        return responseVO;
+    }
+
+    /*----------删除商品------------*/
+    @RequestMapping("goods/delete")
+    @ResponseBody
+    public OperationVO doDelete(@RequestBody Goods goods) {
+        OperationVO operationVO;
+        int delete = goodsService.delete(goods);
+        if (delete == 1) {
+            operationVO = new OperationVO(0, "成功");
+        } else {
+            operationVO = new OperationVO(401, "删除失败");
+        }
+        return operationVO;
+
+    }
 
 
 

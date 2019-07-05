@@ -12,8 +12,6 @@ admin:
       perms: ["*"]
       roles: ["超级管理员"]
 
-
-
   servlet:
     multipart:
       max-file-size: 128MB
@@ -26,7 +24,7 @@ pagehelper:
   params:
 spring:
   profiles:
-    active: cq
+    active: xy
 
 ---
 spring:
@@ -49,3 +47,11 @@ myoss:
   endpoint: oss-cn-beijing.aliyuncs.com
   access-key: LTAI3sdJdh79t29f
   secret: xGTmC2q655HzuQmjqcUNtNmkc0whLl
+---
+spring:
+  profiles: xy
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/j14_mall?characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 123456

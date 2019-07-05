@@ -346,4 +346,19 @@
       deleted = #{deleted,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
+  <select id="queryPageOrder" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from cskaoyan_mall_order
+    where deleted = 0 and user_id like "%"#{userId}"%" and order_sn like "%"#{orderSn}"%"
+    <if test="statuss != null">
+      and order_status in
+      <foreach collection="statuss" item="status" separator="," open="(" close=")" >
+        #{status}
+      </foreach>
+    </if>
+    order by #{sort} #{order}
+  </select>
 </mapper>

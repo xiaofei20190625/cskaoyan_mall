@@ -1,8 +1,11 @@
 package com.cskaoyan.mall.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Goods {
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     Date addTime;
 
     int brandId;
@@ -59,6 +62,7 @@ public class Goods {
 
     String unit;
 
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     Date updateTime;
 
     public Date getAddTime() {

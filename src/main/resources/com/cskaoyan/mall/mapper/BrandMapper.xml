@@ -129,7 +129,7 @@
   <update id="updateByPrimaryKey" parameterType="com.cskaoyan.mall.bean.Brand">
     update cskaoyan_mall_brand
     set name = #{name,jdbcType=VARCHAR},
-      desc = #{desc,jdbcType=VARCHAR},
+      `desc` = #{desc,jdbcType=VARCHAR},
       pic_url = #{picUrl,jdbcType=VARCHAR},
       sort_order = #{sortOrder,jdbcType=TINYINT},
       floor_price = #{floorPrice,jdbcType=DECIMAL},
@@ -160,11 +160,10 @@
         update cskaoyan_mall_brand set deleted = 1 where id = #{id}
     </update>
 
-    <insert id="insertBrand">
+    <insert id="insertBrand"  parameterType="com.cskaoyan.mall.bean.Brand">
         INSERT INTO cskaoyan_mall_brand
-        `name`,`desc`,pic_url,sort_order,floor_price,add_time,update_time,deleted
+        (name,`desc`,pic_url,sort_order,floor_price,add_time,update_time,deleted)
         VALUES
-        (#{brand.name},#{brand.desc},#{brand.picUrl},
-        #{brand.sortOrder},#{brand.floorPrice},#{brand.addTime},#{brand.updateTime},#{brand.deleted})
+        (#{name},#{desc},#{picUrl},#{sortOrder},#{floorPrice},#{addTime},#{updateTime},#{deleted})
     </insert>
 </mapper>

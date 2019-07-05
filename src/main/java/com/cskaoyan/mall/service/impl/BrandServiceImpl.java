@@ -44,4 +44,14 @@ public class BrandServiceImpl implements BrandService {
         brand.setDeleted(false);
         return brandMapper.insertBrand(brand);
     }
+
+    @Override
+    public int updateBrand(Brand brand) {
+        return brandMapper.updateByPrimaryKey(brand);
+    }
+
+    @Override
+    public Brand getBrandById(Integer id) {
+        return brandMapper.selectByPrimaryKey(id);
+    }
 }

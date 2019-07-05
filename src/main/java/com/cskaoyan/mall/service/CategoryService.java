@@ -16,4 +16,10 @@ public interface CategoryService {
     List<L1> getAllL1();
 
     int deleteCategoryById(Category category);
+
+    int createCategory(Category category);
+
+    int updateCategory(Category category);
+
+    Category getCategoryById(Integer id);
 }

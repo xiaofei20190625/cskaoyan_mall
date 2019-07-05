@@ -44,9 +44,36 @@ public class CategoryController {
         return responseVO;
     }
 
+    @RequestMapping("category/create")
+    @ResponseBody
+    public ResponseVO<Category> createCategory(@RequestBody Category category){
+        int create = categoryService.createCategory(category);
+        ResponseVO<Category> responseVO = new ResponseVO<>();
+        if (create == 1){
+            responseVO.setData(category);
+            responseVO.setErrno(0);
+            responseVO.setErrmsg("成功");
+        }
+        return responseVO;
+    }
+
+    @RequestMapping("category/update")
+    @ResponseBody
+    public ResponseVO<Category> updateCategory(@RequestBody Category category){
+        int create = categoryService.updateCategory(category);
+        ResponseVO<Category> responseVO = new ResponseVO<>();
+        if (create == 1){
+            Category newCategory = categoryService.getCategoryById(category.getId());
+            responseVO.setData(newCategory);
+            responseVO.setErrno(0);
+            responseVO.setErrmsg("成功");
+        }
+        return responseVO;
+    }
+
     @RequestMapping("category/delete")
     @ResponseBody
-    public ResponseVO deleteBrandById(@RequestBody Category category){
+    public ResponseVO deleteCategoryById(@RequestBody Category category){
         int delete = categoryService.deleteCategoryById(category);
         ResponseVO<Object> responseVO = new ResponseVO<>();
         if (delete == 1){

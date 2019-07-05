@@ -33,4 +33,21 @@ public class CategoryServiceImpl implements CategoryService {
     public int deleteCategoryById(Category category) {
         return categoryMapper.deleteCategory(category.getId());
     }
+
+    @Override
+    public int createCategory(Category category) {
+        return categoryMapper.insertSelective(category);
+    }
+
+    @Override
+    public int updateCategory(Category category) {
+        return categoryMapper.updateByPrimaryKey(category);
+    }
+
+    @Override
+    public Category getCategoryById(Integer id) {
+        return categoryMapper.selectByPrimaryKey(id);
+    }
+
+
 }

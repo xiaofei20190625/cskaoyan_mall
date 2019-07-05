@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Date;
-import java.util.List;
 
 /**
  * Created by IceFloe_Rot
@@ -57,6 +55,20 @@ public class BrandController {
         ResponseVO<Brand> responseVO = new ResponseVO<>();
         if (create == 1){
             responseVO.setData(brand);
+            responseVO.setErrno(0);
+            responseVO.setErrmsg("成功");
+        }
+        return responseVO;
+    }
+
+    @RequestMapping("brand/update")
+    @ResponseBody
+    public ResponseVO<Brand> updateBrand(@RequestBody Brand brand){
+        int create = brandService.updateBrand(brand);
+        ResponseVO<Brand> responseVO = new ResponseVO<>();
+        if (create == 1){
+            Brand newBrand = brandService.getBrandById(brand.getId());
+            responseVO.setData(newBrand);
             responseVO.setErrno(0);
             responseVO.setErrmsg("成功");
         }

@@ -70,7 +70,7 @@
     <result column="deleted" jdbcType="BIT" property="deleted" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, keywords, desc, pid, icon_url, pic_url, level, sort_order, add_time, update_time, 
+    id, name, keywords, `desc`, pid, icon_url, pic_url, `level`, sort_order, add_time, update_time,
     deleted
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -85,8 +85,8 @@
   </delete>
   <insert id="insert" parameterType="com.cskaoyan.mall.bean.Category">
     insert into cskaoyan_mall_category (id, name, keywords, 
-      desc, pid, icon_url, 
-      pic_url, level, sort_order, 
+      `desc`, pid, icon_url,
+      pic_url, `level`, sort_order,
       add_time, update_time, deleted
       )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, 
@@ -108,7 +108,7 @@
         keywords,
       </if>
       <if test="desc != null">
-        desc,
+        `desc`,
       </if>
       <if test="pid != null">
         pid,
@@ -184,7 +184,7 @@
         keywords = #{keywords,jdbcType=VARCHAR},
       </if>
       <if test="desc != null">
-        desc = #{desc,jdbcType=VARCHAR},
+        `desc` = #{desc,jdbcType=VARCHAR},
       </if>
       <if test="pid != null">
         pid = #{pid,jdbcType=INTEGER},
@@ -196,7 +196,7 @@
         pic_url = #{picUrl,jdbcType=VARCHAR},
       </if>
       <if test="level != null">
-        level = #{level,jdbcType=VARCHAR},
+        `level` = #{level,jdbcType=VARCHAR},
       </if>
       <if test="sortOrder != null">
         sort_order = #{sortOrder,jdbcType=TINYINT},
@@ -217,11 +217,11 @@
     update cskaoyan_mall_category
     set name = #{name,jdbcType=VARCHAR},
       keywords = #{keywords,jdbcType=VARCHAR},
-      desc = #{desc,jdbcType=VARCHAR},
+      `desc` = #{desc,jdbcType=VARCHAR},
       pid = #{pid,jdbcType=INTEGER},
       icon_url = #{iconUrl,jdbcType=VARCHAR},
       pic_url = #{picUrl,jdbcType=VARCHAR},
-      level = #{level,jdbcType=VARCHAR},
+      `level` = #{level,jdbcType=VARCHAR},
       sort_order = #{sortOrder,jdbcType=TINYINT},
       add_time = #{addTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},

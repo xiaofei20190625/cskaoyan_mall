@@ -1,5 +1,6 @@
 package com.cskaoyan.mall.service;
 
+<<<<<<< HEAD
 import com.cskaoyan.mall.bean.Order;
 import com.cskaoyan.mall.vo.PageVO;
 
@@ -12,3 +13,7 @@ public interface OrderService {
 
 
 }
+=======
+public interface OrderService {
+   }
+>>>>>>> 30f51c83aacb0928b23d8e81c1a555989e53f218

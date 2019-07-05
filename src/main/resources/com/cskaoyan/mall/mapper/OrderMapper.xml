@@ -35,6 +35,14 @@
     pay_id, pay_time, ship_sn, ship_channel, ship_time, confirm_time, comments, end_time, 
     add_time, update_time, deleted
   </sql>
+  <!--getListRecord-->
+  <select id="getListRecord" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from cskaoyan_mall_order
+    where goods_id like "%" #{goodsId} "%"
+    order by #{sort}  #{order}
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

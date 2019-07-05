@@ -1,3 +1,4 @@
+.gitignore
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
@@ -18,7 +19,8 @@ target/
 *.iws
 *.iml
 *.ipr
-
+src/main/resources/generatorConfig.xml
+src/main/java/com/cskaoyan/mall/generator/
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
@@ -29,3 +31,13 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+
+mvnw
+mvnw.cmd
+pom.xml
+
+src/main/resources/application.yml
+src/main/resources/123.properties
+

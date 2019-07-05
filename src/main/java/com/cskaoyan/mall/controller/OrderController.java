@@ -1,6 +1,7 @@
 package com.cskaoyan.mall.controller;
 
 import com.cskaoyan.mall.bean.Order;
+import com.cskaoyan.mall.bean.OrderDetail;
 import com.cskaoyan.mall.service.OrderService;
 import com.cskaoyan.mall.vo.PageVO;
 import com.cskaoyan.mall.vo.ResponseVO;
@@ -33,18 +34,17 @@ public class OrderController {
 
 
 
-   /* @RequestMapping("order/detail")
+    @RequestMapping("order/detail")
     @ResponseBody
-    public ResponseVO<Order> updateOrder(int id){
-        int create = orderService.updateOrder(order);
-        ResponseVO<Order> responseVO = new ResponseVO<>();
-        if (create == 1){
-            Order newOrder = orderService.getOrderById(order.getId());
-            responseVO.setData(newOrder);
+    public ResponseVO<OrderDetail> getOrderDetailById(int id){
+        OrderDetail orderDetail = orderService.getOrderDetailById(id);
+        ResponseVO<OrderDetail> responseVO = new ResponseVO<>();
+        if (orderDetail != null){
+            responseVO.setData(orderDetail);
             responseVO.setErrno(0);
             responseVO.setErrmsg("成功");
         }
         return responseVO;
-    }*/
+    }
 
 }

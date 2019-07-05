@@ -8,6 +8,33 @@ import java.util.List;
  */
 public class OrderDetail {
     private Order order;
-    private User user;
+    private UserVip userVip;
+    private List<Goods> orderGoods;
 
+    public OrderDetail() {
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public UserVip getUserVip() {
+        return userVip;
+    }
+
+    public void setUserVip(UserVip userVip) {
+        this.userVip = userVip;
+    }
+
+    public List<Goods> getOrderGoods() {
+        return orderGoods;
+    }
+
+    public void setOrderGoods(List<Goods> orderGoods) {
+        this.orderGoods = orderGoods;
+    }
 }

@@ -1,6 +1,7 @@
 package com.cskaoyan.mall.mapper;
 
 import com.cskaoyan.mall.bean.Order;
+import com.cskaoyan.mall.bean.OrderDetail;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -24,4 +25,6 @@ public interface OrderMapper {
                                @Param("userId") String userId,
                                @Param("orderSn") String orderSn,
                                @Param("statuss") String[] orderStatusArray);
+
+    OrderDetail queryOrderDetailById(@Param("id") int id);
 }

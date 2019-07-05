@@ -34,8 +34,8 @@ public class SystemController {
     username: "cskaoyan"*/
 
     @RequestMapping("admin/list")
-    public ResponseVO<PageVO> adminList(int page,int limit, String sort, String order){
-        PageVO<Admin> adminPageVO = adminService.findAdminPage(page,limit);
+    public ResponseVO<PageVO> adminList(int page,int limit, String sort, String order,String username){
+        PageVO<Admin> adminPageVO = adminService.findAdminPage(page,limit,username);
         ResponseVO<PageVO>  responseVO = new ResponseVO<>();
         responseVO.setErrmsg("成功");
         responseVO.setErrno(0);
@@ -53,13 +53,18 @@ public class SystemController {
         return responseVO;
     }
     @RequestMapping("admin/update")
-    public ResponseVO<Admin> roleupdate(@RequestBody Admin record){
-        ResponseVO<Admin>  responseVO = new ResponseVO<>();
-        int roleupdate = adminService.roleupdate(record);
-        if (roleupdate==1){
+    public ResponseVO<Admin> roleupdate(@RequestBody Admin admin){
+        int roleupdate = adminService.roleupdate(admin);
+        ResponseVO response = response(roleupdate,admin);
+        return  response;
+    }
+
+    private ResponseVO response(int i,Admin admin) {
+        ResponseVO  responseVO = new ResponseVO<>();
+        if (i==1){
             responseVO.setErrmsg("成功");
             responseVO.setErrno(0);
-            responseVO.setData(record);
+            responseVO.setData(null);
         }else {
             responseVO.setErrmsg("失败");
             responseVO.setErrno(-1);
@@ -67,20 +72,19 @@ public class SystemController {
         }
         return responseVO;
     }
+
     @RequestMapping("admin/delete")
-    public ResponseVO<Admin> admindelete(@RequestBody Admin id){
-        ResponseVO<Admin>  responseVO = new ResponseVO<>();
-        int admindelete = adminService.admindelete(id);
-        if (admindelete==1){
-            responseVO.setErrmsg("成功");
-            responseVO.setErrno(0);
-            responseVO.setData(null);
-        }else {
-            responseVO.setErrmsg("失败");
-            responseVO.setErrno(-1);
-            responseVO.setData(null);
-        }
-        return responseVO;
+    public ResponseVO<Admin> admindelete(@RequestBody Admin admin){
+        int admindelete = adminService.admindelete(admin);
+        ResponseVO response = response(admindelete,admin);
+        return response;
+
+    }
+    @RequestMapping("admin/create")
+    public ResponseVO<Admin> adminadd(@RequestBody Admin admin){
+        int adminadd = adminService.adminadd(admin);
+        ResponseVO response = response(adminadd,admin);
+        return response;
     }
 
 

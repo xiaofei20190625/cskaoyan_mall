@@ -359,12 +359,17 @@
         #{status}
       </foreach>
     </if>
-    order by #{sort} #{order}
+    <if test="sort != null and sort !=''">
+      order by #{sort}
+      <if test="order != null and order !=''">
+        #{order}
+      </if>
+    </if>
   </select>
 
   <resultMap id="orderDetailMap" type="com.cskaoyan.mall.bean.OrderDetail">
     <association property="order" javaType="com.cskaoyan.mall.bean.Order" resultMap="BaseResultMap"/>
-    <association property="userVip" javaType="com.cskaoyan.mall.bean.UserVip">
+    <association property="user" javaType="com.cskaoyan.mall.bean.UserVip">
       <result property="nickname" column="nickname"/>
       <result property="avatar" column="avatar"/>
     </association>

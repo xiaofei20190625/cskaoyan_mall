@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mall.mapper.IssueMapper">
+
+
+  <resultMap id="issueMap" type="com.cskaoyan.mall.bean.Issue">
+    <result property="id" column="id"/>
+    <result property="question" column="question"/>
+    <result property="answer" column="answer"/>
+    <result property="addTime" column="add_time"/>
+    <result property="updateTime" column="update_time"/>
+    <result property="deleted" column="deleted"/>
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, question, answer, add_time, update_time, deleted
+  </sql>
+
+  <select id="queryPageIssue" resultMap="issueMap">
+      select <include refid="Base_Column_List"/>
+      from cskaoyan_mall_issue
+      where deleted = 0 and question like "%"#{question}"%"
+      order by #{sort} #{order}
+  </select>
+
+  <update id="deleteIssueById">
+      update cskaoyan_mall_issue set deleted = 1
+      where id = #{id}
+  </update>
+
+  <insert id="insertIssue" parameterType="com.cskaoyan.mall.bean.Issue">
+      insert into cskaoyan_mall_issue
+      (question, answer, add_time, update_time)
+      values (#{question},#{answer},#{addTime},#{updateTime})
+  </insert>
+
+  <update id="updateByPrimaryKey">
+    update cskaoyan_mall_issue
+    set question = #{question,jdbcType=VARCHAR},
+      answer = #{answer,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      deleted = #{deleted,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByPrimaryKey" resultMap="issueMap">
+    select
+    <include refid="Base_Column_List" />
+    from cskaoyan_mall_issue
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

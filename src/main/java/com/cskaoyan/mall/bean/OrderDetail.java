@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class OrderDetail {
     private Order order;
-    private UserVip userVip;
+    private UserVip user;
     private List<Goods> orderGoods;
 
     public OrderDetail() {
@@ -22,12 +22,12 @@ public class OrderDetail {
         this.order = order;
     }
 
-    public UserVip getUserVip() {
-        return userVip;
+    public UserVip getUser() {
+        return user;
     }
 
-    public void setUserVip(UserVip userVip) {
-        this.userVip = userVip;
+    public void setUser(UserVip user) {
+        this.user = user;
     }
 
     public List<Goods> getOrderGoods() {

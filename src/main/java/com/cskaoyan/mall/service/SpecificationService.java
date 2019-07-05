@@ -1,10 +1,10 @@
-package com.cskaoyan.mall.mapper;
+package com.cskaoyan.mall.service;
 
 import com.cskaoyan.mall.bean.Specification;
 
 import java.util.List;
 
-public interface SpecificationMapper {
+public interface SpecificationService {
     int deleteByPrimaryKey(Integer id);
 
     int insert(Specification record);

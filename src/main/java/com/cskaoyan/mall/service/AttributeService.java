@@ -1,11 +1,11 @@
-package com.cskaoyan.mall.mapper;
+package com.cskaoyan.mall.service;
 
 import com.cskaoyan.mall.bean.Attribute;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface AttributeMapper {
+public interface AttributeService {
     int deleteByPrimaryKey(Integer id);
 
     int insert(Attribute record);
@@ -15,6 +15,7 @@ public interface AttributeMapper {
     Attribute selectByPrimaryKey(Integer id);
 
     List<Attribute> queryByGoodsId(@Param("goodsId") int goodsId);
+
 
     int updateByPrimaryKeySelective(Attribute record);
 

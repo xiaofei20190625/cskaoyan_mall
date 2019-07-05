@@ -37,4 +37,26 @@
       <include refid="Base_Column_List"/>
       from cskaoyan_mall_goods
     </select>
+    <select id="queryOneById" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List"/>
+      from cskaoyan_mall_goods
+      where id = #{id}
+    </select>
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into cskaoyan_mall_goods
+        (goods_sn,`name`,category_id,brand_id,
+        gallery,keywords,brief,is_on_sale,sort_order,pic_url,share_url,
+        is_new,is_hot,unit,counter_price,retail_price,detail,add_time,
+        update_time,deleted)
+        values
+        (#{goodsSn},#{name},#{categoryId},#{brandId},#{gallery,typeHandler=com.cskaoyan.mall.typeHandler.StringToStingrArrayHandler},
+        #{keywords},#{brief},#{isOnSale},#{sortOrder},#{picUrl},#{shareUrl},#{isNew},#{isHot},
+        #{unit},#{counterPrice},#{retailPrice},#{detail},#{addTime},#{updateTime},#{deleted})
+    </insert>
+    <delete id="delete">
+        delete from cskaoyan_mall_goods
+        where id = #{goods.id}
+
+    </delete>
 </mapper>

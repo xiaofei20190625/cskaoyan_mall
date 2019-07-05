@@ -22,6 +22,7 @@ pagehelper:
   reasonable: true
   support-methods-arguments: true
   params:
+
 spring:
   profiles:
     active: xy
@@ -55,8 +56,19 @@ spring:
     url: jdbc:mysql://localhost:3306/j14_mall?characterEncoding=utf-8&useSSL=false
     username: root
     password: 123456
+
 myoss:
   bucket: sszskkk
   endpoint: oss-cn-beijing.aliyuncs.com
   access-key: LTAIGPLBx9u8xMBf
   secret: uABGwnf5zi40va95eUUYmywBRTOgrn
+
+---
+spring:
+  profiles: hxf
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/j14_mall?serverTimezone=GMT
+    username: root
+    password: 123456
+

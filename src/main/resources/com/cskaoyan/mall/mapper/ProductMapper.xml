@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.cskaoyan.mall.bean.Product">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
-    <result column="specifications" jdbcType="VARCHAR" property="specifications" />
+    <result column="specifications" jdbcType="VARCHAR" property="specifications" typeHandler="com.cskaoyan.mall.typeHandler.StringToStingrArrayHandler" />
     <result column="price" jdbcType="DECIMAL" property="price" />
     <result column="number" jdbcType="INTEGER" property="number" />
     <result column="url" jdbcType="VARCHAR" property="url" />
@@ -21,121 +21,24 @@
     from cskaoyan_mall_goods_product
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="queryByGoodsId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from cskaoyan_mall_goods_product
+    where goods_id = #{goodsId}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from cskaoyan_mall_goods_product
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.cskaoyan.mall.bean.Product">
-    insert into cskaoyan_mall_goods_product (id, goods_id, specifications, 
+  <insert id="insert" parameterType="com.cskaoyan.mall.bean.Product" keyProperty="id" useGeneratedKeys="true">
+    insert into cskaoyan_mall_goods_product (goods_id, specifications,
       price, number, url, 
       add_time, update_time, deleted
       )
-    values (#{id,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{specifications,jdbcType=VARCHAR}, 
+    values (#{goodsId,jdbcType=INTEGER}, #{specifications,typeHandler=com.cskaoyan.mall.typeHandler.StringToStingrArrayHandler},
       #{price,jdbcType=DECIMAL}, #{number,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, 
       #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.cskaoyan.mall.bean.Product">
-    insert into cskaoyan_mall_goods_product
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="goodsId != null">
-        goods_id,
-      </if>
-      <if test="specifications != null">
-        specifications,
-      </if>
-      <if test="price != null">
-        price,
-      </if>
-      <if test="number != null">
-        number,
-      </if>
-      <if test="url != null">
-        url,
-      </if>
-      <if test="addTime != null">
-        add_time,
-      </if>
-      <if test="updateTime != null">
-        update_time,
-      </if>
-      <if test="deleted != null">
-        deleted,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="goodsId != null">
-        #{goodsId,jdbcType=INTEGER},
-      </if>
-      <if test="specifications != null">
-        #{specifications,jdbcType=VARCHAR},
-      </if>
-      <if test="price != null">
-        #{price,jdbcType=DECIMAL},
-      </if>
-      <if test="number != null">
-        #{number,jdbcType=INTEGER},
-      </if>
-      <if test="url != null">
-        #{url,jdbcType=VARCHAR},
-      </if>
-      <if test="addTime != null">
-        #{addTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="deleted != null">
-        #{deleted,jdbcType=BIT},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.mall.bean.Product">
-    update cskaoyan_mall_goods_product
-    <set>
-      <if test="goodsId != null">
-        goods_id = #{goodsId,jdbcType=INTEGER},
-      </if>
-      <if test="specifications != null">
-        specifications = #{specifications,jdbcType=VARCHAR},
-      </if>
-      <if test="price != null">
-        price = #{price,jdbcType=DECIMAL},
-      </if>
-      <if test="number != null">
-        number = #{number,jdbcType=INTEGER},
-      </if>
-      <if test="url != null">
-        url = #{url,jdbcType=VARCHAR},
-      </if>
-      <if test="addTime != null">
-        add_time = #{addTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="deleted != null">
-        deleted = #{deleted,jdbcType=BIT},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.mall.bean.Product">
-    update cskaoyan_mall_goods_product
-    set goods_id = #{goodsId,jdbcType=INTEGER},
-      specifications = #{specifications,jdbcType=VARCHAR},
-      price = #{price,jdbcType=DECIMAL},
-      number = #{number,jdbcType=INTEGER},
-      url = #{url,jdbcType=VARCHAR},
-      add_time = #{addTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      deleted = #{deleted,jdbcType=BIT}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
 </mapper>

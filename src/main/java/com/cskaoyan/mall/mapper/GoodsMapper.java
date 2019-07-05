@@ -13,4 +13,6 @@ public interface GoodsMapper {
     int insert(Goods goods);
 
     int delete(@Param("goods") Goods goods);
+
+    int update(@Param("goods") Goods goods);
 }

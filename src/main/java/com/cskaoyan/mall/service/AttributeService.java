@@ -16,7 +16,6 @@ public interface AttributeService {
 
     List<Attribute> queryByGoodsId(@Param("goodsId") int goodsId);
 
-
     int updateByPrimaryKeySelective(Attribute record);
 
     int updateByPrimaryKey(Attribute record);

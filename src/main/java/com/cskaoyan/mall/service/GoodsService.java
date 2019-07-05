@@ -12,4 +12,6 @@ public interface GoodsService {
     int delete(Goods goods);
 
     Goods queryOneById(int id);
+
+    int update(Goods goods);
 }

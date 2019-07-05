@@ -13,7 +13,5 @@ public interface ProductService {
 
     List<Product> queryByGoodsId(int goodsId);
 
-    int updateByPrimaryKeySelective(Product record);
-
-    int updateByPrimaryKey(Product record);
+    int updateByPrimaryKey(Product product);
 }

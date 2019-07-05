@@ -11,6 +11,7 @@ admin:
       name: "admin123"
       perms: ["*"]
       roles: ["超级管理员"]
+
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -26,3 +27,4 @@ pagehelper:
   reasonable: true
   support-methods-arguments: true
   params:
+

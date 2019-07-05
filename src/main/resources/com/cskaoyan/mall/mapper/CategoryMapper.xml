@@ -79,6 +79,12 @@
     from cskaoyan_mall_category
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="queryPidById" parameterType="java.lang.Integer" resultType="_int">
+    select
+    pid
+    from cskaoyan_mall_category
+    where id = #{id}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from cskaoyan_mall_category
     where id = #{id,jdbcType=INTEGER}

@@ -26,6 +26,8 @@ public interface CategoryMapper {
 
     Category selectByPrimaryKey(Integer id);
 
+    int queryPidById(int id);
+
     int updateByPrimaryKeySelective(Category record);
 
     int updateByPrimaryKey(Category record);

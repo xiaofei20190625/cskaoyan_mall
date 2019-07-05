@@ -22,4 +22,7 @@ public interface CategoryService {
     int updateCategory(Category category);
 
     Category getCategoryById(Integer id);
+
+    int queryPidById(int id);
+
 }

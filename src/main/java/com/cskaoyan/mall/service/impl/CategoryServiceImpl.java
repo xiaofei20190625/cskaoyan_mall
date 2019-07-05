@@ -7,13 +7,13 @@ import com.cskaoyan.mall.mapper.CategoryMapper;
 import com.cskaoyan.mall.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 /**
  * Created by IceFloe_Rot
  * Date 2019/7/4 Time 16:21
  */
+
 @Service
 public class CategoryServiceImpl implements CategoryService {
     @Autowired
@@ -49,5 +49,8 @@ public class CategoryServiceImpl implements CategoryService {
         return categoryMapper.selectByPrimaryKey(id);
     }
 
-
+    @Override
+    public int queryPidById(int id) {
+        return categoryMapper.queryPidById(id);
+    }
 }

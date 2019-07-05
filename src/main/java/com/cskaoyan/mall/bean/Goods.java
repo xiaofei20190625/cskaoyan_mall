@@ -39,30 +39,12 @@ public class Goods {
     String picUrl;
 
     String shareUrl;
-
-    public String[] getGallery() {
-        return gallery;
-    }
-
-    public void setGallery(String[] gallery) {
-        this.gallery = gallery;
-    }
-
-    public String getShareUrl() {
-        return shareUrl;
-    }
-
-    public void setShareUrl(String shareUrl) {
-        this.shareUrl = shareUrl;
-    }
-
     double retailPrice;
 
     int sortOrder;
 
     String unit;
 
-    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     Date updateTime;
 
     public Date getAddTime() {
@@ -119,6 +101,14 @@ public class Goods {
 
     public void setDetail(String detail) {
         this.detail = detail;
+    }
+
+    public String[] getGallery() {
+        return gallery;
+    }
+
+    public void setGallery(String[] gallery) {
+        this.gallery = gallery;
     }
 
     public String getGoodsSn() {
@@ -183,6 +173,14 @@ public class Goods {
 
     public void setPicUrl(String picUrl) {
         this.picUrl = picUrl;
+    }
+
+    public String getShareUrl() {
+        return shareUrl;
+    }
+
+    public void setShareUrl(String shareUrl) {
+        this.shareUrl = shareUrl;
     }
 
     public double getRetailPrice() {

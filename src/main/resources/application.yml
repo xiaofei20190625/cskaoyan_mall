@@ -11,14 +11,47 @@ admin:
       name: "admin123"
       perms: ["*"]
       roles: ["超级管理员"]
-spring:
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/j14_mall
-    username: root
-    password: 123456
+
+  servlet:
+    multipart:
+      max-file-size: 128MB
+      max-request-size: 128MB
+
 pagehelper:
   helper-dialect: mysql
   reasonable: true
   support-methods-arguments: true
   params:
+spring:
+  profiles:
+    active: xy
+
+---
+spring:
+  profiles: cq
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cskaoyanmall?characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 123456
+---
+spring:
+  profiles: zw
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/project_mall?characterEncoding=utf-8
+    username: root
+    password: 325601
+myoss:
+  bucket: cskaoyan-dom
+  endpoint: oss-cn-beijing.aliyuncs.com
+  access-key: LTAI3sdJdh79t29f
+  secret: xGTmC2q655HzuQmjqcUNtNmkc0whLl
+---
+spring:
+  profiles: xy
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/j14_mall?characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 123456

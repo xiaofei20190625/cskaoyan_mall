@@ -40,4 +40,9 @@ public class GoodsServiceImpl implements GoodsService {
     public Goods queryOneById(int id) {
         return goodsMapper.queryOneById(id);
     }
+
+    @Override
+    public int update(Goods goods) {
+        return goodsMapper.update(goods);
+    }
 }

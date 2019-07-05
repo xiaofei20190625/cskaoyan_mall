@@ -1,6 +1,7 @@
 package com.cskaoyan.mall.mapper;
 
 import com.cskaoyan.mall.bean.Product;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -13,7 +14,5 @@ public interface ProductMapper {
 
     List<Product> queryByGoodsId(int goodsId);
 
-    int updateByPrimaryKeySelective(Product record);
-
-    int updateByPrimaryKey(Product record);
+    int updateByPrimaryKey(@Param("product") Product product);
 }

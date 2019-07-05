@@ -41,4 +41,11 @@
       #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT}
       )
   </insert>
+  <update id="updateByPrimaryKey">
+    update cskaoyan_mall_goods_product set
+    goods_id=#{product.goodsId},specifications=#{product.specifications,typeHandler=com.cskaoyan.mall.typeHandler.StringToStingrArrayHandler},
+    price=#{product.price},number=#{product.number},url=#{product.url},add_time=#{product.addTime},
+    update_time=#{product.updateTime},deleted=#{product.deleted}
+    where id=#{product.id}
+  </update>
 </mapper>

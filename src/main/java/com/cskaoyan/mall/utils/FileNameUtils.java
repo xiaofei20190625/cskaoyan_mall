@@ -5,6 +5,7 @@ public class FileNameUtils {
      *获取文件后缀
      */
     public static String getSuffix(String fileName) {
+
         return fileName.substring(fileName.lastIndexOf("."));
     }
 

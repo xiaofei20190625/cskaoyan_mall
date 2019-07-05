@@ -27,6 +27,20 @@
     id, name, desc, tag, total, discount, min, limit, type, status, goods_type, goods_value, 
     code, time_type, days, start_time, end_time, add_time, update_time, deleted
   </sql>
+  <sql id="Query_List">
+    add_time , days , deleted , `desc`  ,discount , end_time , goods_type , goods_value , id , `limit` , min , `name`,
+      start_time , `status` , tag , time_type , total , type ,update_time
+  </sql>
+  <!--getList-->
+  <select id="getList" resultMap="BaseResultMap">
+select <include refid="Query_List"/>
+from cskaoyan_mall_coupon
+    where name like "%" #{name} "%" and  type like "%" #{type} "%" and  status like  "%" #{status} "%"
+    order by #{sort}  #{order}
+  </select>
+
+
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

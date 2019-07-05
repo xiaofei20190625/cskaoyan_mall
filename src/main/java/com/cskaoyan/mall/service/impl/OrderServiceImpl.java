@@ -1,10 +1,16 @@
 package com.cskaoyan.mall.service.impl;
 
 import com.cskaoyan.mall.service.OrderService;
+import com.cskaoyan.mall.bean.Order;
+import com.cskaoyan.mall.vo.PageVO;
+import org.springframework.stereotype.Service;
 
-/**
- * Created by IceFloe_Rot
- * Date 2019/7/4 Time 17:46
- */
-public class OrderServiceImpl implements OrderService {
+
+@Service
+public class OrderServiceImpl  implements OrderService {
+    @Override
+    public PageVO<Order> getListRecord(int page, int limit, String sort, String order, String goodsId) {
+        return null;
+    }
+
 }

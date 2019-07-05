@@ -53,8 +53,6 @@ public class BrandController {
     @RequestMapping("brand/create")
     @ResponseBody
     public ResponseVO<Brand> createBrand(@RequestBody Brand brand){
-        Date date = new Date();
-        brand.setAddTime(date);
         int create = brandService.createBrand(brand);
         ResponseVO<Brand> responseVO = new ResponseVO<>();
         if (create == 1){

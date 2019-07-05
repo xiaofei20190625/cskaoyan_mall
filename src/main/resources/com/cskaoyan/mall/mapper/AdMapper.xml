@@ -19,6 +19,20 @@
     id, name, link, url, position, content, start_time, end_time, enabled, add_time, 
     update_time, deleted
   </sql>
+  <sql id="Query_List">
+    add_time ,content , deleted , enabled , id , link , name , position , update_time , url
+  </sql>
+  <!--getList-->
+  <select id="getList" resultMap="BaseResultMap">
+    select  <include refid="Query_List"/>
+  from  cskaoyan_mall_ad
+where name like "%" #{name} "%" and  content like "%" #{content} "%"
+order by #{sort}  #{order}
+  </select>
+
+
+
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -26,9 +40,7 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
 
-  <select id="selectPageAd" resultMap="BaseResultMap">
-    select * from cskaoyan_mall_ad where
-  </select>
+
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from cskaoyan_mall_ad

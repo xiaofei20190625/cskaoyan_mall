@@ -16,6 +16,7 @@ admin:
     multipart:
       max-file-size: 128MB
       max-request-size: 128MB
+
 pagehelper:
   helper-dialect: mysql
   reasonable: true
@@ -25,6 +26,15 @@ pagehelper:
 spring:
   profiles:
     active: lyn
+
+---
+spring:
+  profiles: cq
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cskaoyanmall?characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 123456
 ---
 spring:
   profiles: lyn

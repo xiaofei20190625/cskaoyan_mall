@@ -1,5 +1,6 @@
 package com.cskaoyan.mall.mapper;
 
+import com.cskaoyan.mall.bean.GoodsAndGrouponAndGrouponRules;
 import com.cskaoyan.mall.bean.Groupon;
 import com.cskaoyan.mall.bean.Order;
 import org.apache.ibatis.annotations.Param;
@@ -19,6 +20,6 @@ public interface GrouponMapper {
 
     int updateByPrimaryKey(Groupon record);
 
-    List<Groupon> getListRecord(@Param("sort") String sort, @Param("order") String order,
-                              @Param("goodsId") String goodsId);
+    List<GoodsAndGrouponAndGrouponRules> getListRecord(@Param("sort") String sort, @Param("order") String order,
+                                                       @Param("goodsId") String goodsId);
 }

@@ -30,4 +30,12 @@ public class CouponServiceImpl implements CouponService {
         PageVO<Coupon> couponPageVO = new PageVO<>(couponPageInfo.getTotal(),couponPageInfo.getList());
         return  couponPageVO ;
     }
+
+    @Override
+    public Coupon insert(Coupon coupon) {
+        Coupon couponNew= couponMapper.insertNew(coupon);
+        PageInfo<Coupon> pageInfo = new PageInfo<>((List) couponNew);
+        
+
+    }
 }

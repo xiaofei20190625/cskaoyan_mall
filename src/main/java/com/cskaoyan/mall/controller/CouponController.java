@@ -5,6 +5,7 @@ import com.cskaoyan.mall.service.CouponService;
 import com.cskaoyan.mall.vo.PageVO;
 import com.cskaoyan.mall.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +26,16 @@ public class CouponController {
         PageVO<Coupon> adPageVO = couponService.getList(page, limit ,sort ,order , name , type , status );
         ResponseVO<PageVO> responseVO = new ResponseVO<>();
         responseVO.setData(adPageVO);
+        responseVO.setErrmsg("成功");
+        responseVO.setErrno(0);
+        return  responseVO;
+    }
+
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public ResponseVO create(@RequestBody Coupon coupon){
+        ResponseVO<Coupon> responseVO = new ResponseVO<>();
+        Coupon coupon1 = couponService.insert(coupon);
+        responseVO.setData(coupon1);
         responseVO.setErrmsg("成功");
         responseVO.setErrno(0);
         return  responseVO;

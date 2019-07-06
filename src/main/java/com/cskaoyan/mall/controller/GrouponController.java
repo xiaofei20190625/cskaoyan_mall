@@ -1,5 +1,6 @@
 package com.cskaoyan.mall.controller;
 
+import com.cskaoyan.mall.bean.GoodsAndGrouponAndGrouponRules;
 import com.cskaoyan.mall.bean.Groupon;
 import com.cskaoyan.mall.service.GrouponService;
 import com.cskaoyan.mall.vo.PageVO;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @Description TODO
  */
 @RestController
+@RequestMapping("/groupon")
 public class GrouponController {
 
     @Autowired
@@ -24,7 +26,7 @@ public class GrouponController {
     @RequestMapping(value = "/listRecord", method = RequestMethod.GET)
     public ResponseVO<PageVO> getListRecord(int page, int limit, String sort, String order, String goodsId) {
         if (goodsId == null) goodsId = "";
-        PageVO<Groupon> grouponRulesPageVO = grouponService.getListRecord(page, limit, sort, order, goodsId);
+        PageVO<GoodsAndGrouponAndGrouponRules> grouponRulesPageVO = grouponService.getListRecord(page, limit, sort, order, goodsId);
         ResponseVO<PageVO> responseVO = new ResponseVO<>();
         responseVO.setData(grouponRulesPageVO);
         responseVO.setErrmsg("成功");

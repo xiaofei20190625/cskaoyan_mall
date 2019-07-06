@@ -27,6 +27,16 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
+    public ResponseVO<PageVO<Goods>> fuzzyQuery(int page, int limit, String goodsSn, String name) {
+        PageHelper.startPage(page, limit);
+        List<Goods> goods = goodsMapper.fuzzyQuery("%" + goodsSn + "%", "%" + name + "%");
+        PageInfo<Goods> pageInfo = new PageInfo<>(goods);
+        PageVO<Goods> pageVO = new PageVO<>(pageInfo.getTotal(), pageInfo.getList());
+        ResponseVO<PageVO<Goods>> responseVO = new ResponseVO<>(pageVO, "成功", 0);
+        return responseVO;
+    }
+
+    @Override
     public int insert(Goods goods) {
         return goodsMapper.insert(goods);
     }

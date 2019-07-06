@@ -93,8 +93,6 @@ public class ProductManageTest {
         Attribute attribute = new Attribute();
         Integer id = attribute.getId();
         System.out.println(id);
-
-
     }
 
 

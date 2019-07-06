@@ -37,6 +37,12 @@
       <include refid="Base_Column_List"/>
       from cskaoyan_mall_goods
     </select>
+    <select id="fuzzyQuery" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List"/>
+      from cskaoyan_mall_goods
+      where goods_sn like #{goodsSn} and `name` like #{name}
+    </select>
     <select id="queryOneById" resultMap="BaseResultMap">
       select
       <include refid="Base_Column_List"/>

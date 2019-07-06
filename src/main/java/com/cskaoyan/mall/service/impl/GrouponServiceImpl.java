@@ -2,6 +2,7 @@ package com.cskaoyan.mall.service.impl;
 
 import com.cskaoyan.mall.bean.GoodsAndGrouponAndGrouponRules;
 import com.cskaoyan.mall.bean.Groupon;
+import com.cskaoyan.mall.bean.GrouponRules;
 import com.cskaoyan.mall.mapper.GrouponMapper;
 import com.cskaoyan.mall.service.GrouponService;
 import com.cskaoyan.mall.vo.PageVO;
@@ -29,5 +30,10 @@ public class GrouponServiceImpl implements GrouponService {
         PageInfo<GoodsAndGrouponAndGrouponRules> grouponPageInfo = new PageInfo<>(orderList);
         PageVO<GoodsAndGrouponAndGrouponRules> grouponPageVO = new PageVO<>(grouponPageInfo.getTotal(),grouponPageInfo.getList());
         return  grouponPageVO ;
+    }
+
+    @Override
+    public int create(GrouponRules grouponRules) {
+        return grouponMapper.create(grouponRules);
     }
 }

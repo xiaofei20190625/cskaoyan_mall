@@ -30,4 +30,19 @@ public class TopicServiceImpl implements TopicService {
         PageVO<Topic> topicPageVO = new PageVO<>(topicPageInfo.getTotal(),topicPageInfo.getList());
         return  topicPageVO ;
     }
+
+    @Override
+    public int update(Topic topic) {
+        return topicMapper.updateByPrimaryKeySelective(topic);
+    }
+
+    @Override
+    public int delete(Topic topic) {
+        return topicMapper.deleteByPrimaryKey(topic.getId());
+    }
+
+    @Override
+    public int create(Topic topic) {
+        return topicMapper.create(topic);
+    }
 }

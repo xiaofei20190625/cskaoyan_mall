@@ -89,6 +89,17 @@
       and  r.goods_id like "%${goodsId}%"
     order by g.${sort}  ${order}
   </select>
+  <!--create-->
+  <insert id="create" keyProperty="id" useGeneratedKeys="true">
+    insert into cskaoyan_mall_groupon (id, order_id, groupon_id,
+                                       rules_id, user_id, creator_user_id,
+                                       add_time, update_time, share_url,
+                                       payed, deleted)
+    values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{grouponId,jdbcType=INTEGER},
+            #{rulesId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{creatorUserId,jdbcType=INTEGER},
+            #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{shareUrl,jdbcType=VARCHAR},
+            #{payed,jdbcType=BIT}, #{deleted,jdbcType=BIT})
+  </insert>
 
 
 

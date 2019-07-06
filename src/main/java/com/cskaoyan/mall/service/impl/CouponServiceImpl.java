@@ -32,10 +32,24 @@ public class CouponServiceImpl implements CouponService {
     }
 
     @Override
-    public Coupon insert(Coupon coupon) {
-        Coupon couponNew= couponMapper.insertNew(coupon);
-        PageInfo<Coupon> pageInfo = new PageInfo<>((List) couponNew);
-        
-
+    public int create(Coupon coupon) {
+        return couponMapper.create(coupon);
     }
+
+    @Override
+    public int update(Coupon coupon) {
+        return  couponMapper.updateByPrimaryKeySelective(coupon);
+    }
+
+    @Override
+    public Coupon getCouponById(int id) {
+        return couponMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public int delete(Coupon coupon) {
+        return  couponMapper.deleteByPrimaryKey(coupon.getId());
+    }
+
+
 }

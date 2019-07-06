@@ -8,6 +8,9 @@ import java.util.List;
 public interface GoodsMapper {
     List<Goods> queryAll();
 
+
+    List<Goods> fuzzyQuery(@Param("goodsSn") String goodsSn, @Param("name") String name);
+
     Goods queryOneById(int id);
 
     int insert(Goods goods);

@@ -10,4 +10,5 @@ public interface AdService {
 
     int  delete(Ad ad);
 
+    int create(Ad ad);
 }

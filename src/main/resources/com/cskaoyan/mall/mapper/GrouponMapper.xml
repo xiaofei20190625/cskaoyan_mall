@@ -17,7 +17,7 @@
     </constructor>
   </resultMap>
   <resultMap id="Goods_Groupon_Rules" type="com.cskaoyan.mall.bean.GoodsAndGrouponAndGrouponRules">
-    <association property="goods" javaType="com.cskaoyan.mall.bean.Goods">
+    <collection property="goods" javaType="com.cskaoyan.mall.bean.Goods">
       <id column="id" jdbcType="VARCHAR" property="id" />
       <result column="name" jdbcType="VARCHAR" property="name" />
       <result column="category_id" jdbcType="VARCHAR" property="categoryId" />
@@ -39,8 +39,8 @@
       <result column="update_time" jdbcType="VARCHAR" property="updateTime" />
       <result column="deleted" jdbcType="VARCHAR" property="deleted" />
       <result column="goods_sn" jdbcType="VARCHAR" property="goodsSn" />
-    </association>
-    <association property="groupon" javaType="com.cskaoyan.mall.bean.Groupon">
+    </collection>
+    <collection property="groupon" javaType="com.cskaoyan.mall.bean.Groupon">
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="order_id" property="orderId" jdbcType="INTEGER" />
         <result column="groupon_id" property="grouponId" jdbcType="INTEGER" />
@@ -52,8 +52,8 @@
         <result column="share_url" property="shareUrl" jdbcType="VARCHAR" />
         <result column="payed" property="payed" jdbcType="BIT" />
         <result column="deleted" property="deleted" jdbcType="BIT" />
-    </association>
-    <association property="grouponRules" javaType="com.cskaoyan.mall.bean.GrouponRules">
+    </collection>
+    <collection property="grouponRules" javaType="com.cskaoyan.mall.bean.GrouponRules">
       <id column="id" jdbcType="INTEGER" property="id" />
       <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
       <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
@@ -64,7 +64,7 @@
       <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
       <result column="expire_time" jdbcType="TIMESTAMP" property="expireTime" />
       <result column="deleted" jdbcType="BIT" property="deleted" />
-    </association>
+    </collection>
   </resultMap>
   <sql id="Base_Column_List">
     id, order_id, groupon_id, rules_id, user_id, creator_user_id, add_time, update_time, 
@@ -73,14 +73,14 @@
   <!--getListRecord-->
   <select id="getListRecord" resultMap="Goods_Groupon_Rules">
     select g.add_time , g.brand_id , g.brief , g.category_id , g.counter_price  ,g.detail,
-           g.gallery , g.goods_sn ,  g.id , g.is_hot , g.is_new , g.is_on_sale ,g.keywords , g.name , g.pic_url,
+           g.gallery , g.goods_sn ,  g.id , g.is_hot as isHot, g.is_new , g.is_on_sale ,g.keywords , g.name , g.pic_url,
            g.retail_price, g.share_url ,g.sort_order,g.unit ,g.update_time,
 
-           gr.add_time , gr.creator_user_id , gr.groupon_id , gr.deleted,gr.id , gr.order_id , gr.payed ,gr.rules_id,
-           gr.share_url , gr.update_time , gr.user_id,
+           gr.add_time , gr.creator_user_id , gr.groupon_id , gr.deleted,gr.id as  grid, gr.order_id , gr.payed ,gr.rules_id,
+           gr.share_url as  grshareUrl, gr.update_time  as  grupdateTime, gr.user_id,
 
-           r.add_time, r.discount ,r.discount_member , r.expire_time , r.goods_id,
-           r.goods_name ,r.id , r.pic_url , r.update_time
+           r.add_time as raddTime, r.discount ,r.discount_member , r.expire_time , r.goods_id,
+           r.goods_name ,r.id as  rid, r.pic_url , r.update_time as  rupdateTime
     from cskaoyan_mall_goods as g,
          cskaoyan_mall_groupon_rules as r ,
          cskaoyan_mall_groupon as gr

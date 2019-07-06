@@ -41,4 +41,9 @@ public class AdServiceImpl implements AdService {
         return adMapper.deleteByPrimaryKey(ad.getId());
     }
 
+    @Override
+    public int create(Ad ad) {
+        return adMapper.create(ad);
+    }
+
 }

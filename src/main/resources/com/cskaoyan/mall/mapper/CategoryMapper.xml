@@ -53,7 +53,7 @@
 
 
     <update id="deleteCategory">
-        update cskaoyan_mall_category set deleted = 1 where id = #{id}
+        update cskaoyan_mall_category set deleted = 1 where id = #{id} or pid = #{id}
     </update>
   <resultMap id="BaseResultMap" type="com.cskaoyan.mall.bean.Category">
     <id column="id" jdbcType="INTEGER" property="id" />

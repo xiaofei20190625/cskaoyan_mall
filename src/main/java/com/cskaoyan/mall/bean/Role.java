@@ -5,7 +5,7 @@ import java.util.Date;
 public class Role {
     private Integer value;
 
-    private String label;
+    private String name;
 
     private String desc;
 
@@ -21,17 +21,18 @@ public class Role {
         return value;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void setValue(Integer value) {
         this.value = value;
     }
 
-    public String getLabel() {
-        return label;
-    }
-
-    public void setLabel(String label) {
-        this.label = label;
-    }
 
     public String getDesc() {
         return desc;
@@ -72,4 +73,5 @@ public class Role {
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
     }
+
 }

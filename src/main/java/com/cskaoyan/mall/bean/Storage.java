@@ -35,6 +35,18 @@ public class Storage {
         this.deleted = deleted;
     }
 
+    public Storage(Integer id, String key, String name, String type, Integer size, String url, Date addTime, Date updateTime, Boolean deleted) {
+        this.id = id;
+        this.key = key;
+        this.name = name;
+        this.type = type;
+        this.size = size;
+        this.url = url;
+        this.addTime = addTime;
+        this.updateTime = updateTime;
+        this.deleted = deleted;
+    }
+
     public Integer getId() {
         return id;
     }

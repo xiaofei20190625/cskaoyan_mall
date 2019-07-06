@@ -120,6 +120,125 @@ public class ProductManageController {
         return responseVO;
     }
 
+    //执行编辑操作
+    @RequestMapping("goods/update")
+    @ResponseBody
+    public OperationVO doUpdate(@RequestBody GoodsInsert goodsInsert) {
+        List<Attribute> attributes = goodsInsert.getAttributes();
+        Goods goods = goodsInsert.getGoods();
+        List<Product> products = goodsInsert.getProducts();
+        List<Specification> specifications = goodsInsert.getSpecifications();
+        //插入goods
+        Date now = new Date();
+        goods.setUpdateTime(now);
+        //insert1-->goods插入返回的结果
+        //insert2-->product插入返回的结果
+        //insert3-->specification插入返回的结果
+        //insert4-->specification插入返回的结果
+        int update1 = goodsService.update(goods);
+        int update2 = 0;
+        int update3 = 0;
+        int update4 = 0;
+        int goodsId = goods.getId();
+        //更新product
+        for (Product product : products) {
+            if (product.getId() == null || product.getId() == 0) {
+                product.setGoodsId(goodsId);
+                product.setAddTime(now);
+                product.setUpdateTime(now);
+                product.setDeleted(false);
+                update2 = productService.insert(product);
+            } else {
+                product.setUpdateTime(now);
+                update2 = productService.updateByPrimaryKey(product);
+            }
+        }
+        //删除已经去掉了的product
+        List<Product> productList = productService.queryByGoodsId(goodsId);
+        for (Product item : productList) {
+            //作为标记，0表示item已经不存在，1表示item还存在
+            int flag = 0;
+            for (Product product : products) {
+                if (item.getId().intValue() == product.getId().intValue()) {
+                    flag = 1;
+                    break;
+                }
+            }
+            //item已不存在，删除数据库中对应的项
+            if (flag == 0) {
+                update2 = productService.deleteByPrimaryKey(item.getId());
+            }
+        }
+        //更新specification
+        for (Specification specification : specifications) {
+            if (specification.getId() == null || specification.getId() == 0) {
+                specification.setAddTime(now);
+                specification.setUpdateTime(now);
+                specification.setDeleted(false);
+                specification.setGoodsId(goodsId);
+                update3 = specificationService.insertSelective(specification);
+            } else {
+                specification.setUpdateTime(now);
+                update3 = specificationService.updateByPrimaryKey(specification);
+            }
+        }
+        //删除已经去掉了的specification
+        List<Specification> specificationList = specificationService.queryByGoodsId(goodsId);
+        for (Specification item : specificationList) {
+            int flag = 0;
+            for (Specification specification : specifications) {
+                /*System.out.println("a:" + specification.getId().intValue());
+                System.out.println("b:" + item.getId().intValue());*/
+                if (specification.getId().intValue() == item.getId().intValue()) {
+                    flag = 1;
+                    break;
+                }
+            }
+            //item已不存在，执行删除
+            if (flag == 0) {
+                update3 = specificationService.deleteByPrimaryKey(item.getId());
+            }
+
+        }
+        //更新attribute
+        for (Attribute attribute : attributes) {
+            if (attribute.getId() == null || attribute.getId() == 0) {
+                attribute.setGoodsId(goodsId);
+                attribute.setAddTime(now);
+                attribute.setUpdateTime(now);
+                update4 = attributeService.insertSelective(attribute);
+            } else {
+                attribute.setUpdateTime(now);
+                update4 = attributeService.updateByPrimaryKey(attribute);
+            }
+        }
+        //删除已经去掉的attribute
+        List<Attribute> attributeList = attributeService.queryByGoodsId(goodsId);
+        for (Attribute item : attributeList) {
+            int flag = 0;
+            for (Attribute attribute : attributes) {
+                /*System.out.println("a:" + specification.getId().intValue());
+                System.out.println("b:" + item.getId().intValue());*/
+                if (attribute.getId().intValue() == item.getId().intValue()) {
+                    flag = 1;
+                    break;
+                }
+            }
+            //item已不存在，执行删除
+            if (flag == 0) {
+                update4 = attributeService.deleteByPrimaryKey(item.getId());
+            }
+        }
+
+        OperationVO operationVO = null;
+        if (update1 == 1 && update2 ==1 && update3 == 1 && update4 == 1) {
+            operationVO = new OperationVO(0, "成功");
+        } else {
+            operationVO = new OperationVO(401, "参数不对");
+        }
+        return operationVO;
+    }
+
     /*----------删除商品------------*/
     @RequestMapping("goods/delete")
     @ResponseBody

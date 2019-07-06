@@ -14,7 +14,8 @@ public class ProductServiceImpl implements ProductService {
     ProductMapper productMapper;
     @Override
     public int deleteByPrimaryKey(Integer id) {
-        return 0;
+
+        return productMapper.deleteByPrimaryKey(id);
     }
 
     @Override
@@ -33,12 +34,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public int updateByPrimaryKeySelective(Product record) {
-        return 0;
-    }
-
-    @Override
-    public int updateByPrimaryKey(Product record) {
-        return 0;
+    public int updateByPrimaryKey(Product product) {
+        return productMapper.updateByPrimaryKey(product);
     }
 }

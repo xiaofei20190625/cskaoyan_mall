@@ -14,7 +14,7 @@ public class AttributeServiceImpl implements AttributeService {
     AttributeMapper attributeMapper;
     @Override
     public int deleteByPrimaryKey(Integer id) {
-        return 0;
+        return attributeMapper.deleteByPrimaryKey(id);
     }
 
     @Override
@@ -45,6 +45,6 @@ public class AttributeServiceImpl implements AttributeService {
 
     @Override
     public int updateByPrimaryKey(Attribute record) {
-        return 0;
+        return attributeMapper.updateByPrimaryKey(record);
     }
 }

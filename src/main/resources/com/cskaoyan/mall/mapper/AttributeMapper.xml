@@ -37,7 +37,7 @@
       #{value,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{deleted,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.cskaoyan.mall.bean.Attribute">
+  <insert id="insertSelective" parameterType="com.cskaoyan.mall.bean.Attribute" keyProperty="id" useGeneratedKeys="true">
     insert into cskaoyan_mall_goods_attribute
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -50,7 +50,7 @@
         attribute,
       </if>
       <if test="value != null">
-        value,
+        `value`,
       </if>
       <if test="addTime != null">
         add_time,

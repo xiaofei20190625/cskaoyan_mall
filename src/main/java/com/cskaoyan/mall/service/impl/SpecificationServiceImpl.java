@@ -14,7 +14,7 @@ public class SpecificationServiceImpl implements SpecificationService {
     SpecificationMapper specificationMapper;
     @Override
     public int deleteByPrimaryKey(Integer id) {
-        return 0;
+        return specificationMapper.deleteByPrimaryKey(id);
     }
 
     @Override
@@ -44,6 +44,6 @@ public class SpecificationServiceImpl implements SpecificationService {
 
     @Override
     public int updateByPrimaryKey(Specification record) {
-        return 0;
+        return specificationMapper.updateByPrimaryKey(record);
     }
 }

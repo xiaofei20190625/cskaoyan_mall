@@ -35,6 +35,19 @@ from cskaoyan_mall_topic
     where title like "%" #{title} "%" and  subtitle like "%" #{subtitle} "%"
     order by #{sort}  #{order}
   </select>
+  <!--create-->
+  <insert id="create" keyProperty="id" useGeneratedKeys="true">
+    insert into cskaoyan_mall_topic (id, title, subtitle,
+                                     price, read_count, pic_url,
+                                     sort_order, goods, add_time,
+                                     update_time, deleted, content
+    )
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{subtitle,jdbcType=VARCHAR},
+            #{price,jdbcType=DECIMAL}, #{readCount,jdbcType=VARCHAR}, #{picUrl,jdbcType=VARCHAR},
+            #{sortOrder,jdbcType=INTEGER}, #{goods,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP},
+            #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT}, #{content,jdbcType=LONGVARCHAR}
+           )
+  </insert>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
     select 

@@ -11,7 +11,7 @@
  Target Server Version : 80011
  File Encoding         : 65001
 
- Date: 05/07/2019 21:59:56
+ Date: 06/07/2019 09:18:42
 */
 
 SET NAMES utf8mb4;
@@ -29,6 +29,12 @@ CREATE TABLE `cskaoyan_mall_expressconfig`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of cskaoyan_mall_expressconfig
+-- ----------------------------
+INSERT INTO `cskaoyan_mall_expressconfig` VALUES (1, NULL, NULL);
+INSERT INTO `cskaoyan_mall_expressconfig` VALUES (2, NULL, NULL);
+
+-- ----------------------------
 -- Table structure for cskaoyan_mall_mallconfig
 -- ----------------------------
 DROP TABLE IF EXISTS `cskaoyan_mall_mallconfig`;
@@ -40,6 +46,11 @@ CREATE TABLE `cskaoyan_mall_mallconfig`  (
   `litemall_mall_qq` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of cskaoyan_mall_mallconfig
+-- ----------------------------
+INSERT INTO `cskaoyan_mall_mallconfig` VALUES (11, '1', '1', '1', '1');
 
 -- ----------------------------
 -- Table structure for cskaoyan_mall_orderconfig
@@ -59,7 +70,7 @@ CREATE TABLE `cskaoyan_mall_orderconfig`  (
 DROP TABLE IF EXISTS `cskaoyan_mall_wxconfig`;
 CREATE TABLE `cskaoyan_mall_wxconfig`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `data.litemall_wx_catlog_goods` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `litemall_wx_catlog_goods` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `litemall_wx_catlog_list` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `litemall_wx_index_brand` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `litemall_wx_index_hot` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,

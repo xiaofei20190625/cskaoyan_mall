@@ -20,4 +20,7 @@ public interface CouponMapper {
 
     List<Coupon> getList(@Param("sort") String sort, @Param("order") String order, @Param("name") String name,
                          @Param("type") String type, @Param("status") String status);
+
+    int create(Coupon coupon);
+
 }

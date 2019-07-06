@@ -19,4 +19,8 @@ public interface GrouponRulesMapper {
     int updateByPrimaryKey(GrouponRules record);
 
     List<GrouponRules> getList(@Param("sort") String sort, @Param("order")String order,@Param("goodsId") String goodsId);
+
+    int create(GrouponRules grouponRules);
+
+    GrouponRules findGoodsId(Integer goodsId);
 }

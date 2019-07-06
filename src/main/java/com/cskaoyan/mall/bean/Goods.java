@@ -47,6 +47,7 @@ public class Goods {
 
     Date updateTime;
 
+
     public Date getAddTime() {
         return addTime;
     }

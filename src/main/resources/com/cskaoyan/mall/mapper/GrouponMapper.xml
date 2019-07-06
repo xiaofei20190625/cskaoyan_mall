@@ -16,10 +16,93 @@
       <arg column="deleted" javaType="java.lang.Boolean" jdbcType="BIT" />
     </constructor>
   </resultMap>
+  <resultMap id="Goods_Groupon_Rules" type="com.cskaoyan.mall.bean.GoodsAndGrouponAndGrouponRules">
+    <association property="goods" javaType="com.cskaoyan.mall.bean.Goods">
+      <id column="id" jdbcType="VARCHAR" property="id" />
+      <result column="name" jdbcType="VARCHAR" property="name" />
+      <result column="category_id" jdbcType="VARCHAR" property="categoryId" />
+      <result column="brand_id" jdbcType="VARCHAR" property="brandId" />
+      <result column="gallery" jdbcType="VARCHAR" property="gallery" typeHandler="com.cskaoyan.mall.typeHandler.StringToStingrArrayHandler" />
+      <result column="keywords" jdbcType="VARCHAR" property="keywords" />
+      <result column="brief" jdbcType="VARCHAR" property="brief" />
+      <result column="is_on_sale" jdbcType="VARCHAR" property="isOnSale" />
+      <result column="sort_order" jdbcType="VARCHAR" property="sortOrder" />
+      <result column="pic_url" jdbcType="VARCHAR" property="picUrl" />
+      <result column="share_url" jdbcType="VARCHAR" property="shareUrl" />
+      <result column="is_new" jdbcType="VARCHAR" property="isNew" />
+      <result column="is_hot" jdbcType="VARCHAR" property="isHot" />
+      <result column="unit" jdbcType="VARCHAR" property="unit" />
+      <result column="counter_price" jdbcType="VARCHAR" property="counterPrice" />
+      <result column="retail_price" jdbcType="VARCHAR" property="retailPrice" />
+      <result column="detail" jdbcType="VARCHAR" property="detail" />
+      <result column="add_time" jdbcType="VARCHAR" property="addTime" />
+      <result column="update_time" jdbcType="VARCHAR" property="updateTime" />
+      <result column="deleted" jdbcType="VARCHAR" property="deleted" />
+      <result column="goods_sn" jdbcType="VARCHAR" property="goodsSn" />
+    </association>
+    <association property="groupon" javaType="com.cskaoyan.mall.bean.Groupon">
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="order_id" property="orderId" jdbcType="INTEGER" />
+        <result column="groupon_id" property="grouponId" jdbcType="INTEGER" />
+        <result column="rules_id" property="rulesId" jdbcType="INTEGER" />
+        <result column="user_id" property="userId" jdbcType="INTEGER" />
+        <result column="creator_user_id" property="creatorUserId" jdbcType="INTEGER" />
+        <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="share_url" property="shareUrl" jdbcType="VARCHAR" />
+        <result column="payed" property="payed" jdbcType="BIT" />
+        <result column="deleted" property="deleted" jdbcType="BIT" />
+    </association>
+    <association property="grouponRules" javaType="com.cskaoyan.mall.bean.GrouponRules">
+      <id column="id" jdbcType="INTEGER" property="id" />
+      <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
+      <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+      <result column="pic_url" jdbcType="VARCHAR" property="picUrl" />
+      <result column="discount" jdbcType="DECIMAL" property="discount" />
+      <result column="discount_member" jdbcType="INTEGER" property="discountMember" />
+      <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+      <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+      <result column="expire_time" jdbcType="TIMESTAMP" property="expireTime" />
+      <result column="deleted" jdbcType="BIT" property="deleted" />
+    </association>
+  </resultMap>
   <sql id="Base_Column_List">
     id, order_id, groupon_id, rules_id, user_id, creator_user_id, add_time, update_time, 
     share_url, payed, deleted
   </sql>
+  <!--getListRecord-->
+  <select id="getListRecord" resultMap="Goods_Groupon_Rules">
+    select g.add_time , g.brand_id , g.brief , g.category_id , g.counter_price  ,g.detail,
+           g.gallery , g.goods_sn ,  g.id , g.is_hot , g.is_new , g.is_on_sale ,g.keywords , g.name , g.pic_url,
+           g.retail_price, g.share_url ,g.sort_order,g.unit ,g.update_time,
+
+           gr.add_time , gr.creator_user_id , gr.groupon_id , gr.deleted,gr.id , gr.order_id , gr.payed ,gr.rules_id,
+           gr.share_url , gr.update_time , gr.user_id,
+
+           r.add_time, r.discount ,r.discount_member , r.expire_time , r.goods_id,
+           r.goods_name ,r.id , r.pic_url , r.update_time
+    from cskaoyan_mall_goods as g,
+         cskaoyan_mall_groupon_rules as r ,
+         cskaoyan_mall_groupon as gr
+    where g.id = r.goods_id
+      and gr.rules_id = r.id
+      and  r.goods_id like "%${goodsId}%"
+    order by g.${sort}  ${order}
+  </select>
+  <!--create-->
+  <insert id="create" keyProperty="id" useGeneratedKeys="true">
+    insert into cskaoyan_mall_groupon (id, order_id, groupon_id,
+                                       rules_id, user_id, creator_user_id,
+                                       add_time, update_time, share_url,
+                                       payed, deleted)
+    values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{grouponId,jdbcType=INTEGER},
+            #{rulesId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{creatorUserId,jdbcType=INTEGER},
+            #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{shareUrl,jdbcType=VARCHAR},
+            #{payed,jdbcType=BIT}, #{deleted,jdbcType=BIT})
+  </insert>
+
+
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

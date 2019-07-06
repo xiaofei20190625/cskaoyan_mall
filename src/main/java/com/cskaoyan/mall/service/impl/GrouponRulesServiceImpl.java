@@ -30,4 +30,24 @@ public class GrouponRulesServiceImpl implements GrouponRulesService {
         PageVO<GrouponRules> grouponRulesPageVO = new PageVO<>(grouponRulesPageInfo.getTotal(),grouponRulesPageInfo.getList());
         return  grouponRulesPageVO ;
     }
+
+    @Override
+    public int create(GrouponRules grouponRules) {
+        return grouponRulesMapper.create(grouponRules);
+    }
+
+    @Override
+    public GrouponRules findGoodsId(Integer goodsId) {
+        return grouponRulesMapper.findGoodsId(goodsId);
+    }
+
+    @Override
+    public int delete(GrouponRules grouponRules) {
+        return grouponRulesMapper.deleteByPrimaryKey(grouponRules.getId());
+    }
+
+    @Override
+    public int update(GrouponRules grouponRules) {
+        return grouponRulesMapper.updateByPrimaryKeySelective(grouponRules);
+    }
 }

@@ -32,14 +32,15 @@ public class AdController {
     @PostMapping("/update")
     public  ResponseVO update(@RequestBody Ad ad) {
         int update = adService.updateById(ad);
-        ResponseVO<Integer> responseVO = new ResponseVO<>();
+        ResponseVO<Ad> responseVO = new ResponseVO<>();
         if (update == 1) {
-            responseVO.setData(update);
+            responseVO.setData(ad);
             responseVO.setErrmsg("成功");
             responseVO.setErrno(0);
         }
         return responseVO;
     }
+
 
     @RequestMapping("/delete")
     public ResponseVO delete(@RequestBody Ad ad){
@@ -52,6 +53,7 @@ public class AdController {
         }
         return  responseVO;
     }
+
 
 
 

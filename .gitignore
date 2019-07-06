@@ -1,4 +1,3 @@
-.gitignore
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
@@ -33,12 +32,6 @@ build/
 .vscode/
 
 
-
-mvnw
-mvnw.cmd
-pom.xml
-
-src/main/resources/application.yml
 src/main/resources/123.properties
 src/main/resources/generatorConfig.xml
 

@@ -17,7 +17,7 @@ import java.util.List;
  * Date 2019/7/3 Time 16:53
  */
 @Controller
-public class RegionController {
+public class  RegionController {
     @Autowired
     RegionService regionService;
 

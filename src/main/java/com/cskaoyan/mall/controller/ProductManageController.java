@@ -28,12 +28,20 @@ public class ProductManageController {
     EchoBrandAndCatService echoBrandAndCatService;
     @Autowired
     CategoryService categoryService;
+    @Autowired
+    CommentService commentService;
     /*----------查询商品列表-----------*/
+    //http://192.168.2.100:8081/admin/goods/list?page=1&limit=20&goodsSn=1&name=1&sort=add_time&order=desc
     @RequestMapping("goods/list")
     @ResponseBody
-    public ResponseVO getGoodsList(int page, int limit, String add_time, String order) {
-        ResponseVO<PageVO<Goods>> responseVO = goodsService.queryAll(page, limit);
-        return responseVO;
+    public ResponseVO getGoodsList(int page, int limit,String goodsSn,String name,String sort, String order) {
+        if (goodsSn == null && name == null) {
+            ResponseVO<PageVO<Goods>> responseVO = goodsService.queryAll(page, limit);
+            return responseVO;
+        } else {
+            ResponseVO<PageVO<Goods>> responseVO = goodsService.fuzzyQuery(page, limit, goodsSn, name);
+            return responseVO;
+        }
     }
     /*-----------新增商品------------*/
     //品牌和目录的回显
@@ -253,6 +261,63 @@ public class ProductManageController {
         return operationVO;
 
     }
+
+    /*---------查询评论---------*/
+    @RequestMapping("comment/list")
+    @ResponseBody
+    public ResponseVO getCommentList(int page, int limit,String userId, String valueId, String sort, String order) {
+        if (userId == null && valueId == null) {
+            ResponseVO<PageVO<Comment>> responseVO = commentService.queryAll(page, limit);
+            return responseVO;
+        } else {
+            ResponseVO<PageVO<Comment>> responseVO = commentService.fuzzyQuery(page, limit, userId, valueId);
+            return responseVO;
+        }
+    }
+
+    /*---------删除评论---------*/
+    @RequestMapping("comment/delete")
+    @ResponseBody
+    public OperationVO deleteComment(@RequestBody Comment comment) {
+        Integer id = comment.getId();
+        int delete = commentService.delete(id);
+        OperationVO operationVO;
+        if (delete == 1) {
+            operationVO = new OperationVO(0, "成功");
+            return operationVO;
+        } else {
+            operationVO = new OperationVO(1, "失败");
+        }
+        return operationVO;
+    }
+    /*------评论回复------*/
+    //http://192.168.2.100:8081/admin/order/reply
+    @RequestMapping("order/reply")
+    @ResponseBody
+    public OperationVO orderReply(@RequestBody CommentReply commentReply) {
+        int commentId = commentReply.getCommentId();
+        Comment comment = commentService.selectByPrimaryKey(commentId);
+        OperationVO operationVO;
+        //该评论的内容为空，执行更新评论的操作
+        if ("".equals(comment.getContent())) {
+            Date now = new Date();
+            comment.setContent(commentReply.getContent());
+            comment.setUpdateTime(now);
+            int update = commentService.updateByPrimaryKey(comment);
+            if (update == 1) {
+                operationVO = new OperationVO(0, "成功");
+            } else {
+                operationVO = new OperationVO(1, "商品回复更新失败");
+            }
+        }
+        //该评论的内容不为空返回响应的执行信息
+        else {
+            operationVO = new OperationVO(622,"订单商品已回复");
+        }
+        return operationVO;
+
+    }
+
 
 
 

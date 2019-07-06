@@ -3,7 +3,7 @@
 <mapper namespace="com.cskaoyan.mall.mapper.RoleMapper">
   <resultMap id="BaseResultMap" type="com.cskaoyan.mall.bean.Role">
     <id column="id" jdbcType="INTEGER" property="value" />
-    <result column="name" jdbcType="VARCHAR" property="label" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="desc" jdbcType="VARCHAR" property="desc" />
     <result column="enabled" jdbcType="BIT" property="enabled" />
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
@@ -11,8 +11,20 @@
     <result column="deleted" jdbcType="BIT" property="deleted" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, desc, enabled, add_time, update_time, deleted
+    id, `name`, `desc`, enabled, add_time, update_time, deleted
   </sql>
+
+  <update id="roleupdate" parameterType="com.cskaoyan.mall.bean.Role">
+    update cskaoyan_mall_role
+    set `name` = #{name,jdbcType=VARCHAR},
+      `desc` = #{desc,jdbcType=VARCHAR},
+      enabled = #{enabled,jdbcType=BIT},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      deleted = #{deleted,jdbcType=BIT}
+    where id = #{value,jdbcType=INTEGER}
+  </update>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -20,9 +32,20 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
 
+  <select id="findRolePage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from cskaoyan_mall_role
+    <where>
+      <if test="name!=null">
+        name like '%${name}%'
+      </if>
+    </where>
+  </select>
+
   <select id="queryOption" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
-     id,name
+     id,`name`
     from cskaoyan_mall_role
 
   </select>
@@ -32,7 +55,7 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.cskaoyan.mall.bean.Role">
-    insert into cskaoyan_mall_role (id, name, desc, 
+    insert into cskaoyan_mall_role (id, `name`, `des`,
       enabled, add_time, update_time, 
       deleted)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}, 
@@ -46,10 +69,10 @@
         id,
       </if>
       <if test="name != null">
-        name,
+        `name`,
       </if>
       <if test="desc != null">
-        desc,
+        `desc`,
       </if>
       <if test="enabled != null">
         enabled,
@@ -92,10 +115,10 @@
     update cskaoyan_mall_role
     <set>
       <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
+        `name` = #{name,jdbcType=VARCHAR},
       </if>
       <if test="desc != null">
-        desc = #{desc,jdbcType=VARCHAR},
+        `desc` = #{desc,jdbcType=VARCHAR},
       </if>
       <if test="enabled != null">
         enabled = #{enabled,jdbcType=BIT},
@@ -114,12 +137,12 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.cskaoyan.mall.bean.Role">
     update cskaoyan_mall_role
-    set name = #{name,jdbcType=VARCHAR},
-      desc = #{desc,jdbcType=VARCHAR},
+    set `name` = #{name,jdbcType=VARCHAR},
+      `desc` = #{desc,jdbcType=VARCHAR},
       enabled = #{enabled,jdbcType=BIT},
       add_time = #{addTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       deleted = #{deleted,jdbcType=BIT}
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{value,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -13,8 +13,25 @@
     <result column="deleted" jdbcType="BIT" property="deleted" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, key, name, type, size, url, add_time, update_time, deleted
+    id, `key`, `name`, `type`, `size`, url, add_time, update_time, deleted
   </sql>
+
+  <select id="findStoragePage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from cskaoyan_mall_storage
+    <where>
+      <if test="name!=null">
+        `name` like '%${name}%'
+      </if>
+      <if test="key!=null">
+        `key` like '%${key}%'
+      </if>
+    </where>
+  </select>
+
+
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -25,15 +42,15 @@
     delete from cskaoyan_mall_storage
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.cskaoyan.mall.bean.Storage" keyProperty="id" useGeneratedKeys="true">
-    insert into cskaoyan_mall_storage (`key`, `name`,
-      type, size, url, add_time,
+  <insert id="insert" parameterType="com.cskaoyan.mall.bean.Storage">
+    insert into cskaoyan_mall_storage (id, `key`, `name`,
+      `type`, `size`, url, add_time,
       update_time, deleted)
-    values (#{key,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
-      #{type,jdbcType=VARCHAR}, #{size,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP},
+    values (#{id,jdbcType=INTEGER}, #{key,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{size,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.cskaoyan.mall.bean.Storage" keyProperty="id" useGeneratedKeys="true">
+  <insert id="insertSelective" parameterType="com.cskaoyan.mall.bean.Storage">
     insert into cskaoyan_mall_storage
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -46,10 +63,10 @@
         `name`,
       </if>
       <if test="type != null">
-        type,
+        `type`,
       </if>
       <if test="size != null">
-        size,
+        `size`,
       </if>
       <if test="url != null">
         url,
@@ -98,16 +115,16 @@
     update cskaoyan_mall_storage
     <set>
       <if test="key != null">
-        key = #{key,jdbcType=VARCHAR},
+        `key` = #{key,jdbcType=VARCHAR},
       </if>
       <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
+        `name` = #{name,jdbcType=VARCHAR},
       </if>
       <if test="type != null">
-        type = #{type,jdbcType=VARCHAR},
+        `type` = #{type,jdbcType=VARCHAR},
       </if>
       <if test="size != null">
-        size = #{size,jdbcType=INTEGER},
+        `size` = #{size,jdbcType=INTEGER},
       </if>
       <if test="url != null">
         url = #{url,jdbcType=VARCHAR},
@@ -126,14 +143,39 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.cskaoyan.mall.bean.Storage">
     update cskaoyan_mall_storage
-    set key = #{key,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARCHAR},
-      type = #{type,jdbcType=VARCHAR},
-      size = #{size,jdbcType=INTEGER},
+    set `key` = #{key,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=VARCHAR},
+      `size` = #{size,jdbcType=INTEGER},
       url = #{url,jdbcType=VARCHAR},
       add_time = #{addTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       deleted = #{deleted,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+<update id="storageupdate" parameterType="com.cskaoyan.mall.bean.Storage">
+    update cskaoyan_mall_storage
+    set `key` = #{key,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=VARCHAR},
+      `size` = #{size,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      deleted = #{deleted,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+<update id="storagedelete" parameterType="com.cskaoyan.mall.bean.Storage">
+    update cskaoyan_mall_storage
+    set `key` = #{key,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=VARCHAR},
+      `size` = #{size,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      deleted = #{deleted,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
 </mapper>

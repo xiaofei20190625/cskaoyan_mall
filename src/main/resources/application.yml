@@ -25,7 +25,7 @@ pagehelper:
 
 spring:
   profiles:
-    active: zw
+    active: xy
 
 ---
 spring:
@@ -37,17 +37,17 @@ spring:
     password: 123456
 ---
 spring:
-  profiles: zw
+  profiles: lyn
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/project_mall?characterEncoding=utf-8
+    url: jdbc:mysql://localhost:3306/project_mall?characterEncoding=utf-8&useSSL=false
     username: root
-    password: 325601
+    password: 123456
 myoss:
-  bucket: cskaoyan-dom
+  bucket: icefloe-rot
   endpoint: oss-cn-beijing.aliyuncs.com
-  access-key: LTAI3sdJdh79t29f
-  secret: xGTmC2q655HzuQmjqcUNtNmkc0whLl
+  access-key: LTAIuMqEy3okWKAu
+  secret: 3izazmEzf0WsPrQNtZ1XXQMOjdqyv3
 ---
 spring:
   profiles: xy
@@ -56,6 +56,13 @@ spring:
     url: jdbc:mysql://localhost:3306/j14_mall?characterEncoding=utf-8&useSSL=false
     username: root
     password: 123456
+
+myoss:
+  bucket: sszskkk
+  endpoint: oss-cn-beijing.aliyuncs.com
+  access-key: LTAIGPLBx9u8xMBf
+  secret: uABGwnf5zi40va95eUUYmywBRTOgrn
+
 ---
 spring:
   profiles: hxf
@@ -64,3 +71,4 @@ spring:
     url: jdbc:mysql://localhost:3306/j14_mall?serverTimezone=GMT
     username: root
     password: 123456
+

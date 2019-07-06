@@ -346,4 +346,107 @@
       deleted = #{deleted,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
+  <select id="queryPageOrder" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from cskaoyan_mall_order
+    where deleted = 0 and user_id like "%"#{userId}"%" and order_sn like "%"#{orderSn}"%"
+    <if test="statuss != null">
+      and order_status in
+      <foreach collection="statuss" item="status" separator="," open="(" close=")" >
+        #{status}
+      </foreach>
+    </if>
+    <if test="sort != null and sort !=''">
+      order by #{sort}
+      <if test="order != null and order !=''">
+        #{order}
+      </if>
+    </if>
+  </select>
+
+  <resultMap id="orderDetailMap" type="com.cskaoyan.mall.bean.OrderDetail">
+    <association property="order" javaType="com.cskaoyan.mall.bean.Order" resultMap="BaseResultMap"/>
+    <association property="user" javaType="com.cskaoyan.mall.bean.UserVip">
+      <result property="nickname" column="nickname"/>
+      <result property="avatar" column="avatar"/>
+    </association>
+    <collection property="orderGoods" ofType="com.cskaoyan.mall.bean.OrderGoods">
+      <result property="goodsName" column="goods_name"/>
+      <result property="goodsSn" column="goods_sn"/>
+      <result property="specifications" column="specifications"/>
+      <result property="price" column="price"/>
+      <result property="number" column="number"/>
+      <result property="picUrl" column="pic_url"/>
+    </collection>
+  </resultMap>
+  <select id="queryOrderDetailById" resultMap="orderDetailMap">
+    select
+
+    o.id,
+    o.user_id,
+    o.order_sn,
+    o.order_status,
+    o.consignee,
+    o.mobile,
+    o.address,
+    o.message,
+    o.goods_price,
+    o.freight_price,
+    o.coupon_price,
+    o.integral_price,
+    o.groupon_price,
+    o.order_price,
+    o.actual_price,
+    o.pay_id,
+    o.pay_time,
+    o.ship_sn,
+    o.ship_channel,
+    o.ship_time,
+    o.confirm_time,
+    o.comments,
+    o.end_time,
+    o.add_time,
+    o.update_time,
+    o.deleted,
+
+    og.id,
+    og.order_id,
+    og.goods_id,
+    og.goods_name,
+    og.goods_sn,
+    og.product_id,
+    og.`number`,
+    og.price,
+    og.specifications,
+    og.pic_url,
+    og.comment,
+    og.add_time,
+    og.update_time,
+    og.deleted,
+
+    u.id,
+    u.username,
+    u.password,
+    u.gender,
+    u.birthday,
+    u.last_login_time,
+    u.last_login_ip,
+    u.user_level,
+    u.nickname,
+    u.mobile,
+    u.avatar,
+    u.weixin_openid,
+    u.status,
+    u.add_time,
+    u.update_time,
+    u.deleted
+
+    from cskaoyan_mall_order o
+    left join cskaoyan_mall_order_goods og on og.order_id = o.id
+    left join cskaoyan_mall_user u on u.id = o.user_id
+    where o.id = #{id,jdbcType=INTEGER}
+  </select>
 </mapper>

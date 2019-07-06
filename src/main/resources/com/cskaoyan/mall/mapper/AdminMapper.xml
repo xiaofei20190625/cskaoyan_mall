@@ -28,16 +28,31 @@
     select
     <include refid="Base_Column_List" />
     from cskaoyan_mall_admin
+    <where>
+      <if test="username!=null">
+        username like '%${username}%'
+      </if>
+    </where>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from cskaoyan_mall_admin
     where id = #{id,jdbcType=INTEGER}
   </delete>
 
-  <delete id="admindelete" parameterType="java.lang.Integer">
-    delete from cskaoyan_mall_admin
+
+    <update id="admindelete" parameterType="com.cskaoyan.mall.bean.Admin">
+    update cskaoyan_mall_admin
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},
+      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      avatar = #{avatar,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      deleted = #{deleted,jdbcType=BIT},
+      role_ids = #{roleIds,typeHandler=com.cskaoyan.mall.converter.intArrayTypeHandler}
     where id = #{id,jdbcType=INTEGER}
-  </delete>
+  </update>
 
   <insert id="insert" parameterType="com.cskaoyan.mall.bean.Admin">
     insert into cskaoyan_mall_admin (id, username, password, 
@@ -116,6 +131,75 @@
       </if>
     </trim>
   </insert>
+
+  <insert id="adminadd" parameterType="com.cskaoyan.mall.bean.Admin">
+    insert into cskaoyan_mall_admin
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="lastLoginIp != null">
+        last_login_ip,
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time,
+      </if>
+      <if test="avatar != null">
+        avatar,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+      <if test="roleIds != null">
+        role_ids,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginIp != null">
+        #{lastLoginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="avatar != null">
+        #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=BIT},
+      </if>
+      <if test="roleIds != null">
+        #{roleIds,typeHandler=com.cskaoyan.mall.converter.intArrayTypeHandler},
+      </if>
+    </trim>
+  </insert>
+
   <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.mall.bean.Admin" >
     update cskaoyan_mall_admin
     <set>

@@ -1,6 +1,13 @@
 package com.cskaoyan.mall.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
+
+/**
+ * Created by IceFloe_Rot
+ * Date 2019/7/4 Time 16:32
+ */
 
 public class Category {
     private Integer id;
@@ -21,11 +28,16 @@ public class Category {
 
     private Byte sortOrder;
 
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date addTime;
 
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
     private Boolean deleted;
+
+    public Category() {
+    }
 
     public Integer getId() {
         return id;
@@ -40,7 +52,7 @@ public class Category {
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.name = name;
     }
 
     public String getKeywords() {
@@ -48,7 +60,7 @@ public class Category {
     }
 
     public void setKeywords(String keywords) {
-        this.keywords = keywords == null ? null : keywords.trim();
+        this.keywords = keywords;
     }
 
     public String getDesc() {
@@ -56,7 +68,7 @@ public class Category {
     }
 
     public void setDesc(String desc) {
-        this.desc = desc == null ? null : desc.trim();
+        this.desc = desc;
     }
 
     public Integer getPid() {
@@ -72,7 +84,7 @@ public class Category {
     }
 
     public void setIconUrl(String iconUrl) {
-        this.iconUrl = iconUrl == null ? null : iconUrl.trim();
+        this.iconUrl = iconUrl;
     }
 
     public String getPicUrl() {
@@ -80,7 +92,7 @@ public class Category {
     }
 
     public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl == null ? null : picUrl.trim();
+        this.picUrl = picUrl;
     }
 
     public String getLevel() {
@@ -88,7 +100,7 @@ public class Category {
     }
 
     public void setLevel(String level) {
-        this.level = level == null ? null : level.trim();
+        this.level = level;
     }
 
     public Byte getSortOrder() {
@@ -123,3 +135,4 @@ public class Category {
         this.deleted = deleted;
     }
 }
+

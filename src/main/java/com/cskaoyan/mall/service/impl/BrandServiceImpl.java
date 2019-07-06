@@ -9,6 +9,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -36,6 +37,21 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public int createBrand(Brand brand) {
-        return 0;
+        Date date = new Date();
+        brand.setSortOrder(50);
+        brand.setAddTime(date);
+        brand.setUpdateTime(date);
+        brand.setDeleted(false);
+        return brandMapper.insertBrand(brand);
+    }
+
+    @Override
+    public int updateBrand(Brand brand) {
+        return brandMapper.updateByPrimaryKey(brand);
+    }
+
+    @Override
+    public Brand getBrandById(Integer id) {
+        return brandMapper.selectByPrimaryKey(id);
     }
 }

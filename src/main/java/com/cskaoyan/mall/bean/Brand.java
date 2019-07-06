@@ -1,18 +1,22 @@
 package com.cskaoyan.mall.bean;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 public class Brand {
-    Integer id;
-    String name;
-    String desc;
-    String picUrl;
-    Integer sortOrder;
-    Double floorPrice;
+    private Integer id;
+    private String name;
+    private String desc;
+    private String picUrl;
+    private Integer sortOrder;
+    private Double floorPrice;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
-    Date addTime;
+    private Date addTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
-    Date updateTime;
-    Boolean deleted;
+    private Date updateTime;
+    private Boolean deleted;
 
     public Brand() {
     }

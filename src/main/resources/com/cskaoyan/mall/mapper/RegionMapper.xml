@@ -11,7 +11,7 @@
         <collection property="children" column="id" select="com.cskaoyan.mall.mapper.RegionMapper.queryAllCityByPid"/>
     </resultMap>
     <select id="queryAllProvince" resultMap="provinceMap">
-      SELECT id,`name`,type,`code`,pid FROM cskaoyan_mall_region WHERE type = 1
+      SELECT id,`name`,`type`,`code`,pid FROM cskaoyan_mall_region WHERE `type` = 1
     </select>
 
     <resultMap id="cityMap" type="com.cskaoyan.mall.bean.City">
@@ -22,7 +22,7 @@
         <collection property="children" column="id" select="com.cskaoyan.mall.mapper.RegionMapper.queryAllDistrictByCode"/>
     </resultMap>
     <select id="queryAllCityByPid" resultMap="cityMap">
-        SELECT id,`name`,type,`code`,pid as ccode FROM cskaoyan_mall_region WHERE type = 2 and pid = #{id}
+        SELECT id,`name`,`type`,`code`,pid as ccode FROM cskaoyan_mall_region WHERE `type` = 2 and pid = #{id}
     </select>
 
     <resultMap id="districtMap" type="com.cskaoyan.mall.bean.Discrict">
@@ -32,6 +32,6 @@
         <result property="code" column="code"/>
     </resultMap>
     <select id="queryAllDistrictByCode" resultMap="districtMap">
-        SELECT id,`name`,type,`code`,pid as dcode FROM cskaoyan_mall_region WHERE type = 3 and pid = #{id}
+        SELECT id,`name`,`type`,`code`,pid as dcode FROM cskaoyan_mall_region WHERE `type` = 3 and pid = #{id}
     </select>
 </mapper>

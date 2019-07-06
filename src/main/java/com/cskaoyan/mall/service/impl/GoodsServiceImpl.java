@@ -25,4 +25,24 @@ public class GoodsServiceImpl implements GoodsService {
         ResponseVO<PageVO<Goods>> responseVO = new ResponseVO<>(pageVO, "成功", 0);
         return responseVO;
     }
+
+    @Override
+    public int insert(Goods goods) {
+        return goodsMapper.insert(goods);
+    }
+
+    @Override
+    public int delete(Goods goods) {
+        return goodsMapper.delete(goods);
+    }
+
+    @Override
+    public Goods queryOneById(int id) {
+        return goodsMapper.queryOneById(id);
+    }
+
+    @Override
+    public int update(Goods goods) {
+        return goodsMapper.update(goods);
+    }
 }

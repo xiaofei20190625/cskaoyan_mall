@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("admin")
+@RequestMapping("/admin")
 public class ConfigController { //配置管理
     @Autowired
     ConfigService configService;
@@ -26,7 +26,6 @@ public class ConfigController { //配置管理
         return response;
 
     }
-
 
 
     private ResponseVO response(int insert,ResponseVO responseVO) {

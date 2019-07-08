@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/topic")
+@RequestMapping("/admin/topic")
 public class TopicController {
 
     @Autowired

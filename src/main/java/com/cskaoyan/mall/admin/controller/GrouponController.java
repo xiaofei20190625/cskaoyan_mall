@@ -31,7 +31,7 @@ import java.util.List;
  * @Description TODO
  */
 @RestController
-@RequestMapping("/groupon")
+@RequestMapping("/admin/groupon")
 public class GrouponController {
 
     @Autowired

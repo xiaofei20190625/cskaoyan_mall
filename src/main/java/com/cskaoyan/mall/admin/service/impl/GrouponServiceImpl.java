@@ -1,6 +1,5 @@
 package com.cskaoyan.mall.admin.service.impl;
 
-import com.cskaoyan.mall.admin.bean.GoodsAndGrouponAndGrouponRules;
 import com.cskaoyan.mall.admin.bean.Groupon;
 import com.cskaoyan.mall.admin.bean.GrouponRules;
 import com.cskaoyan.mall.admin.mapper.GrouponMapper;
@@ -24,14 +23,13 @@ public class GrouponServiceImpl implements GrouponService {
     GrouponMapper grouponMapper ;
 
     @Override
-    public PageVO<GoodsAndGrouponAndGrouponRules> getListRecord(int page, int limit, String sort, String order, String goodsId) {
+    public PageVO<Groupon> getListRecord(int page, int limit, String sort, String order, String goodsId) {
         PageHelper.startPage(page, limit);
-        List<GoodsAndGrouponAndGrouponRules> orderList = grouponMapper.getListRecord(sort , order ,goodsId  );
-        PageInfo<GoodsAndGrouponAndGrouponRules> grouponPageInfo = new PageInfo<>(orderList);
-        PageVO<GoodsAndGrouponAndGrouponRules> grouponPageVO = new PageVO<>(grouponPageInfo.getTotal(),grouponPageInfo.getList());
+        List<Groupon> orderList = grouponMapper.getListRecord(sort , order ,goodsId  );
+        PageInfo<Groupon> grouponPageInfo = new PageInfo<>(orderList);
+        PageVO<Groupon> grouponPageVO = new PageVO<>(grouponPageInfo.getTotal(),grouponPageInfo.getList());
         return  grouponPageVO ;
     }
-
     @Override
     public int create(GrouponRules grouponRules) {
         return grouponMapper.create(grouponRules);

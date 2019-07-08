@@ -1,7 +1,9 @@
 package com.cskaoyan.mall.admin.service.impl;
 
-import com.cskaoyan.mall.admin.mapper.AdMapper;
+
 import com.cskaoyan.mall.admin.bean.Ad;
+import com.cskaoyan.mall.admin.bean.Brand;
+import com.cskaoyan.mall.admin.mapper.AdMapper;
 import com.cskaoyan.mall.admin.service.AdService;
 import com.cskaoyan.mall.admin.vo.PageVO;
 import com.github.pagehelper.PageHelper;

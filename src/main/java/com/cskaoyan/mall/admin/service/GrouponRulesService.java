@@ -5,7 +5,6 @@ import com.cskaoyan.mall.admin.vo.PageVO;
 
 public interface GrouponRulesService {
     PageVO<GrouponRules> getList(int page, int limit, String sort, String order, String goodsId);
-
     int create(GrouponRules grouponRules);
 
     GrouponRules findGoodsId(Integer goodsId);

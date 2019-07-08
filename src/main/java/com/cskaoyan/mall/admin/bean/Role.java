@@ -3,7 +3,7 @@ package com.cskaoyan.mall.admin.bean;
 import java.util.Date;
 
 public class Role {
-    private Integer value;
+    private Integer id;
 
     private String name;
 
@@ -17,8 +17,13 @@ public class Role {
 
     private Boolean deleted;
 
-    public Integer getValue() {
-        return value;
+    public Integer getId() {
+
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -29,9 +34,7 @@ public class Role {
         this.name = name;
     }
 
-    public void setValue(Integer value) {
-        this.value = value;
-    }
+
 
 
     public String getDesc() {

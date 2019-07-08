@@ -1,17 +1,16 @@
 package com.cskaoyan.mall.admin.bean;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-@ConfigurationProperties(prefix = "admin.login.info")
+import java.util.Set;
 @Component
 public class User {
 
     String name;
-    List perms;
-    List roles;
+    Set perms;
+    Set roles;
     String avatar;
+
 
     public String getName() {
         return name;
@@ -21,19 +20,19 @@ public class User {
         this.name = name;
     }
 
-    public List getPerms() {
+    public Set getPerms() {
         return perms;
     }
 
-    public void setPerms(List perms) {
+    public void setPerms(Set perms) {
         this.perms = perms;
     }
 
-    public List getRoles() {
+    public Set getRoles() {
         return roles;
     }
 
-    public void setRoles(List roles) {
+    public void setRoles(Set roles) {
         this.roles = roles;
     }
 

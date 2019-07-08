@@ -1,9 +1,10 @@
 package com.cskaoyan.mall.admin.service.impl;
 
-import com.cskaoyan.mall.admin.mapper.AdminMapper;
-import com.cskaoyan.mall.admin.utils.MD5Utils;
+
 import com.cskaoyan.mall.admin.bean.Admin;
+import com.cskaoyan.mall.admin.mapper.AdminMapper;
 import com.cskaoyan.mall.admin.service.AdminService;
+import com.cskaoyan.mall.admin.utils.MD5Utils;
 import com.cskaoyan.mall.admin.vo.PageVO;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -51,6 +52,11 @@ public class AdminServiceImpl implements AdminService {
         admin.setPassword(md5);
         int add= adminMapper.adminadd(admin);
         return add;
+    }
+
+    @Override
+    public Admin queryPasswordFromDb(String username) {
+        return adminMapper.queryPasswordFromDb(username);
     }
 
 

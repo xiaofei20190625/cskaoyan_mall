@@ -1,10 +1,10 @@
 package com.cskaoyan.mall.admin.service.impl;
 
+import com.cskaoyan.mall.admin.bean.Footprint;
 import com.cskaoyan.mall.admin.bean.PageList;
 import com.cskaoyan.mall.admin.mapper.FootprintMapper;
 import com.cskaoyan.mall.admin.service.FootprintService;
 import com.cskaoyan.mall.admin.vo.PageVO;
-import com.cskaoyan.mall.admin.bean.Footprint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

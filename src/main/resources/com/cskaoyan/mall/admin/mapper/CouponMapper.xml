@@ -85,7 +85,6 @@ from cskaoyan_mall_coupon
       #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{addTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT})
   </insert>
-
   <insert id="insertSelective" parameterType="com.cskaoyan.mall.admin.bean.Coupon">
     insert into cskaoyan_mall_coupon
     <trim prefix="(" suffix=")" suffixOverrides=",">

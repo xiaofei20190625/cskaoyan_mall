@@ -2,8 +2,6 @@ package com.cskaoyan.mall.admin.controller;
 
 import com.cskaoyan.mall.admin.bean.*;
 import com.cskaoyan.mall.admin.service.*;
-import com.cskaoyan.mall.admin.bean.*;
-import com.cskaoyan.mall.admin.service.*;
 import com.cskaoyan.mall.admin.vo.PageVO;
 import com.cskaoyan.mall.admin.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("admin")
 public class UserManageController {
     @Autowired
     UserVipService userVipService;

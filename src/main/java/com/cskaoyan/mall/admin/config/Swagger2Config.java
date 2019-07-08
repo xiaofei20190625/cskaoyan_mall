@@ -25,7 +25,7 @@ public class Swagger2Config implements WebMvcConfigurer {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.cskaoyan.mall.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.cskaoyan.mall.admin.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }

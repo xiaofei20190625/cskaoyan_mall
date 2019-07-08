@@ -25,4 +25,6 @@ public interface AdminMapper {
     int admindelete(Admin id);
 
     int adminadd(Admin record);
+
+    Admin queryPasswordFromDb(@Param("username") String username);
 }

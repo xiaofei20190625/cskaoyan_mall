@@ -161,7 +161,7 @@
     </update>
 
     <insert id="insertBrand" parameterType="com.cskaoyan.mall.admin.bean.Brand" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
-        INSERT INTO cskaoyan_mall_brand
+       INSERT INTO cskaoyan_mall_brand
         (name,`desc`,pic_url,sort_order,floor_price,add_time,update_time,deleted)
         VALUES
         (#{name},#{desc},#{picUrl},#{sortOrder},#{floorPrice},#{addTime},#{updateTime},#{deleted})

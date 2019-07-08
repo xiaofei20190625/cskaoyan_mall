@@ -1,8 +1,9 @@
 package com.cskaoyan.mall.admin.service.impl;
 
-import com.cskaoyan.mall.admin.service.AttributeService;
+
 import com.cskaoyan.mall.admin.bean.Attribute;
 import com.cskaoyan.mall.admin.mapper.AttributeMapper;
+import com.cskaoyan.mall.admin.service.AttributeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

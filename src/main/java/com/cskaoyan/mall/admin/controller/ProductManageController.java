@@ -4,8 +4,6 @@ import com.cskaoyan.mall.admin.bean.*;
 import com.cskaoyan.mall.admin.service.*;
 import com.cskaoyan.mall.admin.vo.OperationVO;
 import com.cskaoyan.mall.admin.vo.PageVO;
-import com.cskaoyan.mall.admin.bean.*;
-import com.cskaoyan.mall.admin.service.*;
 import com.cskaoyan.mall.admin.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +15,7 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
+@RequestMapping("admin")
 public class ProductManageController {
     @Autowired
     GoodsService goodsService;

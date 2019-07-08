@@ -3,17 +3,6 @@ server:
   servlet:
     context-path: /
 
-admin:
-  login:
-    errmsg: "成功"
-    errno: 0
-    info:
-      avatar: "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif"
-      name: "admin123"
-      perms: ["*"]
-      roles: ["超级管理员"]
-
-  servlet:
     multipart:
       max-file-size: 128MB
       max-request-size: 128MB
@@ -27,9 +16,7 @@ pagehelper:
 spring:
   profiles:
 
-    active: lyn
-
-
+    active: hxf
 ---
 spring:
   profiles: cq

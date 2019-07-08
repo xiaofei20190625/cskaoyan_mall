@@ -1,7 +1,7 @@
 package com.cskaoyan.mall.admin.service;
 
-import com.cskaoyan.mall.admin.vo.PageVO;
 import com.cskaoyan.mall.admin.bean.Footprint;
+import com.cskaoyan.mall.admin.vo.PageVO;
 
 public interface FootprintService {
 

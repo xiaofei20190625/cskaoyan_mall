@@ -1,15 +1,13 @@
 package com.cskaoyan.mall.admin.controller;
 
-import com.cskaoyan.mall.admin.bean.Log;
+import com.cskaoyan.mall.admin.bean.*;
+import com.cskaoyan.mall.admin.service.AdminService;
 import com.cskaoyan.mall.admin.service.LogService;
 import com.cskaoyan.mall.admin.service.RoleService;
-import com.cskaoyan.mall.admin.bean.Admin;
-import com.cskaoyan.mall.admin.bean.Role;
-import com.cskaoyan.mall.admin.bean.Storage;
-import com.cskaoyan.mall.admin.service.AdminService;
 import com.cskaoyan.mall.admin.service.StorageService;
 import com.cskaoyan.mall.admin.vo.PageVO;
 import com.cskaoyan.mall.admin.vo.ResponseVO;
+import com.cskaoyan.mall.admin.vo.SysPermissionVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@RequestMapping("admin")
 public class SystemController {
     @Autowired
     AdminService adminService;
@@ -29,16 +28,6 @@ public class SystemController {
     StorageService storageService;
 
 
-/**   items: [{id: 12, username: "cskaoyan",…}, {id: 6, username: "123213213",…},…]
-     total: 4
-     errmsg: "成功"
-     errno: 0/
- : {id: 12, username: "cskaoyan",…}
- avatar: "http://localhost:8080/wx/storage/fetch/lyk3wvv73404vfyeyvjr.jpg"
-    id: 12
-    roleIds: [1]
-            0: 1
-    username: "cskaoyan"*/
 
     @RequestMapping("admin/list")
     public ResponseVO<PageVO> adminList(int page,int limit, String sort, String order,String username){
@@ -173,5 +162,13 @@ public ResponseVO<PageVO>rolelist(int page,int limit,String sort,String order,St
     }
 
 
-
+    @RequestMapping("role/permissions")
+    public ResponseVO<Permissions> rolePermissions(Integer roleId){
+        ResponseVO<Permissions> permissionsResponseVO = new ResponseVO<>();
+        Permissions permissions = roleService.querypermissions(roleId);
+        permissionsResponseVO.setData(permissions);
+        permissionsResponseVO.setErrno(0);
+        permissionsResponseVO.setErrmsg("成功");
+        return permissionsResponseVO;
+    }
 }

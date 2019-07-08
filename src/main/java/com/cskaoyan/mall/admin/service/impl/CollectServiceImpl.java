@@ -1,10 +1,11 @@
 package com.cskaoyan.mall.admin.service.impl;
 
+
+import com.cskaoyan.mall.admin.bean.Collect;
 import com.cskaoyan.mall.admin.bean.PageList;
 import com.cskaoyan.mall.admin.mapper.CollectMapper;
 import com.cskaoyan.mall.admin.service.CollectService;
 import com.cskaoyan.mall.admin.vo.PageVO;
-import com.cskaoyan.mall.admin.bean.Collect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

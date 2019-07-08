@@ -1,9 +1,9 @@
 package com.cskaoyan.mall.admin.service.impl;
 
-import com.cskaoyan.mall.admin.mapper.EchoBrandAndCatMapper;
-import com.cskaoyan.mall.admin.service.EchoBrandAndCatService;
 import com.cskaoyan.mall.admin.bean.CategorySpecific;
 import com.cskaoyan.mall.admin.bean.SpecificItem;
+import com.cskaoyan.mall.admin.mapper.EchoBrandAndCatMapper;
+import com.cskaoyan.mall.admin.service.EchoBrandAndCatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

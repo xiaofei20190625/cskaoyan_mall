@@ -1,8 +1,8 @@
 package com.cskaoyan.mall.admin.service.impl;
 
-import com.cskaoyan.mall.admin.service.ProductService;
 import com.cskaoyan.mall.admin.bean.Product;
 import com.cskaoyan.mall.admin.mapper.ProductMapper;
+import com.cskaoyan.mall.admin.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

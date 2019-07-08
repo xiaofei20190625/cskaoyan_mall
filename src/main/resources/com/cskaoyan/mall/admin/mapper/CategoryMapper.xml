@@ -101,6 +101,7 @@
       #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT}
       )
   </insert>
+
   <insert id="insertSelective" parameterType="com.cskaoyan.mall.admin.bean.Category" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
     insert into cskaoyan_mall_category
     <trim prefix="(" suffix=")" suffixOverrides=",">

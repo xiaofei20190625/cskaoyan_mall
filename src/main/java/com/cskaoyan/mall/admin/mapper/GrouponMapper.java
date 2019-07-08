@@ -1,8 +1,9 @@
 package com.cskaoyan.mall.admin.mapper;
 
 import com.cskaoyan.mall.admin.bean.GoodsAndGrouponAndGrouponRules;
-import com.cskaoyan.mall.admin.bean.GrouponRules;
 import com.cskaoyan.mall.admin.bean.Groupon;
+import com.cskaoyan.mall.admin.bean.GrouponRules;
+import com.cskaoyan.mall.admin.bean.Order;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -20,9 +21,8 @@ public interface GrouponMapper {
 
     int updateByPrimaryKey(Groupon record);
 
-    List<GoodsAndGrouponAndGrouponRules> getListRecord(@Param("sort") String sort, @Param("order") String order,
-                                                       @Param("goodsId") String goodsId);
-
+    List<Groupon> getListRecord(@Param("sort") String sort, @Param("order") String order,
+                              @Param("goodsId") String goodsId);
     int create(GrouponRules grouponRules);
 
     Groupon findRulesId(Integer id);

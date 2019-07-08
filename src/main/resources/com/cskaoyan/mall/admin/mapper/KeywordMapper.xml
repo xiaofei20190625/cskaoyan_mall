@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mall.admin.mapper.KeywordMapper">
+
+
+  <resultMap id="keywordMap" type="com.cskaoyan.mall.admin.bean.Keyword">
+    <result property="id" column="id"/>
+    <result property="keyword" column="keyword"/>
+    <result property="url" column="url"/>
+    <result property="isHot" column="is_hot"/>
+    <result property="isDefault" column="is_default"/>
+    <result property="sortOrder" column="sort_order"/>
+    <result property="addTime" column="add_time"/>
+    <result property="updateTime" column="update_time"/>
+    <result property="deleted" column="deleted"/>
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, keyword, url, is_hot, is_default, sort_order, add_time, update_time, deleted
+  </sql>
+
+  <select id="queryPageKeyword" resultMap="keywordMap">
+      select <include refid="Base_Column_List"/>
+      from cskaoyan_mall_keyword
+      where deleted = 0 and keyword like "%"#{keyword}"%" and url like "%"#{url}"%"
+      order by #{sort} #{order}
+  </select>
+
+  <update id="deleteKeywordById">
+      update cskaoyan_mall_keyword set deleted = 1
+      where id = #{id}
+  </update>
+
+  <insert id="insertKeyword" parameterType="com.cskaoyan.mall.admin.bean.Keyword">
+      insert into cskaoyan_mall_keyword
+      (keyword, url, is_hot, is_default, sort_order, add_time, update_time)
+      values (#{keyword},#{url},#{isHot},#{isDefault},#{sortOrder},#{addTime},#{updateTime})
+  </insert>
+
+  <update id="updateByPrimaryKey">
+    update cskaoyan_mall_keyword
+    set keyword = #{keyword,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      is_hot = #{isHot,jdbcType=BIT},
+      is_default = #{isDefault,jdbcType=BIT},
+      sort_order = #{sortOrder,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      deleted = #{deleted,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByPrimaryKey" resultMap="keywordMap">
+    select
+    <include refid="Base_Column_List" />
+    from cskaoyan_mall_keyword
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mall.admin.mapper.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.cskaoyan.mall.admin.bean.Role">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="desc" jdbcType="VARCHAR" property="desc" />
+    <result column="enabled" jdbcType="BIT" property="enabled" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="deleted" jdbcType="BIT" property="deleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, `name`, `desc`, enabled, add_time, update_time, deleted
+  </sql>
+
+  <update id="roleupdate" parameterType="com.cskaoyan.mall.admin.bean.Role">
+    update cskaoyan_mall_role
+    set `name` = #{name,jdbcType=VARCHAR},
+      `desc` = #{desc,jdbcType=VARCHAR},
+      enabled = #{enabled,jdbcType=BIT},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      deleted = #{deleted,jdbcType=BIT}
+    where id = #{value,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cskaoyan_mall_role
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="findRolePage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from cskaoyan_mall_role
+    <where>
+      <if test="name!=null">
+        name like '%${name}%'
+      </if>
+    </where>
+  </select>
+
+
+
+  <select id="queryRole"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from cskaoyan_mall_role
+    where  id = #{roleId}
+  </select>
+
+  <select id="queryOption"  resultMap="BaseResultMap">
+    select
+     id,`name`
+    from cskaoyan_mall_role
+
+  </select>
+
+  <resultMap id="list" type="com.cskaoyan.mall.admin.bean.Permissions">
+    <collection property="assignedPermissions" ofType="string">
+      <result column="assignedPermissions" property="assignedPermissions"/>
+    </collection>
+  </resultMap>
+
+  <select id="querypermissions" resultMap="list">
+    select
+     `permission` as assignedPermissions
+    from cskaoyan_mall_permission
+    where  role_ids = #{roleId}
+  </select>
+
+
+
+  <resultMap id="listMap" type="com.cskaoyan.mall.admin.bean.SysPermission2">
+    <result column="id1" jdbcType="VARCHAR" property="id" />
+    <result column="label1" jdbcType="VARCHAR" property="label" />
+    <collection property="children" ofType="com.cskaoyan.mall.admin.bean.SysPermission1">
+      <result column="id2" jdbcType="VARCHAR" property="id" />
+      <result column="label2" jdbcType="VARCHAR" property="label" />
+      <result column="id"  property="children" />
+    </collection>
+  </resultMap>
+
+  <select id="systemPermissinons" resultMap="listMap">
+ select
+      name1 as id1,
+      name1 as label1,
+	  name2 as id2,
+	  name2 as label2,
+	  id
+  from
+      (select id, name as name1 from cskaoyan_mall_system_permissions  sp
+      where sp.children_id= 0) t1
+	left join
+     (select  name as name2, permission_ids, children_id from
+      cskaoyan_mall_system_permissions ) t2
+on t1.id = t2.children_id
+  </select>
+
+  <resultMap id="apiMap" type="com.cskaoyan.mall.admin.bean.PermissionApi">
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="label" jdbcType="VARCHAR" property="label" />
+    <result column="api"  property="api"/>
+    <result column="mothed" property="mothed"/>
+  </resultMap>
+  <select id="querypermissionsApi" resultMap="apiMap">
+ select
+      permission as id,
+      name as label,
+	  api as api,
+	  mothed as mothed
+  from
+    cskaoyan_mall_permission p
+    left join system_permission sp on p.id= sp.permission_id
+  where
+   role_ids = #{roleId}
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cskaoyan_mall_role
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cskaoyan.mall.admin.bean.Role">
+    insert into cskaoyan_mall_role (id, `name`, `des`,
+      enabled, add_time, update_time,
+      deleted)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}, 
+      #{enabled,jdbcType=BIT}, #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{deleted,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cskaoyan.mall.admin.bean.Role">
+    insert into cskaoyan_mall_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="desc != null">
+        `desc`,
+      </if>
+      <if test="enabled != null">
+        enabled,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null">
+        #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null">
+        #{enabled,jdbcType=BIT},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.mall.admin.bean.Role">
+    update cskaoyan_mall_role
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null">
+        `desc` = #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null">
+        enabled = #{enabled,jdbcType=BIT},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.mall.admin.bean.Role">
+    update cskaoyan_mall_role
+    set `name` = #{name,jdbcType=VARCHAR},
+      `desc` = #{desc,jdbcType=VARCHAR},
+      enabled = #{enabled,jdbcType=BIT},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      deleted = #{deleted,jdbcType=BIT}
+    where id = #{value,jdbcType=INTEGER}
+  </update>
+</mapper>

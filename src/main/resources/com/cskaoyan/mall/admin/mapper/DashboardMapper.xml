@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mall.admin.mapper.DashboardMapper">
+    <select id="dashboardHome" resultType="com.cskaoyan.mall.admin.bean.Dashboard">
+
+           select t1.goodsTotal,t2.orderTotal,t3.productTotal,t4.userTotal from
+         	(
+          select
+           count(g.id) goodsTotal
+           from cskaoyan_mall_goods g
+         	 )t1,
+         	 (
+         	select
+         	count(o.id) orderTotal
+         	from cskaoyan_mall_order o
+         )t2,
+         (
+         	select
+         	count(p.id) productTotal	from
+           cskaoyan_mall_goods_product p
+         )t3,
+         (
+         	select
+         	count(u.id) userTotal from
+           cskaoyan_mall_user u
+         	) t4
+    </select>
+</mapper>
+
+

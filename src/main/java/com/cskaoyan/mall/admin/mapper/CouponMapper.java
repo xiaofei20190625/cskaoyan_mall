@@ -2,6 +2,7 @@ package com.cskaoyan.mall.admin.mapper;
 
 import com.cskaoyan.mall.admin.bean.Coupon;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public interface CouponMapper {
 
     Coupon selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(Coupon record);
+    int updateByPrimaryKeySelective(@RequestBody Coupon record);
 
     int updateByPrimaryKey(Coupon record);
 

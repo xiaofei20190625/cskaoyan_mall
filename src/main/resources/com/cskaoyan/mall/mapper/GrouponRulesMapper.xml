@@ -55,7 +55,12 @@ update_time
     from cskaoyan_mall_groupon_rules
     where goods_id = #{goodsId,jdbcType=INTEGER}
   </select>
-
+<!--queryAll-->
+  <select id="queryAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from cskaoyan_mall_groupon_rules
+  </select>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 

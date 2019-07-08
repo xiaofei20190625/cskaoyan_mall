@@ -36,4 +36,9 @@ public class GrouponServiceImpl implements GrouponService {
     public int create(GrouponRules grouponRules) {
         return grouponMapper.create(grouponRules);
     }
+
+    @Override
+    public Groupon findRulesId(Integer id) {
+        return null;
+    }
 }

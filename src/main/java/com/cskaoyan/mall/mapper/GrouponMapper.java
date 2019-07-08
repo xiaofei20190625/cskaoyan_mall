@@ -25,4 +25,8 @@ public interface GrouponMapper {
                                                        @Param("goodsId") String goodsId);
 
     int create(GrouponRules grouponRules);
+
+    Groupon findRulesId(Integer id);
+
+    List<GoodsAndGrouponAndGrouponRules> get(GoodsAndGrouponAndGrouponRules demo);
 }

@@ -18,4 +18,6 @@ public interface GoodsMapper {
     int delete(@Param("goods") Goods goods);
 
     int update(@Param("goods") Goods goods);
+
+    List<Goods> getListRecord(@Param("sort") String sort, @Param("order")String order,@Param("goodsId") String goodsId);
 }

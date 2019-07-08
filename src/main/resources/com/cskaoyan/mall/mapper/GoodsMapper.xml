@@ -32,6 +32,14 @@
         update_time,deleted
     </sql>
 
+    <!--getListRecord-->
+    <select id="getListRecord"  resultMap="BaseResultMap">
+        select  <include refid="Base_Column_List"/>
+        from cskaoyan_mall_goods
+        where  id like "%" #{goodsId} "%"
+        order by #{sort}  #{order}
+    </select>
+
     <select id="queryAll" resultMap="BaseResultMap">
       select
       <include refid="Base_Column_List"/>

@@ -1,5 +1,4 @@
 package com.cskaoyan.mall.admin.service.impl;
-
 import com.cskaoyan.mall.admin.bean.Collect;
 import com.cskaoyan.mall.admin.bean.PageList;
 import com.cskaoyan.mall.admin.mapper.CollectMapper;

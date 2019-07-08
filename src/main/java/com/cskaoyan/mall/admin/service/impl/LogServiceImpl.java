@@ -1,6 +1,4 @@
 package com.cskaoyan.mall.admin.service.impl;
-
-
 import com.cskaoyan.mall.admin.bean.Log;
 import com.cskaoyan.mall.admin.mapper.LogMapper;
 import com.cskaoyan.mall.admin.service.LogService;

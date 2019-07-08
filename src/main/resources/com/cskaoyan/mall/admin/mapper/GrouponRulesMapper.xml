@@ -37,6 +37,31 @@ update_time
     where goods_id like "%" #{goodsId} "%"
     order by #{sort}  #{order}
   </select>
+  <!--create-->
+  <insert id="create" parameterType="com.cskaoyan.mall.admin.bean.GrouponRules" keyProperty="id" useGeneratedKeys="true">
+    insert into cskaoyan_mall_groupon_rules ( goods_id, goods_name,
+                                             pic_url, discount, discount_member,
+                                             add_time, update_time, expire_time,
+                                             deleted)
+    values ( #{goodsId,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR},
+            #{picUrl,jdbcType=VARCHAR}, #{discount,jdbcType=DECIMAL}, #{discountMember,jdbcType=INTEGER},
+            #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{expireTime,jdbcType=TIMESTAMP},
+            #{deleted,jdbcType=BIT})
+  </insert>
+<!--findGoodsId-->
+  <select id="findGoodsId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select
+    <include refid="Base_Column_List" />
+    from cskaoyan_mall_groupon_rules
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </select>
+<!--queryAll-->
+  <select id="queryAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from cskaoyan_mall_groupon_rules
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

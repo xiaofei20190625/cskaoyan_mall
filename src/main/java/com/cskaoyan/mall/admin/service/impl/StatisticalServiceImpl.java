@@ -3,7 +3,6 @@ package com.cskaoyan.mall.admin.service.impl;
 import com.cskaoyan.mall.admin.bean.GoodsS;
 import com.cskaoyan.mall.admin.bean.OrderS;
 import com.cskaoyan.mall.admin.bean.UserS;
-import com.cskaoyan.mall.admin.mapper.StatisticalMapper;
 import com.cskaoyan.mall.admin.service.StatisticalService;
 import com.cskaoyan.mall.admin.vo.StatisticalVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,7 @@ import java.util.List;
 @Service
 public class StatisticalServiceImpl implements StatisticalService {
     @Autowired
-    StatisticalMapper StatisticalMapper;
+    com.cskaoyan.mall.admin.mapper.StatisticalMapper StatisticalMapper;
 
     @Override
     public StatisticalVO<UserS> queryStatistical() {

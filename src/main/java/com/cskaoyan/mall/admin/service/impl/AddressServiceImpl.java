@@ -2,6 +2,7 @@ package com.cskaoyan.mall.admin.service.impl;
 
 import com.cskaoyan.mall.admin.bean.Address;
 import com.cskaoyan.mall.admin.bean.PageList;
+import com.cskaoyan.mall.admin.bean.UserVip;
 import com.cskaoyan.mall.admin.mapper.AddressMapper;
 import com.cskaoyan.mall.admin.service.AddressService;
 import com.cskaoyan.mall.admin.vo.PageVO;

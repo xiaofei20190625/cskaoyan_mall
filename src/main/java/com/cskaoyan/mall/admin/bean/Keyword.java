@@ -1,5 +1,6 @@
 package com.cskaoyan.mall.admin.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Date;
@@ -17,7 +18,9 @@ public class Keyword {
     @JsonProperty("isDefault")
     private Boolean isDefault;
     private Integer sortOrder;
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date addTime;
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
     private Boolean deleted;
 

@@ -1,6 +1,7 @@
 package com.cskaoyan.mall.admin.service.impl;
 
 import com.cskaoyan.mall.admin.bean.Ad;
+
 import com.cskaoyan.mall.admin.mapper.AdMapper;
 import com.cskaoyan.mall.admin.service.AdService;
 import com.cskaoyan.mall.admin.vo.PageVO;
@@ -38,6 +39,11 @@ public class AdServiceImpl implements AdService {
     @Override
     public int delete(Ad ad) {
         return adMapper.deleteByPrimaryKey(ad.getId());
+    }
+
+    @Override
+    public int create(Ad ad) {
+        return adMapper.create(ad);
     }
 
 }

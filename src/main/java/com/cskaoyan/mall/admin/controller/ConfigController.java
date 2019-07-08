@@ -1,6 +1,9 @@
 package com.cskaoyan.mall.admin.controller;
 
-import com.cskaoyan.mall.admin.bean.*;
+import com.cskaoyan.mall.admin.bean.ExpressConfig;
+import com.cskaoyan.mall.admin.bean.MallConfig;
+import com.cskaoyan.mall.admin.bean.OrderConfig;
+import com.cskaoyan.mall.admin.bean.WxConfig;
 import com.cskaoyan.mall.admin.service.ConfigService;
 import com.cskaoyan.mall.admin.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("admin")
 public class ConfigController { //配置管理
     @Autowired
     ConfigService configService;

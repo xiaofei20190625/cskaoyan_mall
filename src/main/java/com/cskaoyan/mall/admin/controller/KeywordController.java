@@ -17,6 +17,7 @@ import java.util.Date;
  * Date 2019/7/5 Time 20:31
  */
 @Controller
+@RequestMapping("admin")
 public class KeywordController {
     @Autowired
     KeywordService keywordService;
@@ -72,5 +73,8 @@ public class KeywordController {
             responseVO.setErrmsg("成功");
         }
         return responseVO;
+
     }
+
+
 }

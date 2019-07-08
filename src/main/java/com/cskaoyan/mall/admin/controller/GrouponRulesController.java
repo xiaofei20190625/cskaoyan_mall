@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/groupon")
+@RequestMapping("admin/groupon")
 public class GrouponRulesController {
 
     @Autowired

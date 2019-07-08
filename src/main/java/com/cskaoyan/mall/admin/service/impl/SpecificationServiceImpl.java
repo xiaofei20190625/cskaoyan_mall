@@ -1,5 +1,4 @@
 package com.cskaoyan.mall.admin.service.impl;
-
 import com.cskaoyan.mall.admin.bean.Specification;
 import com.cskaoyan.mall.admin.mapper.SpecificationMapper;
 import com.cskaoyan.mall.admin.service.SpecificationService;

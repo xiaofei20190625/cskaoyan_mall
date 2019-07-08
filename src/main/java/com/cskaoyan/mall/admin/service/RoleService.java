@@ -1,5 +1,6 @@
 package com.cskaoyan.mall.admin.service;
 
+import com.cskaoyan.mall.admin.bean.Permissions;
 import com.cskaoyan.mall.admin.bean.Role;
 import com.cskaoyan.mall.admin.vo.PageVO;
 
@@ -11,4 +12,8 @@ public interface RoleService {
     PageVO<Role> findRolePage(int page, int limit, String name);
 
     int roleupdate(Role role);
+
+    Role queryRole(int roleId);
+
+    Permissions querypermissions(Integer roleId);
 }

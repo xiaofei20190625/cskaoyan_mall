@@ -34,6 +34,17 @@
       </if>
     </where>
   </select>
+
+
+  <select id="queryPasswordFromDb" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from cskaoyan_mall_admin where username = #{username}
+  </select>
+
+
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from cskaoyan_mall_admin
     where id = #{id,jdbcType=INTEGER}

@@ -11,4 +11,6 @@ public interface AdminService {
     int admindelete(Admin admin);
 
     int adminadd(Admin admin);
+
+    Admin queryPasswordFromDb(String principal);
 }

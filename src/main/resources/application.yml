@@ -2,17 +2,6 @@ server:
   port: 8080
   servlet:
     context-path: /
-admin:
-  login:
-    errmsg: "成功"
-    errno: 0
-    info:
-      avatar: "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif"
-      name: "admin123"
-      perms: ["*"]
-      roles: ["超级管理员"]
-
-  servlet:
     multipart:
       max-file-size: 128MB
       max-request-size: 128MB
@@ -26,7 +15,6 @@ pagehelper:
 spring:
   profiles:
     active: zw
-
 ---
 spring:
   profiles: cq
@@ -35,6 +23,11 @@ spring:
     url: jdbc:mysql://localhost:3306/cskaoyanmall?characterEncoding=utf-8&useSSL=false
     username: root
     password: 123456
+myoss:
+  bucket: alexcheng
+  endpoint: oss-cn-hangzhou.aliyuncs.com
+  access-key: LTAILjvmsUY8cQer
+  secret: dWt6iskaoC09bfcsu5ZchwHjJd0MvL
 ---
 spring:
   profiles: lyn

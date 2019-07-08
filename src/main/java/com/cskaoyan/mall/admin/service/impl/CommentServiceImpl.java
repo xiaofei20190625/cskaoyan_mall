@@ -1,5 +1,4 @@
 package com.cskaoyan.mall.admin.service.impl;
-
 import com.cskaoyan.mall.admin.bean.Comment;
 import com.cskaoyan.mall.admin.mapper.CommentMapper;
 import com.cskaoyan.mall.admin.service.CommentService;

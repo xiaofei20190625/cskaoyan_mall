@@ -1,7 +1,6 @@
 package com.cskaoyan.mall.admin.mapper;
 
 import com.cskaoyan.mall.admin.bean.Admin;
-import com.cskaoyan.mall.admin.vo.ResponseVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

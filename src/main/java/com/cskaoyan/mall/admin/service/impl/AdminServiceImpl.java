@@ -1,5 +1,6 @@
 package com.cskaoyan.mall.admin.service.impl;
 
+
 import com.cskaoyan.mall.admin.bean.Admin;
 import com.cskaoyan.mall.admin.mapper.AdminMapper;
 import com.cskaoyan.mall.admin.service.AdminService;

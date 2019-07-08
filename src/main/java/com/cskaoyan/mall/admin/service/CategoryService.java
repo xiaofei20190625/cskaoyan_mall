@@ -17,7 +17,7 @@ public interface CategoryService {
 
     int deleteCategoryById(Category category);
 
-    int createCategory(Category category);
+    Category createCategory(Category category);
 
     int updateCategory(Category category);
 

@@ -32,17 +32,22 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public int deleteBrandById(Brand brand) {
-        return brandMapper.deleteBrandById(brand.getId());
+        int i = brandMapper.deleteBrandById(brand.getId());
+        return i;
     }
 
     @Override
-    public int createBrand(Brand brand) {
+    public Brand createBrand(Brand brand) {
         Date date = new Date();
         brand.setSortOrder(50);
         brand.setAddTime(date);
         brand.setUpdateTime(date);
         brand.setDeleted(false);
-        return brandMapper.insertBrand(brand);
+        int i = brandMapper.insertBrand(brand);
+        if (i == 1) {
+            return brand;
+        }
+        return null;
     }
 
     @Override

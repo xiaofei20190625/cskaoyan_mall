@@ -22,7 +22,9 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ActivityTest {
+
     /*@Autowired
+
     GoodsMapper goodsMapper;
     @Test
     public  void  test1( ){
@@ -39,5 +41,7 @@ public class ActivityTest {
         GrouponRules rules = grouponRulesMapper.findGoodsId(1039051);
         System.out.println("rules = " + rules);
 
+
     }*/
+
 }

@@ -1,6 +1,7 @@
 package com.cskaoyan.mall.admin.service.impl;
 
 import com.cskaoyan.mall.admin.bean.Groupon;
+import com.cskaoyan.mall.admin.bean.GrouponRules;
 import com.cskaoyan.mall.admin.mapper.GrouponMapper;
 import com.cskaoyan.mall.admin.service.GrouponService;
 import com.cskaoyan.mall.admin.vo.PageVO;
@@ -28,5 +29,14 @@ public class GrouponServiceImpl implements GrouponService {
         PageInfo<Groupon> grouponPageInfo = new PageInfo<>(orderList);
         PageVO<Groupon> grouponPageVO = new PageVO<>(grouponPageInfo.getTotal(),grouponPageInfo.getList());
         return  grouponPageVO ;
+    }
+    @Override
+    public int create(GrouponRules grouponRules) {
+        return grouponMapper.create(grouponRules);
+    }
+
+    @Override
+    public Groupon findRulesId(Integer id) {
+        return null;
     }
 }

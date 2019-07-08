@@ -1,6 +1,7 @@
 package com.cskaoyan.mall.admin.service.impl;
 
 import com.cskaoyan.mall.admin.bean.PageList;
+
 import com.cskaoyan.mall.admin.bean.SearchHistory;
 import com.cskaoyan.mall.admin.mapper.SearchHistoryMapper;
 import com.cskaoyan.mall.admin.service.SearchHistoryService;

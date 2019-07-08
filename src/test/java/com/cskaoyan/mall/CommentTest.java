@@ -1,6 +1,5 @@
 package com.cskaoyan.mall;
 
-import com.cskaoyan.mall.admin.bean.Comment;
 import com.cskaoyan.mall.admin.mapper.CommentMapper;
 import com.cskaoyan.mall.admin.service.CommentService;
 import org.junit.Test;

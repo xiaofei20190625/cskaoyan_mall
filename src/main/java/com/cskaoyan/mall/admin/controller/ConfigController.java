@@ -4,8 +4,8 @@ import com.cskaoyan.mall.admin.bean.ExpressConfig;
 import com.cskaoyan.mall.admin.bean.MallConfig;
 import com.cskaoyan.mall.admin.bean.OrderConfig;
 import com.cskaoyan.mall.admin.bean.WxConfig;
+
 import com.cskaoyan.mall.admin.service.ConfigService;
-import com.cskaoyan.mall.admin.vo.PageVO;
 import com.cskaoyan.mall.admin.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;

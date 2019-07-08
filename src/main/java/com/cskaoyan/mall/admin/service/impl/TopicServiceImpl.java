@@ -1,6 +1,5 @@
 package com.cskaoyan.mall.admin.service.impl;
 
-import com.cskaoyan.mall.admin.bean.Coupon;
 import com.cskaoyan.mall.admin.bean.Topic;
 import com.cskaoyan.mall.admin.mapper.TopicMapper;
 import com.cskaoyan.mall.admin.service.TopicService;
@@ -29,5 +28,20 @@ public class TopicServiceImpl implements TopicService {
         PageInfo<Topic> topicPageInfo = new PageInfo<>(couponList);
         PageVO<Topic> topicPageVO = new PageVO<>(topicPageInfo.getTotal(),topicPageInfo.getList());
         return  topicPageVO ;
+    }
+
+    @Override
+    public int update(Topic topic) {
+        return topicMapper.updateByPrimaryKeySelective(topic);
+    }
+
+    @Override
+    public int delete(Topic topic) {
+        return topicMapper.deleteByPrimaryKey(topic.getId());
+    }
+
+    @Override
+    public int create(Topic topic) {
+        return topicMapper.create(topic);
     }
 }

@@ -5,18 +5,20 @@ import com.cskaoyan.mall.admin.bean.OrderDetail;
 import com.cskaoyan.mall.admin.service.OrderService;
 import com.cskaoyan.mall.admin.vo.PageVO;
 import com.cskaoyan.mall.admin.vo.ResponseVO;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("admin")
+@RequestMapping(value = "/admin/order")
 public class OrderController {
     @Autowired
     OrderService orderService;
 
-    @RequestMapping("order/list")
+    @ApiOperation(value = "获取订单列表")
+    @RequestMapping("list")
     @ResponseBody
     public ResponseVO<PageVO> getPageOrders(int page, int limit,
                                             String sort, String order,
@@ -34,7 +36,8 @@ public class OrderController {
 
 
 
-    @RequestMapping("order/detail")
+    @ApiOperation(value = "获取订单详情")
+    @RequestMapping("detail")
     @ResponseBody
     public ResponseVO<OrderDetail> getOrderDetailById(int id){
         OrderDetail orderDetail = orderService.getOrderDetailById(id);

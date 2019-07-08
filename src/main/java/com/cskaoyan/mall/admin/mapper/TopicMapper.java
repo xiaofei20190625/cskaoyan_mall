@@ -22,4 +22,6 @@ public interface TopicMapper {
 
     List<Topic> getList(@Param("sort") String sort, @Param("order")String order,
                         @Param("title")String title, @Param("subtitle")String subtitle);
+
+    int create(Topic topic);
 }

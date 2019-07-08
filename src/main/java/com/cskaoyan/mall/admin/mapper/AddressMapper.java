@@ -1,7 +1,6 @@
 package com.cskaoyan.mall.admin.mapper;
 
 import com.cskaoyan.mall.admin.bean.Address;
-import com.cskaoyan.mall.admin.vo.PageVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

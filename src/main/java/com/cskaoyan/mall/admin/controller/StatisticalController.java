@@ -1,6 +1,7 @@
 package com.cskaoyan.mall.admin.controller;
 
 import com.cskaoyan.mall.admin.service.StatisticalService;
+
 import com.cskaoyan.mall.admin.vo.ResponseVO;
 import com.cskaoyan.mall.admin.vo.StatisticalVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("admin")
 public class StatisticalController {
    @Autowired
-    StatisticalService statisticalService;
+   StatisticalService statisticalService;
 
     /**
      * 统计报表 用户统计

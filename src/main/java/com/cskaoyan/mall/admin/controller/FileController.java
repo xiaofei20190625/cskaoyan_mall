@@ -4,7 +4,6 @@ import com.cskaoyan.mall.admin.bean.MyOssClient;
 import com.cskaoyan.mall.admin.bean.Storage;
 import com.cskaoyan.mall.admin.service.StorageService;
 import com.cskaoyan.mall.admin.utils.FileNameUtils;
-import com.cskaoyan.mall.admin.utils.FileUtils;
 import com.cskaoyan.mall.admin.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

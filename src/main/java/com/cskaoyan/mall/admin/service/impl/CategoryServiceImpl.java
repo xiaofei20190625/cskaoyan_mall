@@ -35,8 +35,12 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public int createCategory(Category category) {
-        return categoryMapper.insertSelective(category);
+    public Category createCategory(Category category) {
+        int create = categoryMapper.insertSelective(category);
+        if (create == 1){
+            return category;
+        }
+        return null;
     }
 
     @Override

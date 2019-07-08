@@ -113,8 +113,9 @@
         #{hasPicture,jdbcType=BIT},
       </if>
       <if test="picUrls != null">
+
         #{picUrls,typeHandler=com.cskaoyan.mall.admin.typeHandler.StringToStingrArrayHandler},
-      </if>
+     </if>
       <if test="star != null">
         #{star,jdbcType=SMALLINT},
       </if>
@@ -172,8 +173,8 @@
       content = #{content,jdbcType=VARCHAR},
       user_id = #{userId,jdbcType=INTEGER},
       has_picture = #{hasPicture,jdbcType=BIT},
-      pic_urls = #{picUrls,typeHandler=com.cskaoyan.mall.admin.typeHandler.StringToStingrArrayHandler},
-      star = #{star,jdbcType=SMALLINT},
+      pic_urls = #{picUrls,typeHandler=com.cskaoyan.mall.admin.typeHandler.StringToStingrArrayHandler,jdbcType=VARCHAR},
+     star = #{star,jdbcType=SMALLINT},
       add_time = #{addTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       deleted = #{deleted,jdbcType=BIT}

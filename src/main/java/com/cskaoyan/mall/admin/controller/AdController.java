@@ -31,9 +31,9 @@ public class AdController {
     @PostMapping("/update")
     public  ResponseVO update(@RequestBody Ad ad) {
         int update = adService.updateById(ad);
-        ResponseVO<Integer> responseVO = new ResponseVO<>();
+        ResponseVO<Ad> responseVO = new ResponseVO<>();
         if (update == 1) {
-            responseVO.setData(update);
+            responseVO.setData(ad);
             responseVO.setErrmsg("成功");
             responseVO.setErrno(0);
         }
@@ -50,6 +50,18 @@ public class AdController {
             responseVO.setErrno(0);
         }
         return  responseVO;
+    }
+
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public ResponseVO<Ad> create(@RequestBody Ad ad) {
+        int insert = adService.create(ad);
+        ResponseVO<Ad> responseVO = new ResponseVO<>();
+        if (insert == 1) {
+            responseVO.setData(ad);
+            responseVO.setErrmsg("成功");
+            responseVO.setErrno(0);
+        }
+        return responseVO;
     }
 
 

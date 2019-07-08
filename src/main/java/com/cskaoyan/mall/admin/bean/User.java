@@ -1,6 +1,5 @@
 package com.cskaoyan.mall.admin.bean;
 
-
 import org.springframework.stereotype.Component;
 
 import java.util.Set;

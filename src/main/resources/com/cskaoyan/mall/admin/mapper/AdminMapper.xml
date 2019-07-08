@@ -73,7 +73,7 @@
     values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{lastLoginIp,jdbcType=VARCHAR}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{avatar,jdbcType=VARCHAR}, 
       #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT}, 
-      #{typeHandler=com.cskaoyan.mall.converter.intArrayTypeHandler})
+      #{typeHandler=com.cskaoyan.mall.admin.converter.intArrayTypeHandler})
   </insert>
   <insert id="insertSelective" parameterType="com.cskaoyan.mall.admin.bean.Admin">
     insert into cskaoyan_mall_admin

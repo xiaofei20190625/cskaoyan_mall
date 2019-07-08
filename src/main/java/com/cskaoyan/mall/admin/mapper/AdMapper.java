@@ -22,4 +22,5 @@ public interface AdMapper {
     List<Ad> getList(@Param("sort") String sort,  @Param("order") String order ,
                 @Param("name")String  name ,@Param("content") String content);
 
+    int create(Ad ad);
 }

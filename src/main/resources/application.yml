@@ -1,7 +1,8 @@
 server:
   port: 8080
   servlet:
-    context-path: /admin
+    context-path: /
+
 admin:
   login:
     errmsg: "成功"
@@ -26,7 +27,7 @@ pagehelper:
 spring:
   profiles:
 
-    active: cq
+    active: lyn
 
 
 ---

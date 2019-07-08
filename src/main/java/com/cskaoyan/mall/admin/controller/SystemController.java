@@ -29,7 +29,7 @@ public class SystemController {
 
 
 
-    @RequestMapping("admin/list")
+    @RequestMapping("list")
     public ResponseVO<PageVO> adminList(int page,int limit, String sort, String order,String username){
         PageVO<Admin> adminPageVO = adminService.findAdminPage(page,limit,username);
         ResponseVO<PageVO>  responseVO = new ResponseVO<>();
@@ -56,7 +56,7 @@ public ResponseVO<PageVO>rolelist(int page,int limit,String sort,String order,St
         responseVO.setData(roles);
         return responseVO;
     }
-    @RequestMapping("admin/update")
+    @RequestMapping("update")
     public ResponseVO<Admin> adminupdate(@RequestBody Admin admin){
         int roleupdate = adminService.roleupdate(admin);
         ResponseVO response = response(roleupdate,admin);

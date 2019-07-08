@@ -1,20 +1,17 @@
 /*
  Navicat Premium Data Transfer
-
  Source Server         : localhost_3306
  Source Server Type    : MySQL
  Source Server Version : 80011
  Source Host           : localhost:3306
  Source Schema         : j14_mall
-
  Target Server Type    : MySQL
  Target Server Version : 80011
  File Encoding         : 65001
-
  Date: 08/07/2019 17:17:06
 */
 
-SET NAMES utf8mb4;
+SET NAMES utf8;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
@@ -23,42 +20,39 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `cskaoyan_mall_admin`;
 CREATE TABLE `cskaoyan_mall_admin`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(63) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '管理员名称',
-  `password` varchar(63) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '管理员密码',
-  `last_login_ip` varchar(63) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '最近一次登录IP地址',
+  `username` varchar(63) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '管理员名称',
+  `password` varchar(63) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '管理员密码',
+  `last_login_ip` varchar(63) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '最近一次登录IP地址',
   `last_login_time` datetime(0) NULL DEFAULT NULL COMMENT '最近一次登录时间',
-  `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '\'' COMMENT '头像图片',
+  `avatar` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '\'' COMMENT '头像图片',
   `add_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) NULL DEFAULT 0 COMMENT '逻辑删除',
-  `role_ids` varchar(127) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '[]' COMMENT '角色列表',
+  `role_ids` varchar(127) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '[]' COMMENT '角色列表',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '管理员表' ROW_FORMAT = Dynamic;
-
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '管理员表' ROW_FORMAT = Dynamic;
 -- ----------------------------
 -- Records of cskaoyan_mall_admin
 -- ----------------------------
 INSERT INTO `cskaoyan_mall_admin` VALUES (1, 'admin123', 'admin123', NULL, NULL, 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif', '2018-02-01 00:00:00', '2018-02-01 00:00:00', 0, '[1]');
 INSERT INTO `cskaoyan_mall_admin` VALUES (4, 'promotion123', '123', '', NULL, '\'', '2019-01-07 15:16:59', '2019-01-07 15:17:34', 0, '[3]');
 INSERT INTO `cskaoyan_mall_admin` VALUES (5, 'mall123', '123123', '', NULL, '\'', '2019-01-07 15:17:25', '2019-01-07 15:21:05', 0, '[2]');
-
 -- ----------------------------
 -- Table structure for cskaoyan_mall_permission
 -- ----------------------------
 DROP TABLE IF EXISTS `cskaoyan_mall_permission`;
 CREATE TABLE `cskaoyan_mall_permission`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `role_ids` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `permission` varchar(63) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '权限',
-  `mothed` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `api` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `role_ids` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `permission` varchar(63) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '权限',
+  `mothed` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `api` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `add_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) NULL DEFAULT 0 COMMENT '逻辑删除',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 94 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '权限表' ROW_FORMAT = Dynamic;
-
+) ENGINE = InnoDB AUTO_INCREMENT = 94 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '权限表' ROW_FORMAT = Dynamic;
 -- ----------------------------
 -- Records of cskaoyan_mall_permission
 -- ----------------------------
@@ -152,7 +146,6 @@ INSERT INTO `cskaoyan_mall_permission` VALUES (90, NULL, 'index:permission:read'
 INSERT INTO `cskaoyan_mall_permission` VALUES (91, NULL, 'admin:stat:user', 'GET', '/admin/stat/user', '查询', NULL, NULL, 0);
 INSERT INTO `cskaoyan_mall_permission` VALUES (92, NULL, 'admin:stat:order', 'GET', '/admin/stat/order', '查询', NULL, NULL, 0);
 INSERT INTO `cskaoyan_mall_permission` VALUES (93, NULL, 'admin:stat:goods', 'GET', '/admin/stat/goods', '查询', NULL, NULL, 0);
-
 -- ----------------------------
 -- Table structure for cskaoyan_mall_system_permissions
 -- ----------------------------
@@ -164,7 +157,6 @@ CREATE TABLE `cskaoyan_mall_system_permissions`  (
   `permission_ids` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 41 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
 -- ----------------------------
 -- Records of cskaoyan_mall_system_permissions
 -- ----------------------------
@@ -205,7 +197,6 @@ INSERT INTO `cskaoyan_mall_system_permissions` VALUES (35, '权限测试', 7, '8
 INSERT INTO `cskaoyan_mall_system_permissions` VALUES (36, '用户统计', 8, '91');
 INSERT INTO `cskaoyan_mall_system_permissions` VALUES (37, '订单统计', 8, '92');
 INSERT INTO `cskaoyan_mall_system_permissions` VALUES (38, '商品统计', 8, '93');
-
 -- ----------------------------
 -- Table structure for system_permission
 -- ----------------------------
@@ -216,7 +207,6 @@ CREATE TABLE `system_permission`  (
   `system_id` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
 -- ----------------------------
 -- Records of system_permission
 -- ----------------------------
@@ -309,5 +299,4 @@ INSERT INTO `system_permission` VALUES (86, 90, 35);
 INSERT INTO `system_permission` VALUES (87, 91, 36);
 INSERT INTO `system_permission` VALUES (88, 92, 37);
 INSERT INTO `system_permission` VALUES (89, 93, 38);
-
 SET FOREIGN_KEY_CHECKS = 1;

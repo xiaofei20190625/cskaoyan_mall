@@ -8,4 +8,8 @@ public interface SearchHistoryService {
 
     PageVO<SearchHistory> findSearchHistoryPageByKeywordAndUserId(int page, int limit, String userId, String keyword, String sort, String order);
 
+
+
+
+
 }

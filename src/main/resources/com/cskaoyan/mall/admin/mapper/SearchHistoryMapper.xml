@@ -10,6 +10,38 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="deleted" jdbcType="BIT" property="deleted" />
   </resultMap>
+
+
+
+
+  <resultMap id="listMap" type="com.cskaoyan.mall.admin.bean.SysPermission2">
+    <result column="id1" jdbcType="VARCHAR" property="id" />
+    <result column="label1" jdbcType="VARCHAR" property="label" />
+    <collection property="children" ofType="com.cskaoyan.mall.admin.bean.SysPermission1">
+      <result column="id2" jdbcType="VARCHAR" property="id" />
+      <result column="label2" jdbcType="VARCHAR" property="label" />
+      <result column="id"  property="children" />
+    </collection>
+    <association property="" javaType=""
+  </resultMap>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <sql id="Base_Column_List">
     id, user_id, keyword, 'from', add_time, update_time, deleted
   </sql>

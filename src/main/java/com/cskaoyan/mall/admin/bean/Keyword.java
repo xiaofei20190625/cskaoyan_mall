@@ -27,6 +27,10 @@ public class Keyword {
     public Keyword() {
     }
 
+    public Keyword(String keyword) {
+        this.keyword = keyword;
+    }
+
     public Integer getId() {
         return id;
     }

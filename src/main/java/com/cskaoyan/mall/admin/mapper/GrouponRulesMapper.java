@@ -23,4 +23,7 @@ public interface GrouponRulesMapper {
     int create(GrouponRules grouponRules);
 
     GrouponRules findGoodsId(Integer goodsId);
+
+    List<GrouponRules> queryAll();
+
 }

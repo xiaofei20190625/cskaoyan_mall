@@ -28,7 +28,20 @@
   from  cskaoyan_mall_ad
 where name like "%" #{name} "%" and  content like "%" #{content} "%"
 order by #{sort}  #{order}
-  </select>
+</select>
+  <!--create-->
+  <insert id="create" keyProperty="id" useGeneratedKeys="true">
+    insert into cskaoyan_mall_ad (id, name, link,
+                                  url, position, content,
+                                  start_time, end_time, enabled,
+                                  add_time, update_time, deleted
+    )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{link,jdbcType=VARCHAR},
+            #{url,jdbcType=VARCHAR}, #{position,jdbcType=TINYINT}, #{content,jdbcType=VARCHAR},
+            #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{enabled,jdbcType=BIT},
+            #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT}
+           )
+  </insert>
 
 
 

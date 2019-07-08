@@ -8,7 +8,16 @@ package com.cskaoyan.mall.admin.bean;
 public class GoodsAndGrouponAndGrouponRules {
     Goods goods;
     Groupon groupon;
-    GrouponRules grouponRules;
+    GrouponRules rules;
+    String[] subGroupons;
+
+    public String[] getSubGroupons() {
+        return subGroupons;
+    }
+
+    public void setSubGroupons(String[] subGroupons) {
+        this.subGroupons = subGroupons;
+    }
 
     public Goods getGoods() {
         return goods;
@@ -26,11 +35,21 @@ public class GoodsAndGrouponAndGrouponRules {
         this.groupon = groupon;
     }
 
-    public GrouponRules getGrouponRules() {
-        return grouponRules;
+    public GrouponRules getRules() {
+        return rules;
     }
 
-    public void setGrouponRules(GrouponRules grouponRules) {
-        this.grouponRules = grouponRules;
+    public void setRules(GrouponRules rules) {
+        this.rules = rules;
+    }
+
+    public GoodsAndGrouponAndGrouponRules(Goods goods, Groupon groupon, GrouponRules rules, String[] subGroupons) {
+        this.goods = goods;
+        this.groupon = groupon;
+        this.rules = rules;
+        this.subGroupons = subGroupons;
+    }
+
+    public GoodsAndGrouponAndGrouponRules() {
     }
 }

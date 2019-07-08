@@ -40,7 +40,6 @@ public class AdController {
         return responseVO;
     }
 
-
     @RequestMapping("/delete")
     public ResponseVO delete(@RequestBody Ad ad){
         int delete = adService.delete(ad);
@@ -53,6 +52,17 @@ public class AdController {
         return  responseVO;
     }
 
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public ResponseVO<Ad> create(@RequestBody Ad ad) {
+        int insert = adService.create(ad);
+        ResponseVO<Ad> responseVO = new ResponseVO<>();
+        if (insert == 1) {
+            responseVO.setData(ad);
+            responseVO.setErrmsg("成功");
+            responseVO.setErrno(0);
+        }
+        return responseVO;
+    }
 
 
 

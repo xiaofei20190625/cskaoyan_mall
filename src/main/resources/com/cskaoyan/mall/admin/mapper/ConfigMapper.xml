@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mall.admin.mapper.ConfigMapper">
+
+
+    <insert id="configMall" parameterType="com.cskaoyan.mall.admin.bean.MallConfig">
+    insert into
+    cskaoyan_mall_mallconfig
+    (
+    litemall_mall_address,
+    litemall_mall_name,
+    litemall_mall_phone,
+    litemall_mall_qq)
+    values (
+            #{cskaoyan_mall_mall_address,jdbcType=VARCHAR},
+            #{cskaoyan_mall_mall_name,jdbcType=VARCHAR},
+            #{cskaoyan_mall_mall_phone,jdbcType=VARCHAR},
+            #{cskaoyan_mall_mall_qq,jdbcType=VARCHAR})
+  </insert>
+    <insert id="configExpress" parameterType="com.cskaoyan.mall.admin.bean.ExpressConfig">
+    insert into
+    cskaoyan_mall_expressconfig
+    (
+    litemall_express_freight_min,
+    litemall_express_freight_value)
+    values (
+            #{cskaoyan_mall_express_freight_min,jdbcType=VARCHAR},
+            #{cskaoyan_mall_express_freight_value,jdbcType=VARCHAR})
+  </insert>
+
+    <insert id="configOrder" parameterType="com.cskaoyan.mall.admin.bean.OrderConfig">
+    insert into
+    cskaoyan_mall_orderconfig
+    (
+    litemall_order_comment,
+    litemall_order_unconfirm,
+    litemall_order_unpaid)
+    values (
+            #{cskaoyan_mall_order_comment,jdbcType=VARCHAR},
+            #{cskaoyan_mall_order_unconfirm,jdbcType=VARCHAR},
+            #{cskaoyan_mall_order_unpaid,jdbcType=VARCHAR})
+  </insert>
+    <insert id="configWx" parameterType="com.cskaoyan.mall.admin.bean.WxConfig">
+    insert into
+    cskaoyan_mall_wxconfig
+    (
+    litemall_wx_catlog_goods,
+    litemall_wx_catlog_list,
+    litemall_wx_index_brand,
+    litemall_wx_index_hot,
+    litemall_wx_index_new,
+    litemall_wx_index_topic,
+    litemall_wx_share)
+    values (
+            #{cskaoyan_mall_wx_catlog_goods,jdbcType=VARCHAR},
+            #{cskaoyan_mall_wx_catlog_list,jdbcType=VARCHAR},
+            #{cskaoyan_mall_wx_index_brand,jdbcType=VARCHAR},
+            #{cskaoyan_mall_wx_index_hot,jdbcType=VARCHAR},
+            #{cskaoyan_mall_wx_index_new,jdbcType=VARCHAR},
+            #{cskaoyan_mall_wx_index_topic,jdbcType=VARCHAR},
+            #{cskaoyan_mall_wx_share,jdbcType=VARCHAR})
+  </insert>
+</mapper>

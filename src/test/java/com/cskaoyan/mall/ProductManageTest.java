@@ -1,11 +1,10 @@
 package com.cskaoyan.mall;
 
-import com.cskaoyan.mall.bean.*;
-import com.cskaoyan.mall.mapper.*;
-import com.cskaoyan.mall.service.*;
-import com.cskaoyan.mall.typeHandler.StringToStingrArrayHandler;
-import com.cskaoyan.mall.vo.PageVO;
-import com.cskaoyan.mall.vo.ResponseVO;
+import com.cskaoyan.mall.admin.bean.*;
+import com.cskaoyan.mall.admin.mapper.*;
+import com.cskaoyan.mall.admin.service.*;
+import com.cskaoyan.mall.admin.vo.PageVO;
+import com.cskaoyan.mall.admin.vo.ResponseVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 
 @RunWith(SpringRunner.class)

@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@MapperScan(basePackages = "com.cskaoyan.mall.mapper")
+@MapperScan(basePackages = {"com.cskaoyan.mall.admin.mapper", "com.cskaoyan.mall.wx.mapper"})
 public class MallApplication {
     public static void main(String[] args) {
         SpringApplication.run(MallApplication.class, args);

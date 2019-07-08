@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mall.admin.mapper.EchoBrandAndCatMapper">
+    <resultMap id="SpecificItem" type="com.cskaoyan.mall.admin.bean.SpecificItem">
+        <result column="id" property="value"/>
+        <result column="name" property="label"/>
+    </resultMap>
+    <resultMap id="CategorySpecific" type="com.cskaoyan.mall.admin.bean.CategorySpecific">
+        <result column="id" property="value"/>
+        <result column="name" property="label"/>
+    </resultMap>
+    <select id="echoBrand" resultMap="SpecificItem">
+      select id,`name` from cskaoyan_mall_brand
+    </select>
+    <select id="getCatchildrenByPid" resultMap="SpecificItem">
+        select id,`name` from cskaoyan_mall_category
+        where pid = #{pid}
+    </select>
+    <select id="echoCategory" resultMap="CategorySpecific">
+        select id,`name` from cskaoyan_mall_category
+        where pid = 0
+    </select>
+</mapper>

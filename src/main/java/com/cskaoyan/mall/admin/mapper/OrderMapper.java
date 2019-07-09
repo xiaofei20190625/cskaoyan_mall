@@ -26,5 +26,15 @@ public interface OrderMapper {
                                @Param("orderSn") String orderSn,
                                @Param("statuss") String[] orderStatusArray);
 
+    List<Order> selectAllByUid(Integer userId);
+
     OrderDetail queryOrderDetailById(@Param("id") int id);
+
+    List<Order> selectUnpayByUid(Integer userId);
+
+    List<Order> selectReadyDeliverOrdersByUid(Integer userId);
+
+    List<Order> selectUnConfirmOrdersByUid(Integer userId);
+
+    List<Order> selectUnAssessOrdersByUid(Integer userId);
 }

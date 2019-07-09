@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/admin/coupon")
-public class gitCouponController {
+public class CouponController {
 
     @Autowired
     CouponService couponService;

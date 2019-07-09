@@ -1,7 +1,9 @@
 package com.cskaoyan.mall.admin.mapper;
 
+import com.cskaoyan.mall.admin.bean.Keyword;
 import com.cskaoyan.mall.admin.bean.SearchHistory;
 import com.cskaoyan.mall.wx.bean.Search;
+import com.cskaoyan.mall.wx.bean.SearchHotHistory;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -24,5 +26,11 @@ public interface SearchHistoryMapper {
                                                                 @Param("sort") String sort,
                                                                 @Param("order") String order);
 
-    List<Search> findSearchHistory(Search search);
+    SearchHotHistory findSearchHistory();
+
+    List<Keyword> findSearchHistoryKeywordList(Integer userId);
+
+    List<SearchHotHistory> findSearchHotHistory();
+
+    List findSearchHelp(@Param("keyword") String keyword);
 }

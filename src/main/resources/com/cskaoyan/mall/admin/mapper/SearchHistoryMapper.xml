@@ -14,34 +14,50 @@
 
 
 
-  <resultMap id="listMap" type="com.cskaoyan.mall.admin.bean.SysPermission2">
-    <result column="id1" jdbcType="VARCHAR" property="id" />
-    <result column="label1" jdbcType="VARCHAR" property="label" />
-    <collection property="children" ofType="com.cskaoyan.mall.admin.bean.SysPermission1">
-      <result column="id2" jdbcType="VARCHAR" property="id" />
-      <result column="label2" jdbcType="VARCHAR" property="label" />
-      <result column="id"  property="children" />
-    </collection>
-    <association property="" javaType=""
+  <resultMap id="BaseResultMap1" type="com.cskaoyan.mall.admin.bean.SearchHistory">
+    <result column="keyword" jdbcType="VARCHAR" property="keyword" />
+  </resultMap>
+  <select id="findSearchHistoryKeywordList" resultMap="BaseResultMap1">
+    select
+    keyword
+    from cskaoyan_mall_search_history
+    where user_id = #{userId}
+  </select>
+  <resultMap id="BaseResultMapHot" type="com.cskaoyan.mall.wx.bean.SearchHotHistory">
+    <result property="id" column="id"/>
+    <result property="keyword" column="keyword"/>
+    <result property="url" column="url"/>
+    <result property="isHot" column="is_hot"/>
+    <result property="isDefault" column="is_default"/>
+    <result property="sortOrder" column="sort_order"/>
+    <result property="addTime" column="add_time"/>
+    <result property="updateTime" column="update_time"/>
+    <result property="deleted" column="deleted"/>
   </resultMap>
 
+  <select id="findSearchHotHistory" resultMap="BaseResultMapHot">
+    select
+    id, keyword, url, is_hot, is_default, sort_order, add_time, update_time, deleted
+    from cskaoyan_mall_keyword
+  </select>
+  <resultMap id="BaseResultMap3" type="string">
+    <result column="keyword" jdbcType="VARCHAR" property="keyword" />
+  </resultMap>
+  <select id="findSearchHelp" resultMap="BaseResultMap3" >
+    select
+    keyword
+    from cskaoyan_mall_keyword
+    where keyword like #{keyword}
+  </select>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <select id="findSearchHistory" resultMap="BaseResultMapHot">
+    select
+    id, keyword, url, is_hot, is_default, sort_order, add_time, update_time, deleted
+    from cskaoyan_mall_keyword
+    where is_hot = true and is_default=true and sort_order = 1
+  </select>
   <sql id="Base_Column_List">
     id, user_id, keyword, 'from', add_time, update_time, deleted
   </sql>

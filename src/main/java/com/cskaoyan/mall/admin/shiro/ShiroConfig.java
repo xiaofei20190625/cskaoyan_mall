@@ -33,13 +33,14 @@ public class ShiroConfig {
 
 		filterMap.put("/admin/auth/login","anon");
 		filterMap.put("/wx/auth/login","anon");
+		filterMap.put("/wx/**","anon");
 
 		filterMap.put("/admin/auth/login","anon");
 		filterMap.put("/admin/auth/logout","logout");
 		//filterMap.put("/user/query","perms[user:query]");
 		//filterMap.put("/user/query2","perms[user:query2]");
 
-		filterMap.put("/**","authc");
+		filterMap.put("/admin/**","authc");
 
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);
 

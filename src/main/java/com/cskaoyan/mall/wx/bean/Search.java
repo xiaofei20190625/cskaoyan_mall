@@ -7,15 +7,15 @@ import java.util.Date;
 import java.util.List;
 
 public class Search {
-    SearchHistory defaultKeyword;
+    SearchHotHistory defaultKeyword;
     List<Keyword> historyKeywordList;
-    List<SearchHistory> hotKeywordList;
+    List<SearchHotHistory> hotKeywordList;
 
-    public SearchHistory getDefaultKeyword() {
+    public SearchHotHistory getDefaultKeyword() {
         return defaultKeyword;
     }
 
-    public void setDefaultKeyword(SearchHistory defaultKeyword) {
+    public void setDefaultKeyword(SearchHotHistory defaultKeyword) {
         this.defaultKeyword = defaultKeyword;
     }
 
@@ -27,11 +27,11 @@ public class Search {
         this.historyKeywordList = historyKeywordList;
     }
 
-    public List<SearchHistory> getHotKeywordList() {
+    public List<SearchHotHistory> getHotKeywordList() {
         return hotKeywordList;
     }
 
-    public void setHotKeywordList(List<SearchHistory> hotKeywordList) {
+    public void setHotKeywordList(List<SearchHotHistory> hotKeywordList) {
         this.hotKeywordList = hotKeywordList;
     }
 }

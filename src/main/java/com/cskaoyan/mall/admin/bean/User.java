@@ -11,6 +11,16 @@ public class User {
     Set roles;
     String avatar;
 
+    public User() {
+    }
+
+    public User(String name, Set perms, Set roles, String avatar) {
+        this.name = name;
+        this.perms = perms;
+        this.roles = roles;
+        this.avatar = avatar;
+    }
+
 
     public String getName() {
         return name;

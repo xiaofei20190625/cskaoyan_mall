@@ -14,11 +14,8 @@ pagehelper:
 
 spring:
   profiles:
-<<<<<<< HEAD
     active: xy
-=======
-    active: cq
->>>>>>> b44c5ff079689546affba77388b3b0d8a7c1639b
+
 ---
 spring:
   profiles: cq

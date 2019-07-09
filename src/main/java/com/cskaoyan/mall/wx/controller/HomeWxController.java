@@ -3,8 +3,10 @@ package com.cskaoyan.mall.wx.controller;
 import com.cskaoyan.mall.admin.bean.Ad;
 import com.cskaoyan.mall.admin.bean.Coupon;
 import com.cskaoyan.mall.admin.bean.Groupon;
-import com.cskaoyan.mall.wx.bean.*;
 import com.cskaoyan.mall.admin.service.*;
+import com.cskaoyan.mall.wx.bean.*;
+
+import com.cskaoyan.mall.wx.service.TopicServiceWx;
 import com.cskaoyan.mall.wx.vo.BaseRespVo;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +38,7 @@ public class HomeWxController {
     @Autowired
     GoodsService goodsService;
     @Autowired
-    TopicService topicService;
+    TopicServiceWx topicService;
 
 
     @ApiOperation(value = "获取主页页面")

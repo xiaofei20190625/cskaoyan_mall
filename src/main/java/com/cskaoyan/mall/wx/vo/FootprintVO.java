@@ -7,6 +7,14 @@ public class FootprintVO {
 
     Long totalPages;
 
+    public FootprintVO() {
+    }
+
+    public FootprintVO(List footprintList, Long totalPages) {
+        this.footprintList = footprintList;
+        this.totalPages = totalPages;
+    }
+
     public List getFootprintList() {
         return footprintList;
     }

@@ -23,7 +23,7 @@ public interface FootprintMapper {
                                                         @Param("goodsId") String goodsId,
                                                         @Param("sort") String sort,
                                                         @Param("order") String order);
-    List<EchoFootprint> echoFootprintList();
+    List<EchoFootprint> echoFootprintListByUid(int userId);
 
 
 }

@@ -14,7 +14,7 @@ pagehelper:
 
 spring:
   profiles:
-    active: xy
+    active: lyn
 ---
 spring:
   profiles: cq

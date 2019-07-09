@@ -1,7 +1,7 @@
 package com.cskaoyan.mall.wx.service.impl;
 
 
-import com.cskaoyan.mall.wx.bean.Topic;
+import com.cskaoyan.mall.wx.bean.TopicWx;
 import com.cskaoyan.mall.wx.mapper.TopicMapperWx;
 import com.cskaoyan.mall.wx.service.TopicServiceWx;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ public class TopicServiceWxImpl implements TopicServiceWx {
     @Autowired
     TopicMapperWx topicMapper;
     @Override
-    public List<Topic> getWxTopicList() {
+    public List<TopicWx> getWxTopicList() {
         return topicMapper.getWxTopicList();
     }
 }

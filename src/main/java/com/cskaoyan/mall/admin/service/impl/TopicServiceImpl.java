@@ -47,14 +47,13 @@ public class TopicServiceImpl implements TopicService {
     }
 
     @Override
-<<<<<<< HEAD
     public List<TopicWx> getWxTopicList() {
         return topicMapper.getWxTopicList();
-=======
+    }
+
     public List<Topic> wxGetList(int page, int size) {
         PageHelper.startPage(page, size);
         return topicMapper.wxGetList();
->>>>>>> 67926eff419d08f4ce0ccc08a89515331282a6f2
     }
 
     @Override

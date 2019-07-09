@@ -16,9 +16,8 @@ public interface TopicService {
 
     int create(Topic topic);
 
-<<<<<<< HEAD
     List<TopicWx> getWxTopicList();
-=======
+
     List<Topic> wxGetList(int page , int size);
 
     int count();
@@ -28,5 +27,5 @@ public interface TopicService {
     List<Topic> queryAll();
 
     List<Topic> related(int minId, int maxId, int id);
->>>>>>> 67926eff419d08f4ce0ccc08a89515331282a6f2
+
 }

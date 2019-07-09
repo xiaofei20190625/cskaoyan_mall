@@ -1,9 +1,9 @@
 package com.cskaoyan.mall.wx.service;
 
-import com.cskaoyan.mall.wx.bean.Topic;
+import com.cskaoyan.mall.wx.bean.TopicWx;
 
 import java.util.List;
 
 public interface TopicServiceWx {
-    List<Topic> getWxTopicList();
+    List<TopicWx> getWxTopicList();
 }

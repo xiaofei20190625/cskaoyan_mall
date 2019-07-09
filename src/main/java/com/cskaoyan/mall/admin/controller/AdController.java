@@ -54,8 +54,9 @@ public class AdController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ResponseVO<Ad> create(@RequestBody Ad ad) {
-        int insert = adService.create(ad);
         ResponseVO<Ad> responseVO = new ResponseVO<>();
+        if (ad.getLink() == null) ad.setLink("");
+        int insert = adService.create(ad);
         if (insert == 1) {
             responseVO.setData(ad);
             responseVO.setErrmsg("成功");

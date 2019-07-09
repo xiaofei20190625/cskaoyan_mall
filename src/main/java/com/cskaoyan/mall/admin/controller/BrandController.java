@@ -1,4 +1,8 @@
 package com.cskaoyan.mall.admin.controller;
+import com.cskaoyan.mall.admin.bean.Brand;
+import com.cskaoyan.mall.admin.service.BrandService;
+import com.cskaoyan.mall.admin.vo.PageVO;
+import com.cskaoyan.mall.admin.vo.ResponseVO;
 
 import com.cskaoyan.mall.admin.bean.Brand;
 import com.cskaoyan.mall.admin.service.BrandService;

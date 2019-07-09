@@ -1,6 +1,4 @@
 package com.cskaoyan.mall.admin.service.impl;
-
-
 import com.cskaoyan.mall.admin.bean.Attribute;
 import com.cskaoyan.mall.admin.mapper.AttributeMapper;
 import com.cskaoyan.mall.admin.service.AttributeService;

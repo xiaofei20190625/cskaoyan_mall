@@ -1,4 +1,4 @@
-package com.cskaoyan.mall.admin.controller;
+package com.cskaoyan.mall.wx.controller;
 
 import com.cskaoyan.mall.admin.bean.Admin;
 import com.cskaoyan.mall.admin.bean.Permission;
@@ -10,26 +10,21 @@ import com.cskaoyan.mall.admin.service.RoleService;
 import com.cskaoyan.mall.admin.shiro.AdminRealm;
 import com.cskaoyan.mall.admin.vo.LoginVO;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.*;
-import org.apache.shiro.authz.AuthorizationInfo;
-import org.apache.shiro.authz.SimpleAuthorizationInfo;
-import org.apache.shiro.cache.Cache;
-import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Controller
-@RequestMapping("admin")
-public class LoginController {
-
+@RestController
+@RequestMapping("wx")
+public class LoginWXController {
     @Autowired
     AdminService adminService;
     @Autowired
@@ -111,4 +106,5 @@ public class LoginController {
         subject.logout();
         return "auth/login";
     }
+
 }

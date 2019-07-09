@@ -5,7 +5,6 @@ import com.cskaoyan.mall.admin.bean.CategoryL1;
 import com.cskaoyan.mall.admin.bean.L1;
 import com.cskaoyan.mall.admin.service.CategoryService;
 import com.cskaoyan.mall.admin.vo.ResponseVO;
-
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

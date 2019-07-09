@@ -1,10 +1,7 @@
 package com.cskaoyan.mall.admin.service.impl;
-
-
 import com.cskaoyan.mall.admin.bean.Specification;
 import com.cskaoyan.mall.admin.mapper.SpecificationMapper;
 import com.cskaoyan.mall.admin.service.SpecificationService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -22,4 +22,6 @@ public interface UserVipMapper {
                                                    @Param("mobile")String mobile,
                                                    @Param("sort") String sort,
                                                    @Param("order") String order);
+
+    UserVip findUserVip(String username);
 }

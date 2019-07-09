@@ -33,8 +33,8 @@
   </sql>
   <!--getList-->
   <select id="getList" resultMap="BaseResultMap">
-select <include refid="Query_List"/>
-from cskaoyan_mall_coupon
+    select <include refid="Query_List"/>
+    from cskaoyan_mall_coupon
     where name like "%" #{name} "%" and  type like "%" #{type} "%" and  status like  "%" #{status} "%"
     order by #{sort}  #{order}
   </select>
@@ -60,7 +60,7 @@ from cskaoyan_mall_coupon
 
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from cskaoyan_mall_coupon
     where id = #{id,jdbcType=INTEGER}
@@ -70,21 +70,22 @@ from cskaoyan_mall_coupon
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.cskaoyan.mall.admin.bean.Coupon">
-    insert into cskaoyan_mall_coupon (id, name, desc, 
-      tag, total, discount, 
-      min, limit, type, 
-      status, goods_type, goods_value, 
-      code, time_type, days, 
-      start_time, end_time, add_time, 
-      update_time, deleted)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}, 
-      #{tag,jdbcType=VARCHAR}, #{total,jdbcType=INTEGER}, #{discount,jdbcType=DECIMAL}, 
-      #{min,jdbcType=DECIMAL}, #{limit,jdbcType=SMALLINT}, #{type,jdbcType=SMALLINT}, 
-      #{status,jdbcType=SMALLINT}, #{goodsType,jdbcType=SMALLINT}, #{goodsValue,jdbcType=VARCHAR,typeHandler=com.cskaoyan.mall.admin.typeHandler.GoodValueTypeHandler},
-      #{code,jdbcType=VARCHAR}, #{timeType,jdbcType=SMALLINT}, #{days,jdbcType=SMALLINT}, 
-      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{addTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT})
+    insert into cskaoyan_mall_coupon (id, name, desc,
+                                      tag, total, discount,
+                                      min, limit, type,
+                                      status, goods_type, goods_value,
+                                      code, time_type, days,
+                                      start_time, end_time, add_time,
+                                      update_time, deleted)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR},
+            #{tag,jdbcType=VARCHAR}, #{total,jdbcType=INTEGER}, #{discount,jdbcType=DECIMAL},
+            #{min,jdbcType=DECIMAL}, #{limit,jdbcType=SMALLINT}, #{type,jdbcType=SMALLINT},
+            #{status,jdbcType=SMALLINT}, #{goodsType,jdbcType=SMALLINT}, #{goodsValue,jdbcType=VARCHAR,typeHandler=com.cskaoyan.mall.admin.typeHandler.GoodValueTypeHandler},
+            #{code,jdbcType=VARCHAR}, #{timeType,jdbcType=SMALLINT}, #{days,jdbcType=SMALLINT},
+            #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{addTime,jdbcType=TIMESTAMP},
+            #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT})
   </insert>
+
   <insert id="insertSelective" parameterType="com.cskaoyan.mall.admin.bean.Coupon">
     insert into cskaoyan_mall_coupon
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -122,7 +123,7 @@ from cskaoyan_mall_coupon
         goods_type,
       </if>
       <if test="goodsValue != null">
-         goods_value ,
+        goods_value ,
       </if>
       <if test="code != null">
         code,
@@ -219,7 +220,7 @@ from cskaoyan_mall_coupon
         `name` = #{name,jdbcType=VARCHAR},
       </if>
       <if test="desc != null">
-        desc = #{desc,jdbcType=VARCHAR},
+        `desc` = #{desc,jdbcType=VARCHAR},
       </if>
       <if test="tag != null">
         tag = #{tag,jdbcType=VARCHAR},
@@ -278,24 +279,24 @@ from cskaoyan_mall_coupon
   <update id="updateByPrimaryKey" parameterType="com.cskaoyan.mall.admin.bean.Coupon">
     update cskaoyan_mall_coupon
     set name = #{name,jdbcType=VARCHAR},
-      desc = #{desc,jdbcType=VARCHAR},
-      tag = #{tag,jdbcType=VARCHAR},
-      total = #{total,jdbcType=INTEGER},
-      discount = #{discount,jdbcType=DECIMAL},
-      min = #{min,jdbcType=DECIMAL},
-      limit = #{limit,jdbcType=SMALLINT},
-      type = #{type,jdbcType=SMALLINT},
-      status = #{status,jdbcType=SMALLINT},
-      goods_type = #{goodsType,jdbcType=SMALLINT},
-      goods_value = #{goodsValue,jdbcType=VARCHAR ,typeHandler=com.cskaoyan.mall.admin.typeHandler.GoodValueTypeHandler },
-      code = #{code,jdbcType=VARCHAR},
-      time_type = #{timeType,jdbcType=SMALLINT},
-      days = #{days,jdbcType=SMALLINT},
-      start_time = #{startTime,jdbcType=TIMESTAMP},
-      end_time = #{endTime,jdbcType=TIMESTAMP},
-      add_time = #{addTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      deleted = #{deleted,jdbcType=BIT}
+        desc = #{desc,jdbcType=VARCHAR},
+        tag = #{tag,jdbcType=VARCHAR},
+        total = #{total,jdbcType=INTEGER},
+        discount = #{discount,jdbcType=DECIMAL},
+        min = #{min,jdbcType=DECIMAL},
+        limit = #{limit,jdbcType=SMALLINT},
+        type = #{type,jdbcType=SMALLINT},
+        status = #{status,jdbcType=SMALLINT},
+        goods_type = #{goodsType,jdbcType=SMALLINT},
+        goods_value = #{goodsValue,jdbcType=VARCHAR ,typeHandler=com.cskaoyan.mall.admin.typeHandler.GoodValueTypeHandler },
+        code = #{code,jdbcType=VARCHAR},
+        time_type = #{timeType,jdbcType=SMALLINT},
+        days = #{days,jdbcType=SMALLINT},
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        deleted = #{deleted,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

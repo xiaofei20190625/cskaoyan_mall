@@ -1,22 +1,24 @@
 package com.cskaoyan.mall.wx.bean;
 
-
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Created by IceFloe_Rot
- * Date 2019/7/9 Time 11:09
+ * Date 2019/7/9 Time 11:22
  */
-public class NewGoods {
+public class GoodsWx {
     private String brief;
     private Double counterPrice;
-    private String id;
+    private Integer id;
+    @JsonProperty("isHot")
     private Boolean isHot;
+    @JsonProperty("isNew")
     private Boolean isNew;
     private String name;
     private String picUrl;
     private Double retailPrice;
 
-    public NewGoods() {
+    public GoodsWx() {
     }
 
     public String getBrief() {
@@ -35,28 +37,12 @@ public class NewGoods {
         this.counterPrice = counterPrice;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Boolean getHot() {
-        return isHot;
-    }
-
-    public void setHot(Boolean hot) {
-        isHot = hot;
-    }
-
-    public Boolean getNew() {
-        return isNew;
-    }
-
-    public void setNew(Boolean aNew) {
-        isNew = aNew;
     }
 
     public String getName() {
@@ -81,5 +67,21 @@ public class NewGoods {
 
     public void setRetailPrice(Double retailPrice) {
         this.retailPrice = retailPrice;
+    }
+
+    public Boolean getHot() {
+        return isHot;
+    }
+
+    public void setHot(Boolean hot) {
+        isHot = hot;
+    }
+
+    public Boolean getNew() {
+        return isNew;
+    }
+
+    public void setNew(Boolean aNew) {
+        isNew = aNew;
     }
 }

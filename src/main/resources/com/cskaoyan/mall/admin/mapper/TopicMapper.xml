@@ -222,8 +222,13 @@ from cskaoyan_mall_topic
   </update>
 
 
-  <resultMap id="wxTopicMap" type="com.cskaoyan.mall.wx.bean.Topic">
-
+  <resultMap id="wxTopicMap" type="com.cskaoyan.mall.wx.bean.TopicWx">
+    <result property="id" column="id"/>
+    <result property="picUrl" column="pic_url"/>
+    <result property="price" column="price"/>
+    <result property="readCount" column="read_count"/>
+    <result property="subTitle" column="subtitle"/>
+    <result property="title" column="title"/>
   </resultMap>
   <select id="getWxTopicList" resultMap="wxTopicMap">
     select id,pic_url,price,read_count,subtitle,title

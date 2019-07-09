@@ -167,7 +167,7 @@
         (#{name},#{desc},#{picUrl},#{sortOrder},#{floorPrice},#{addTime},#{updateTime},#{deleted})
     </insert>
 
-  <resultMap id="wxBrandMap" type="com.cskaoyan.mall.wx.bean.Brand">
+  <resultMap id="wxBrandMap" type="com.cskaoyan.mall.wx.bean.BrandWx">
     <result property="desc" column="desc"/>
     <result property="floorPrice" column="floor_price"/>
     <result property="id" column="id"/>

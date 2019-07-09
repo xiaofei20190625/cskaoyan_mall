@@ -3,6 +3,7 @@ package com.cskaoyan.mall.admin.service;
 
 import com.cskaoyan.mall.admin.bean.Topic;
 import com.cskaoyan.mall.admin.vo.PageVO;
+import com.cskaoyan.mall.wx.bean.TopicWx;
 
 import java.util.List;
 
@@ -14,5 +15,5 @@ public interface TopicService {
 
     int create(Topic topic);
 
-    List<com.cskaoyan.mall.wx.bean.Topic> getWxTopicList();
+    List<TopicWx> getWxTopicList();
 }

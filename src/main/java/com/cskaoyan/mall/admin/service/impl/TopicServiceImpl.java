@@ -4,6 +4,7 @@ import com.cskaoyan.mall.admin.bean.Topic;
 import com.cskaoyan.mall.admin.mapper.TopicMapper;
 import com.cskaoyan.mall.admin.service.TopicService;
 import com.cskaoyan.mall.admin.vo.PageVO;
+import com.cskaoyan.mall.wx.bean.TopicWx;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +47,7 @@ public class TopicServiceImpl implements TopicService {
     }
 
     @Override
-    public List<com.cskaoyan.mall.wx.bean.Topic> getWxTopicList() {
+    public List<TopicWx> getWxTopicList() {
         return topicMapper.getWxTopicList();
     }
 }

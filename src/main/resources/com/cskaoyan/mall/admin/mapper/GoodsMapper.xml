@@ -103,7 +103,7 @@
         limit 4
     </select>
 
-    <resultMap id="wxGoodsMap" type="com.cskaoyan.mall.wx.bean.Goods">
+    <resultMap id="wxGoodsMap" type="com.cskaoyan.mall.wx.bean.GoodsWx">
         <id column="id" jdbcType="VARCHAR" property="id" />
         <result column="name" jdbcType="VARCHAR" property="name" />
         <result column="brief" jdbcType="VARCHAR" property="brief" />

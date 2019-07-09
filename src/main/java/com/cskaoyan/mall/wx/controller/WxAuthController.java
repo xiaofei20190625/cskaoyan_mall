@@ -1,13 +1,12 @@
 package com.cskaoyan.mall.wx.controller;
 
 
-import com.cskaoyan.mall.admin.bean.User;
 import com.cskaoyan.mall.admin.bean.UserVip;
 import com.cskaoyan.mall.admin.service.UserVipService;
 import com.cskaoyan.mall.wx.userwx.UserInfo;
-import com.cskaoyan.mall.wx.userwx.UserMap;
 import com.cskaoyan.mall.wx.userwx.UserToken;
 import com.cskaoyan.mall.wx.userwx.UserTokenManager;
+import com.cskaoyan.mall.wx.utils.JSONUtils;
 import com.cskaoyan.mall.wx.vo.BaseRespVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,10 +27,10 @@ public class WxAuthController {
 
 	@RequestMapping("/auth/login")
 	@ResponseBody
-	public Object login(@RequestBody UserMap user, HttpServletRequest request) {
-
-		String username = user.getUsername();
-		String password = user.getPassword();
+	public Object login(@RequestBody Object body, HttpServletRequest request) {
+		HashMap hashMap = JSONUtils.toHashMap(body);
+		String username = (String) hashMap.get("username");
+		String password = (String) hashMap.get("password");
 
 		UserVip userVip = userVipService.findUserVip(username);
 		String password1 = userVip.getPassword();

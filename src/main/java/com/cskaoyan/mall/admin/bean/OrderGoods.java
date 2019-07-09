@@ -3,23 +3,30 @@ package com.cskaoyan.mall.admin.bean;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
-/**
- * Created by IceFloe_Rot
- * Date 2019/7/5 Time 17:38
- */
 public class OrderGoods {
     private Integer id;
+
     private Integer orderId;
+
     private Integer goodsId;
+
     private String goodsName;
+
     private String goodsSn;
+
     private Integer productId;
-    private Integer number;
-    private Double price;
+
+    private Short number;
+
+    private BigDecimal price;
+
     private String specifications;
-    private String picUrl;
+
+    private String[] picUrl;
+
     private Integer comment;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
@@ -27,10 +34,8 @@ public class OrderGoods {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
-    private Integer deleted;
 
-    public OrderGoods() {
-    }
+    private Boolean deleted;
 
     public Integer getId() {
         return id;
@@ -61,7 +66,7 @@ public class OrderGoods {
     }
 
     public void setGoodsName(String goodsName) {
-        this.goodsName = goodsName;
+        this.goodsName = goodsName == null ? null : goodsName.trim();
     }
 
     public String getGoodsSn() {
@@ -69,7 +74,7 @@ public class OrderGoods {
     }
 
     public void setGoodsSn(String goodsSn) {
-        this.goodsSn = goodsSn;
+        this.goodsSn = goodsSn == null ? null : goodsSn.trim();
     }
 
     public Integer getProductId() {
@@ -80,19 +85,19 @@ public class OrderGoods {
         this.productId = productId;
     }
 
-    public Integer getNumber() {
+    public Short getNumber() {
         return number;
     }
 
-    public void setNumber(Integer number) {
+    public void setNumber(Short number) {
         this.number = number;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -101,14 +106,14 @@ public class OrderGoods {
     }
 
     public void setSpecifications(String specifications) {
-        this.specifications = specifications;
+        this.specifications = specifications == null ? null : specifications.trim();
     }
 
-    public String getPicUrl() {
+    public String[] getPicUrl() {
         return picUrl;
     }
 
-    public void setPicUrl(String picUrl) {
+    public void setPicUrl(String[] picUrl) {
         this.picUrl = picUrl;
     }
 
@@ -136,11 +141,11 @@ public class OrderGoods {
         this.updateTime = updateTime;
     }
 
-    public Integer getDeleted() {
+    public Boolean getDeleted() {
         return deleted;
     }
 
-    public void setDeleted(Integer deleted) {
+    public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
     }
 }

@@ -204,4 +204,10 @@ order by #{sort}  #{order}
       deleted = #{deleted,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="getWxBannerList" resultMap="BaseResultMap">
+    select <include refid="Query_List"/>
+    from cskaoyan_mall_ad
+    where deleted = 0 and enabled = 1
+  </select>
 </mapper>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mall.wx.mapper.TopicMapperWx">
+  <resultMap id="wxTopicMap" type="com.cskaoyan.mall.wx.bean.Topic">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="pic_url" jdbcType="VARCHAR" property="picUrl" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="read_count" jdbcType="VARCHAR" property="readCount" />
+    <result column="subtitle" jdbcType="VARCHAR" property="subTitle" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+  </resultMap>
+  <select id="getWxTopicList" resultMap="wxTopicMap">
+    select id,pic_url,price,read_count,subtitle,title
+    from cskaoyan_mall_topic
+    where deleted = 0
+    limit 4
+  </select>
+</mapper>

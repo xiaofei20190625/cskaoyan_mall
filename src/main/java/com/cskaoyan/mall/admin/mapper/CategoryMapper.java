@@ -3,6 +3,7 @@ package com.cskaoyan.mall.admin.mapper;
 import com.cskaoyan.mall.admin.bean.Category;
 import com.cskaoyan.mall.admin.bean.CategoryL1;
 import com.cskaoyan.mall.admin.bean.L1;
+import com.cskaoyan.mall.wx.bean.Channel;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -31,5 +32,7 @@ public interface CategoryMapper {
     int updateByPrimaryKeySelective(Category record);
 
     int updateByPrimaryKey(Category record);
+
+    List<Channel> getWxChannelList();
 }
 

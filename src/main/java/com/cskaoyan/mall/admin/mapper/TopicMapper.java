@@ -25,9 +25,11 @@ public interface TopicMapper {
 
     int create(Topic topic);
 
+
     List<Topic> wxGetList();
 
     int count();
 
     List<Topic> related(@Param("minId") int minId, @Param("maxId")int maxId, @Param("id")int id);
+
 }

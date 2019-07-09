@@ -2,6 +2,7 @@ package com.cskaoyan.mall.admin.service.impl;
 
 import com.cskaoyan.mall.admin.bean.Groupon;
 import com.cskaoyan.mall.admin.bean.GrouponRules;
+import com.cskaoyan.mall.admin.mapper.GoodsMapper;
 import com.cskaoyan.mall.admin.mapper.GrouponMapper;
 import com.cskaoyan.mall.admin.service.GrouponService;
 import com.cskaoyan.mall.admin.vo.PageVO;
@@ -10,6 +11,8 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -21,6 +24,8 @@ import java.util.List;
 public class GrouponServiceImpl implements GrouponService {
     @Autowired
     GrouponMapper grouponMapper ;
+    @Autowired
+    GoodsMapper goodsMapper;
 
     @Override
     public PageVO<Groupon> getListRecord(int page, int limit, String sort, String order, String goodsId) {
@@ -38,5 +43,10 @@ public class GrouponServiceImpl implements GrouponService {
     @Override
     public Groupon findRulesId(Integer id) {
         return null;
+    }
+
+    @Override
+    public List<Groupon> getWxGrouponList() {
+        return grouponMapper.getWxGrouponList();
     }
 }

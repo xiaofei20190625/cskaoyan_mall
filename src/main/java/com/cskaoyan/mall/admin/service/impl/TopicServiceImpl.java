@@ -19,15 +19,15 @@ import java.util.List;
 @Service
 public class TopicServiceImpl implements TopicService {
     @Autowired
-    TopicMapper topicMapper ;
+    TopicMapper topicMapper;
 
     @Override
     public PageVO<Topic> getList(int page, int limit, String sort, String order, String title, String subtitle) {
         PageHelper.startPage(page, limit);
-        List<Topic> couponList = topicMapper.getList(sort , order ,title , subtitle );
+        List<Topic> couponList = topicMapper.getList(sort, order, title, subtitle);
         PageInfo<Topic> topicPageInfo = new PageInfo<>(couponList);
-        PageVO<Topic> topicPageVO = new PageVO<>(topicPageInfo.getTotal(),topicPageInfo.getList());
-        return  topicPageVO ;
+        PageVO<Topic> topicPageVO = new PageVO<>(topicPageInfo.getTotal(), topicPageInfo.getList());
+        return topicPageVO;
     }
 
     @Override
@@ -46,14 +46,14 @@ public class TopicServiceImpl implements TopicService {
     }
 
     @Override
-    public List<Topic> wxGetList(int page , int size) {
+    public List<Topic> wxGetList(int page, int size) {
         PageHelper.startPage(page, size);
-        return  topicMapper.wxGetList();
+        return topicMapper.wxGetList();
     }
 
     @Override
     public int count() {
-        return  topicMapper.count();
+        return topicMapper.count();
     }
 
     @Override
@@ -68,6 +68,7 @@ public class TopicServiceImpl implements TopicService {
 
     @Override
     public List<Topic> related(int minId, int maxId, int id) {
-        return topicMapper.related(minId,maxId,id);
+        return topicMapper.related(minId, maxId, id);
     }
+
 }

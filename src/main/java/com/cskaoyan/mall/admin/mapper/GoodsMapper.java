@@ -20,4 +20,11 @@ public interface GoodsMapper {
     int update(@Param("goods") Goods goods);
 
     List<Goods> getListRecord(@Param("sort") String sort, @Param("order")String order,@Param("goodsId") String goodsId);
+
+    List<Goods> getPageBrandsGoodsByIds(@Param("isNew") Boolean isNew,
+                                       @Param("order") String order,
+                                       @Param("sort") String sort,
+                                       @Param("categoryId") int categoryId);
+
+    List<Goods> getPageBrandsGoodsById(String brandId);
 }

@@ -27,4 +27,5 @@ public interface BrandMapper {
 
     int insertBrand(Brand brand);
 
+    List<Brand> getBrand();
 }

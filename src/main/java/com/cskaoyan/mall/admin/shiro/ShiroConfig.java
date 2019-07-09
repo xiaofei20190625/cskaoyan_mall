@@ -28,7 +28,7 @@ public class ShiroConfig {
 
 		shiroFilterFactoryBean.setSecurityManager(defaultWebSecurityManager);
 
-		shiroFilterFactoryBean.setLoginUrl("admin/auth/login");
+		shiroFilterFactoryBean.setLoginUrl("/admin/auth/login");
 		HashMap<String, String> filterMap = new HashMap<>();
 
 		filterMap.put("/admin/auth/login","anon");

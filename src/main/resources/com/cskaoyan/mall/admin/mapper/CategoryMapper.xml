@@ -22,6 +22,14 @@
         where deleted = 0 and `level` = 'L1'
     </select>
 
+
+    <select id="getCategoryListById" resultMap="categoryL2Map">
+        SELECT
+        id,name,`desc`,pid,icon_url,pic_url,`level`,sort_order,add_time,update_time,deleted
+        from cskaoyan_mall_category
+        where deleted = 0 and `level` = 'L2' and pid = #{brandId}
+    </select>
+
     <resultMap id="categoryL2Map" type="com.cskaoyan.mall.admin.bean.Category">
         <result property="id" column="id"/>
         <result property="name" column="name"/>

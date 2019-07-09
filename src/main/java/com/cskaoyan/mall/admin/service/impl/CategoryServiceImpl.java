@@ -57,4 +57,10 @@ public class CategoryServiceImpl implements CategoryService {
     public int queryPidById(int id) {
         return categoryMapper.queryPidById(id);
     }
+
+    @Override
+    public List<Category> getCategoryListById(int brandId) {
+        List<Category> categoryList = categoryMapper.getCategoryListById(brandId);
+        return categoryList;
+    }
 }

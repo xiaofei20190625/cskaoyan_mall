@@ -3,9 +3,14 @@ package com.cskaoyan.mall.wx.controller;
 import com.cskaoyan.mall.admin.bean.Ad;
 import com.cskaoyan.mall.admin.bean.Coupon;
 import com.cskaoyan.mall.admin.bean.Groupon;
-import com.cskaoyan.mall.wx.bean.*;
 import com.cskaoyan.mall.admin.service.*;
-import com.cskaoyan.mall.wx.vo.BaseRespVo;
+
+import com.cskaoyan.mall.wx.vo.BaseRespVO;
+
+import com.cskaoyan.mall.wx.bean.*;
+
+import com.cskaoyan.mall.wx.service.TopicServiceWx;
+
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,29 +41,29 @@ public class HomeWxController {
     @Autowired
     GoodsService goodsService;
     @Autowired
-    TopicService topicService;
+    TopicServiceWx topicService;
 
 
     @ApiOperation(value = "获取主页页面")
     @RequestMapping("index")
     @ResponseBody
-    public BaseRespVo homePage(){
+    public BaseRespVO homePage(){
         HashMap data = getHomeIndexMap();
-        BaseRespVo baseRespVo = BaseRespVo.ok(data);
+        BaseRespVO baseRespVo = BaseRespVO.ok(data);
         return baseRespVo;
     }
 
     private HashMap getHomeIndexMap() {
         HashMap<Object, Object> data = new HashMap<>();
         List<Ad> bannerList = adService.getWxBannerList();
-        List<Brand> brandList = brandService.getWxBrandList();
+        List<BrandWx> brandList = brandService.getWxBrandList();
         List<Channel> channelList = categoryService.getWxChannelList();
         List<Coupon> couponList = couponService.getWxCouponList();
         List<FloorGoods> floorGoodsList = goodsService.getWxFloorGoodsList();
         List<Groupon> grouponList = grouponService.getWxGrouponList();
-        List<Goods> hotGoodsList = goodsService.getWxHotGoodsList();
-        List<Goods> newGoodsList = goodsService.getWxNewGoodsList();
-        List<Topic> topicList = topicService.getWxTopicList();
+        List<GoodsWx> hotGoodsList = goodsService.getWxHotGoodsList();
+        List<GoodsWx> newGoodsList = goodsService.getWxNewGoodsList();
+        List<TopicWx> topicList = topicService.getWxTopicList();
 
 
         data.put("banner",bannerList);

@@ -4,7 +4,7 @@ package com.cskaoyan.mall.wx.bean;
  * Created by IceFloe_Rot
  * Date 2019/7/9 Time 11:09
  */
-public class Topic {
+public class TopicWx {
     private String id;
     private String picUrl;
     private Double price;
@@ -12,7 +12,7 @@ public class Topic {
     private String subTitle;
     private String title;
 
-    public Topic() {
+    public TopicWx() {
     }
 
     public String getId() {

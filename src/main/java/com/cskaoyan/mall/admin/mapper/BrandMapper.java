@@ -1,6 +1,7 @@
 package com.cskaoyan.mall.admin.mapper;
 
 import com.cskaoyan.mall.admin.bean.Brand;
+import com.cskaoyan.mall.wx.bean.BrandWx;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -27,5 +28,8 @@ public interface BrandMapper {
 
     int insertBrand(Brand brand);
 
-    List<com.cskaoyan.mall.wx.bean.Brand> getWxBrandList();
+    List<Brand> getBrand();
+
+    List<BrandWx> getWxBrandList();
+
 }

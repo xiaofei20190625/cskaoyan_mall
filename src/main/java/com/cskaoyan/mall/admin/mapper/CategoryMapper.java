@@ -33,6 +33,11 @@ public interface CategoryMapper {
 
     int updateByPrimaryKey(Category record);
 
+
+
+    List<Category> getCategoryListById(int brandId);
+
     List<Channel> getWxChannelList();
+
 }
 

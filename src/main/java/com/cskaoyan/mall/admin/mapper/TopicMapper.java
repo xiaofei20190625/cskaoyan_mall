@@ -1,6 +1,7 @@
 package com.cskaoyan.mall.admin.mapper;
 
 import com.cskaoyan.mall.admin.bean.Topic;
+import com.cskaoyan.mall.wx.bean.TopicWx;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -25,5 +26,12 @@ public interface TopicMapper {
 
     int create(Topic topic);
 
-    List<com.cskaoyan.mall.wx.bean.Topic> getWxTopicList();
+    List<TopicWx> getWxTopicList();
+
+    List<Topic> wxGetList();
+
+    int count();
+
+    List<Topic> related(@Param("minId") int minId, @Param("maxId")int maxId, @Param("id")int id);
+
 }

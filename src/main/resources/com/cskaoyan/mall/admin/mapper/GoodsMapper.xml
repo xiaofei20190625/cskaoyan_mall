@@ -40,6 +40,26 @@
         order by #{sort}  #{order}
     </select>
 
+    <select id="getPageBrandsGoodsByIds"  resultMap="BaseResultMap">
+        select  <include refid="Base_Column_List"/>
+        from cskaoyan_mall_goods
+        <where>
+             <if test="isNew!=null">
+              and   is_new = #{isNew}
+            </if>
+            <if test="categoryId!=0">
+             and   category_id = #{categoryId}
+            </if>
+        </where>
+         order by #{sort} #{order}
+
+    </select>
+    <select id="getPageBrandsGoodsById"  resultMap="BaseResultMap">
+        select  <include refid="Base_Column_List"/>
+        from cskaoyan_mall_goods
+        where brand_id = #{brandId}
+    </select>
+
     <select id="queryAll" resultMap="BaseResultMap">
       select
       <include refid="Base_Column_List"/>
@@ -103,7 +123,7 @@
         limit 4
     </select>
 
-    <resultMap id="wxGoodsMap" type="com.cskaoyan.mall.wx.bean.Goods">
+    <resultMap id="wxGoodsMap" type="com.cskaoyan.mall.wx.bean.GoodsWx">
         <id column="id" jdbcType="VARCHAR" property="id" />
         <result column="name" jdbcType="VARCHAR" property="name" />
         <result column="brief" jdbcType="VARCHAR" property="brief" />

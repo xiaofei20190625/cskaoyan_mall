@@ -6,14 +6,14 @@ package com.cskaoyan.mall.wx.bean;
  * Created by IceFloe_Rot
  * Date 2019/7/9 Time 11:15
  */
-public class Brand {
+public class BrandWx {
     private String desc;
     private Double floorPrice;
     private Integer id;
     private String name;
     private String picUrl;
 
-    public Brand() {
+    public BrandWx() {
     }
 
     public String getDesc() {

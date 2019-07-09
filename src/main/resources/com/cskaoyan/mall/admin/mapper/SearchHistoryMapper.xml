@@ -32,7 +32,7 @@
         and keyword like '%${keyword}%'
       </if>
     </where>
-    order by #{sort} #{order}
+    order by ${sort} ${order}
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

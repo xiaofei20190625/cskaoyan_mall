@@ -254,4 +254,26 @@
         deleted = #{deleted,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <resultMap id="wxGrouponMap" type="com.cskaoyan.mall.wx.bean.Groupon">
+      <result property="grouponMember" column="groupon_member"/>
+      <result property="grouponPrice" column="groupon_price" />
+      <association property="goods" javaType="com.cskaoyan.mall.wx.bean.Goods">
+        <result property="brief" column="brief"/>
+        <result property="counterPrice" column="counter_price"/>
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="picUrl" column="pic_url"/>
+        <result property="retailPrice" column="retail_price"/>
+      </association>
+  </resultMap>
+  <select id="getWxGrouponList" resultMap="wxGrouponMap">
+      select
+      gr.discount,gr.discount_member as groupon_member,
+      g.brief,g.counter_price,g.id,g.name,g.pic_url,g.retail_price,
+      (retail_price - discount) as groupon_price
+      from cskaoyan_mall_groupon_rules gr
+      left join cskaoyan_mall_goods g
+      on gr.goods_id = g.id
+  </select>
+
 </mapper>

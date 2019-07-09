@@ -235,4 +235,14 @@
       deleted = #{deleted,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+    <resultMap id="channelMap" type="com.cskaoyan.mall.wx.bean.Channel">
+        <result property="iconUrl" column="icon_url"/>
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+    </resultMap>
+    <select id="getWxChannelList" resultMap="channelMap">
+        select icon_url,id,name from cskaoyan_mall_category
+        where deleted = 0 and level = 'L1'
+    </select>
 </mapper>

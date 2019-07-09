@@ -20,7 +20,7 @@
       select <include refid="Base_Column_List"/>
       from cskaoyan_mall_issue
       where deleted = 0 and question like "%"#{question}"%"
-      order by #{sort} #{order}
+      order by ${sort} ${order}
   </select>
 
   <update id="deleteIssueById">

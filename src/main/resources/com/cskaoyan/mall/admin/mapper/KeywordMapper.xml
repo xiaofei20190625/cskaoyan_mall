@@ -23,7 +23,7 @@
       select <include refid="Base_Column_List"/>
       from cskaoyan_mall_keyword
       where deleted = 0 and keyword like "%"#{keyword}"%" and url like "%"#{url}"%"
-      order by #{sort} #{order}
+      order by ${sort} ${order}
   </select>
 
   <update id="deleteKeywordById">

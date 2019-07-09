@@ -50,5 +50,10 @@ public class CouponServiceImpl implements CouponService {
         return  couponMapper.deleteByPrimaryKey(coupon.getId());
     }
 
+    @Override
+    public List<Coupon> getWxCouponList() {
+        return couponMapper.getWxCouponList();
+    }
+
 
 }

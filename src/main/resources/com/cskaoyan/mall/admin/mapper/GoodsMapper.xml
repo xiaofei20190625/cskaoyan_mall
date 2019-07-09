@@ -84,6 +84,59 @@
     <delete id="delete">
         delete from cskaoyan_mall_goods
         where id = #{goods.id}
-
     </delete>
+
+    <select id="getGoodsNum" resultType="int">
+        select count(*) from cskaoyan_mall_goods
+    </select>
+
+
+    <resultMap id="floorGoodsMap" type="com.cskaoyan.mall.wx.bean.FloorGoods">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <collection property="goodsList" column="id"
+                    select="com.cskaoyan.mall.admin.mapper.GoodsMapper.selectGoodsByCategoryId"/>
+    </resultMap>
+    <select id="getWxFloorGoods" resultMap="floorGoodsMap">
+        select id,name from cskaoyan_mall_category
+        where deleted = 0 and level = 'L1'
+        limit 4
+    </select>
+
+    <resultMap id="wxGoodsMap" type="com.cskaoyan.mall.wx.bean.Goods">
+        <id column="id" jdbcType="VARCHAR" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="brief" jdbcType="VARCHAR" property="brief" />
+        <result column="pic_url" jdbcType="VARCHAR" property="picUrl" />
+        <result column="is_new" jdbcType="VARCHAR" property="isNew" />
+        <result column="is_hot" jdbcType="VARCHAR" property="isHot" />
+        <result column="counter_price" jdbcType="VARCHAR" property="counterPrice" />
+        <result column="retail_price" jdbcType="VARCHAR" property="retailPrice" />
+    </resultMap>
+    <select id="selectGoodsByCategoryId" resultMap="wxGoodsMap">
+        select
+	      g.brief,g.counter_price,g.id AS gid,g.is_hot,g.is_new,g.name,g.pic_url,g.retail_price,
+	      c.id AS cid,c.pid
+        from cskaoyan_mall_goods g
+        left join cskaoyan_mall_category c
+        on g.category_id = c.id
+		where g.deleted = 0 and c.deleted = 0 and pid = #{id}
+		limit 4
+    </select>
+
+    <select id="getWxHotGoodsList" resultMap="wxGoodsMap">
+        select brief,counter_price,id,is_hot,is_new,name,pic_url,retail_price
+        from cskaoyan_mall_goods
+        where deleted = 0 and is_hot = 1
+        limit 5
+    </select>
+
+    <select id="getWxNewGoodsList" resultMap="wxGoodsMap">
+        select brief,counter_price,id,is_hot,is_new,name,pic_url,retail_price
+        from cskaoyan_mall_goods
+        where deleted = 0 and is_new = 1
+        limit 6
+    </select>
+
+
 </mapper>

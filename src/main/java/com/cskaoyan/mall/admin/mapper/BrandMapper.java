@@ -28,7 +28,10 @@ public interface BrandMapper {
 
     int insertBrand(Brand brand);
 
+    List<Brand> getBrand();
+
     List<BrandWx> getWxBrandList();
 
     BrandWx selectBrandWxByPrimaryKey(@Param("brandId") int brandId);
+
 }

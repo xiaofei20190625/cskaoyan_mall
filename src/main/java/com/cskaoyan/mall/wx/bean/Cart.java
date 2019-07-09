@@ -1,38 +1,33 @@
-package com.cskaoyan.mall.admin.bean;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
+package com.cskaoyan.mall.wx.bean;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class OrderGoods {
+public class Cart {
     private Integer id;
 
-    private Integer orderId;
+    private Integer userId;
 
     private Integer goodsId;
 
-    private String goodsName;
-
     private String goodsSn;
+
+    private String goodsName;
 
     private Integer productId;
 
-    private Short number;
-
     private BigDecimal price;
 
-    private String[] specifications;
+    private Short number;
+
+    private String specifications;
+
+    private Boolean checked;
 
     private String picUrl;
 
-    private Integer comment;
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date addTime;
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+
     private Date updateTime;
 
     private Boolean deleted;
@@ -45,12 +40,12 @@ public class OrderGoods {
         this.id = id;
     }
 
-    public Integer getOrderId() {
-        return orderId;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public Integer getGoodsId() {
@@ -61,20 +56,20 @@ public class OrderGoods {
         this.goodsId = goodsId;
     }
 
-    public String getGoodsName() {
-        return goodsName;
-    }
-
-    public void setGoodsName(String goodsName) {
-        this.goodsName = goodsName == null ? null : goodsName.trim();
-    }
-
     public String getGoodsSn() {
         return goodsSn;
     }
 
     public void setGoodsSn(String goodsSn) {
         this.goodsSn = goodsSn == null ? null : goodsSn.trim();
+    }
+
+    public String getGoodsName() {
+        return goodsName;
+    }
+
+    public void setGoodsName(String goodsName) {
+        this.goodsName = goodsName == null ? null : goodsName.trim();
     }
 
     public Integer getProductId() {
@@ -85,14 +80,6 @@ public class OrderGoods {
         this.productId = productId;
     }
 
-    public Short getNumber() {
-        return number;
-    }
-
-    public void setNumber(Short number) {
-        this.number = number;
-    }
-
     public BigDecimal getPrice() {
         return price;
     }
@@ -101,12 +88,28 @@ public class OrderGoods {
         this.price = price;
     }
 
-    public String[] getSpecifications() {
+    public Short getNumber() {
+        return number;
+    }
+
+    public void setNumber(Short number) {
+        this.number = number;
+    }
+
+    public String getSpecifications() {
         return specifications;
     }
 
-    public void setSpecifications(String[] specifications) {
-        this.specifications = specifications;
+    public void setSpecifications(String specifications) {
+        this.specifications = specifications == null ? null : specifications.trim();
+    }
+
+    public Boolean getChecked() {
+        return checked;
+    }
+
+    public void setChecked(Boolean checked) {
+        this.checked = checked;
     }
 
     public String getPicUrl() {
@@ -114,15 +117,7 @@ public class OrderGoods {
     }
 
     public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl;
-    }
-
-    public Integer getComment() {
-        return comment;
-    }
-
-    public void setComment(Integer comment) {
-        this.comment = comment;
+        this.picUrl = picUrl == null ? null : picUrl.trim();
     }
 
     public Date getAddTime() {

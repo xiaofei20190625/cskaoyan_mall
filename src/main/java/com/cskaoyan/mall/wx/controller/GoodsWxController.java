@@ -1,12 +1,18 @@
 package com.cskaoyan.mall.wx.controller;
 
+
 import com.cskaoyan.mall.admin.bean.*;
+
+import com.cskaoyan.mall.admin.service.GoodsService;
+
 import com.cskaoyan.mall.admin.service.*;
 import com.cskaoyan.mall.wx.bean.CommentWx;
 import com.cskaoyan.mall.wx.bean.GoodsDetailWx;
+
 import com.cskaoyan.mall.wx.bean.GrouponWx;
 import com.cskaoyan.mall.wx.bean.SpecificationWx;
-import com.cskaoyan.mall.wx.vo.BaseRespVo;
+
+import com.cskaoyan.mall.wx.vo.BaseRespVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,19 +51,19 @@ public class GoodsWxController {
 
     @RequestMapping("count")
     @ResponseBody
-    public BaseRespVo goodsCount(){
+    public BaseRespVO goodsCount(){
         int count = goodsService.getGoodsNum();
         HashMap data = new HashMap();
         data.put("goodsCount",count);
-        BaseRespVo baseRespVo = BaseRespVo.ok(data);
+        BaseRespVO baseRespVo = BaseRespVO.ok(data);
         return baseRespVo;
     }
 
     @RequestMapping("detail")
     @ResponseBody
-    public BaseRespVo goodsDetail(Integer id){
+    public BaseRespVO goodsDetail(Integer id){
         GoodsDetailWx data = getGoodsDetailById(id);
-        BaseRespVo baseRespVo = BaseRespVo.ok(data);
+        BaseRespVO baseRespVo = BaseRespVO.ok(data);
         return baseRespVo;
     }
 

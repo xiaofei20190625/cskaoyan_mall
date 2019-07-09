@@ -8,6 +8,8 @@ import com.cskaoyan.mall.wx.bean.GoodsWx;
 
 import java.util.List;
 
+import java.util.List;
+
 public interface GoodsService {
     ResponseVO<PageVO<Goods>> queryAll(int page, int limit);
 
@@ -22,6 +24,11 @@ public interface GoodsService {
 
     int update(Goods goods);
 
+
+    List<Goods> getPageBrandsGoodsByIds( Boolean isNew, String order, String sort, int categoryId);
+
+    List<Goods> getPageBrandsGoodsById(String brandId);
+
     int getGoodsNum();
 
     List<FloorGoods> getWxFloorGoodsList();
@@ -29,4 +36,5 @@ public interface GoodsService {
     List<GoodsWx> getWxHotGoodsList();
 
     List<GoodsWx> getWxNewGoodsList();
+
 }

@@ -7,7 +7,8 @@ import com.cskaoyan.mall.wx.bean.Search;
 import com.cskaoyan.mall.wx.bean.SearchHotHistory;
 import com.cskaoyan.mall.wx.service.SearchService;
 import com.cskaoyan.mall.wx.userwx.UserTokenManager;
-import com.cskaoyan.mall.wx.vo.BaseRespVo;
+
+import com.cskaoyan.mall.wx.vo.BaseRespVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +24,7 @@ public class WxSearchComtroller {
     @Autowired
     SearchService searchService;
     @RequestMapping("search/index")
-    public BaseRespVo historyList(HttpServletRequest request) {
+    public BaseRespVO historyList(HttpServletRequest request) {
 
         String tokenKey = request.getHeader("X-Litemall-Token");
         Integer userId = UserTokenManager.getUserId(tokenKey);
@@ -32,10 +33,10 @@ public class WxSearchComtroller {
         //**************************
 
         Search search = searchService.findSearchHistory(userId);
-        return BaseRespVo.ok(search);
+        return BaseRespVO.ok(search);
     }
     @RequestMapping("search/helper")
-    public BaseRespVo historyList(HttpServletRequest request,String keyword) {
+    public BaseRespVO historyList(HttpServletRequest request,String keyword) {
 
         String tokenKey = request.getHeader("X-Litemall-Token");
         Integer userId = UserTokenManager.getUserId(tokenKey);
@@ -44,7 +45,7 @@ public class WxSearchComtroller {
         //**************************
 
         List help = searchService.findSearchhelp(keyword);
-        return BaseRespVo.ok(help);
+        return BaseRespVO.ok(help);
     }
 
 }

@@ -3,9 +3,7 @@ package com.cskaoyan.mall.wx.controller;
 import com.cskaoyan.mall.admin.bean.Topic;
 import com.cskaoyan.mall.admin.service.TopicService;
 import com.cskaoyan.mall.admin.vo.ResponseVO;
-import com.cskaoyan.mall.wx.vo.BaseRespVo;
-import com.cskaoyan.mall.wx.vo.TopicCountVO;
-import com.cskaoyan.mall.wx.vo.TopicGoodsVo;
+import com.cskaoyan.mall.wx.vo.BaseRespVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,8 +37,8 @@ public class WxTopicController {
         //键值对封装输出映射
         Map<Object , Object> result = new HashMap<>();
         result.put("count", count);
-        result.put("data",topicList);
-        return  BaseRespVo.ok(result);
+        result.put("ata",topicList);
+        return  BaseRespVO.ok(result);
 /*        topicVO.setCount(count);
         topicVO.setData(topicList);
         responseVO.setData(topicVO);
@@ -56,7 +54,7 @@ public class WxTopicController {
         Map<Object, Object> result = new HashMap<Object, Object>();
         result.put("topic", topic);
         result.put("goods" ,s);
-        return BaseRespVo.ok(result);
+        return BaseRespVO.ok(result);
     }
 
     @RequestMapping("related")

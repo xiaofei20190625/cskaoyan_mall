@@ -7,7 +7,7 @@ import com.cskaoyan.mall.wx.userwx.UserInfo;
 import com.cskaoyan.mall.wx.userwx.UserToken;
 import com.cskaoyan.mall.wx.userwx.UserTokenManager;
 import com.cskaoyan.mall.wx.utils.JSONUtils;
-import com.cskaoyan.mall.wx.vo.BaseRespVo;
+import com.cskaoyan.mall.wx.vo.BaseRespVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,7 +38,7 @@ public class WxAuthController {
 		//根据username和password查询user信息
 		//*******************************
 		/*if (password!=password1){
-			return BaseRespVo.fail();
+			return BaseRespVO.fail();
 		}*/
 
 		if(password.equals(password1)){
@@ -60,10 +60,10 @@ public class WxAuthController {
 			result.put("token", userToken.getToken());
 			result.put("tokenExpire", userToken.getExpireTime().toString());
 			result.put("userInfo", userInfo);
-			return BaseRespVo.ok(result);
+			return BaseRespVO.ok(result);
 		}
 
-		return BaseRespVo.fail();
+		return BaseRespVO.fail();
 
 	}
 
@@ -77,7 +77,7 @@ public class WxAuthController {
 		//通过请求头获得userId，进而可以获得一切关于user的信息
 		//**************************
 		if (userId == null) {
-			return BaseRespVo.fail();
+			return BaseRespVO.fail();
 		}
 
 		Map<Object, Object> data = new HashMap<Object, Object>();
@@ -86,6 +86,6 @@ public class WxAuthController {
 		data.put("order", null);
 		//***********************************
 
-		return BaseRespVo.ok(data);
+		return BaseRespVO.ok(data);
 	}
 }

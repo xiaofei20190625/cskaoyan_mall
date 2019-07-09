@@ -23,6 +23,14 @@ public interface GoodsMapper {
 
     List<Goods> getListRecord(@Param("sort") String sort, @Param("order")String order,@Param("goodsId") String goodsId);
 
+
+    List<Goods> getPageBrandsGoodsByIds(@Param("isNew") Boolean isNew,
+                                       @Param("order") String order,
+                                       @Param("sort") String sort,
+                                       @Param("categoryId") int categoryId);
+
+    List<Goods> getPageBrandsGoodsById(String brandId);
+
     int getGoodsNum();
 
     List<FloorGoods> getWxFloorGoods();
@@ -30,4 +38,5 @@ public interface GoodsMapper {
     List<GoodsWx> getWxHotGoodsList();
 
     List<GoodsWx> getWxNewGoodsList();
+
 }

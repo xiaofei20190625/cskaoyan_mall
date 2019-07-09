@@ -26,5 +26,8 @@ public interface CategoryService {
 
     int queryPidById(int id);
 
+    List<Category> getCategoryListById(int brandId);
+
     List<Channel> getWxChannelList();
+
 }

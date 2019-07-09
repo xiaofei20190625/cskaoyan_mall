@@ -60,7 +60,13 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    public List<Category> getCategoryListById(int brandId) {
+        List<Category> categoryList = categoryMapper.getCategoryListById(brandId);
+        return categoryList;
+    }
+     @Override
     public List<Channel> getWxChannelList() {
         return categoryMapper.getWxChannelList();
+
     }
 }

@@ -40,6 +40,26 @@
         order by #{sort}  #{order}
     </select>
 
+    <select id="getPageBrandsGoodsByIds"  resultMap="BaseResultMap">
+        select  <include refid="Base_Column_List"/>
+        from cskaoyan_mall_goods
+        <where>
+             <if test="isNew!=null">
+              and   is_new = #{isNew}
+            </if>
+            <if test="categoryId!=0">
+             and   category_id = #{categoryId}
+            </if>
+        </where>
+         order by #{sort} #{order}
+
+    </select>
+    <select id="getPageBrandsGoodsById"  resultMap="BaseResultMap">
+        select  <include refid="Base_Column_List"/>
+        from cskaoyan_mall_goods
+        where brand_id = #{brandId}
+    </select>
+
     <select id="queryAll" resultMap="BaseResultMap">
       select
       <include refid="Base_Column_List"/>
@@ -95,7 +115,7 @@
         <result property="id" column="id"/>
         <result property="name" column="name"/>
         <collection property="goodsList" column="id"
-                    select="com.cskaoyan.mall.admin.mapper.GoodsMapper.selectGoodsByCategoryId"/>
+                    select="com.cskaoyan.mall.admin.mapper.GoodsMapper.selectGoodsWxByCategoryId"/>
     </resultMap>
     <select id="getWxFloorGoods" resultMap="floorGoodsMap">
         select id,name from cskaoyan_mall_category
@@ -104,7 +124,7 @@
     </select>
 
     <resultMap id="wxGoodsMap" type="com.cskaoyan.mall.wx.bean.GoodsWx">
-        <id column="id" jdbcType="VARCHAR" property="id" />
+        <id column="gid" jdbcType="VARCHAR" property="id" />
         <result column="name" jdbcType="VARCHAR" property="name" />
         <result column="brief" jdbcType="VARCHAR" property="brief" />
         <result column="pic_url" jdbcType="VARCHAR" property="picUrl" />
@@ -113,7 +133,7 @@
         <result column="counter_price" jdbcType="VARCHAR" property="counterPrice" />
         <result column="retail_price" jdbcType="VARCHAR" property="retailPrice" />
     </resultMap>
-    <select id="selectGoodsByCategoryId" resultMap="wxGoodsMap">
+    <select id="selectGoodsWxByCategoryId" resultMap="wxGoodsMap">
         select
 	      g.brief,g.counter_price,g.id AS gid,g.is_hot,g.is_new,g.name,g.pic_url,g.retail_price,
 	      c.id AS cid,c.pid

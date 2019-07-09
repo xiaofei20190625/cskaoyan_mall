@@ -1,6 +1,8 @@
 package com.cskaoyan.mall.admin.bean;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.util.Date;
 
@@ -8,15 +10,15 @@ public class Goods {
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     Date addTime;
 
-    int brandId;
+    Integer brandId;
 
     String brief;
 
-    int categoryId;
+    Integer categoryId;
 
     double counterPrice;
 
-    boolean deleted;
+    Boolean deleted;
 
     String detail;
 
@@ -24,13 +26,14 @@ public class Goods {
 
     String goodsSn;
 
-    int id;
+    Integer id;
 
-    boolean isHot;
-
-    boolean isNew;
-
-    boolean isOnSale;
+    @JsonProperty("isHot")
+    Boolean isHot;
+    @JsonProperty("isNew")
+    Boolean isNew;
+    @JsonProperty("isOnSale")
+    Boolean isOnSale;
 
     String keywords;
 
@@ -41,10 +44,11 @@ public class Goods {
     String shareUrl;
     double retailPrice;
 
-    int sortOrder;
+    Integer sortOrder;
 
     String unit;
 
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     Date updateTime;
 
 
@@ -56,11 +60,11 @@ public class Goods {
         this.addTime = addTime;
     }
 
-    public int getBrandId() {
+    public Integer getBrandId() {
         return brandId;
     }
 
-    public void setBrandId(int brandId) {
+    public void setBrandId(Integer brandId) {
         this.brandId = brandId;
     }
 
@@ -72,11 +76,11 @@ public class Goods {
         this.brief = brief;
     }
 
-    public int getCategoryId() {
+    public Integer getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(int categoryId) {
+    public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
     }
 
@@ -88,11 +92,11 @@ public class Goods {
         this.counterPrice = counterPrice;
     }
 
-    public boolean isDeleted() {
+    public Boolean isDeleted() {
         return deleted;
     }
 
-    public void setDeleted(boolean deleted) {
+    public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
     }
 
@@ -120,35 +124,35 @@ public class Goods {
         this.goodsSn = goodsSn;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public boolean isHot() {
+    public Boolean isHot() {
         return isHot;
     }
 
-    public void setHot(boolean hot) {
+    public void setHot(Boolean hot) {
         isHot = hot;
     }
 
-    public boolean isNew() {
+    public Boolean isNew() {
         return isNew;
     }
 
-    public void setNew(boolean aNew) {
+    public void setNew(Boolean aNew) {
         isNew = aNew;
     }
 
-    public boolean isOnSale() {
+    public Boolean isOnSale() {
         return isOnSale;
     }
 
-    public void setOnSale(boolean onSale) {
+    public void setOnSale(Boolean onSale) {
         isOnSale = onSale;
     }
 
@@ -192,11 +196,11 @@ public class Goods {
         this.retailPrice = retailPrice;
     }
 
-    public int getSortOrder() {
+    public Integer getSortOrder() {
         return sortOrder;
     }
 
-    public void setSortOrder(int sortOrder) {
+    public void setSortOrder(Integer sortOrder) {
         this.sortOrder = sortOrder;
     }
 

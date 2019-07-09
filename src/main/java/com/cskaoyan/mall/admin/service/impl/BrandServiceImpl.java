@@ -65,4 +65,9 @@ public class BrandServiceImpl implements BrandService {
     public List<BrandWx> getWxBrandList() {
         return brandMapper.getWxBrandList();
     }
+
+    @Override
+    public BrandWx getBrandWxById(int brandId) {
+        return brandMapper.selectBrandWxByPrimaryKey(brandId);
+    }
 }

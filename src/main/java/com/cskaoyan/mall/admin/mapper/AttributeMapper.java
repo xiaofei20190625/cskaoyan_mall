@@ -19,4 +19,6 @@ public interface AttributeMapper {
     int updateByPrimaryKeySelective(Attribute record);
 
     int updateByPrimaryKey(Attribute record);
+
+    List<Attribute> getAttributeByGoodsId(@Param("goodsId") int goodsId);
 }

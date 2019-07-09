@@ -13,7 +13,7 @@
     <result column="deleted" jdbcType="BIT" property="deleted" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, desc, pic_url, sort_order, floor_price, add_time, update_time, deleted
+    id, name, `desc`, pic_url, sort_order, floor_price, add_time, update_time, deleted
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -177,5 +177,10 @@
   <select id="getWxBrandList" resultMap="wxBrandMap">
         select `desc`,floor_price,id,name,pic_url from cskaoyan_mall_brand
         where deleted = 0 limit 4
+  </select>
+
+  <select id="selectBrandWxByPrimaryKey" resultMap="wxBrandMap">
+    select `desc`,floor_price,id,name,pic_url from cskaoyan_mall_brand
+        where deleted = 0 and id = #{brandId}
   </select>
 </mapper>

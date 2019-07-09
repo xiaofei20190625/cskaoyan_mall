@@ -22,4 +22,6 @@ public interface BrandService {
     Brand getBrandById(Integer id);
 
     List<BrandWx> getWxBrandList();
+
+    BrandWx getBrandWxById(int brandId);
 }

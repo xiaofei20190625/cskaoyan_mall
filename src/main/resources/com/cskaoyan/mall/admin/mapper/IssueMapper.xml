@@ -50,4 +50,9 @@
     from cskaoyan_mall_issue
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="getAllIssue" resultMap="issueMap">
+      select <include refid="Base_Column_List"/>
+      from cskaoyan_mall_issue
+      where deleted = 0
+  </select>
 </mapper>

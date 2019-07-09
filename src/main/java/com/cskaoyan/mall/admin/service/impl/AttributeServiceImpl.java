@@ -46,4 +46,9 @@ public class AttributeServiceImpl implements AttributeService {
     public int updateByPrimaryKey(Attribute record) {
         return attributeMapper.updateByPrimaryKey(record);
     }
+
+    @Override
+    public List<Attribute> getAttributeByGoodsId(int goodsId) {
+        return attributeMapper.getAttributeByGoodsId(goodsId);
+    }
 }

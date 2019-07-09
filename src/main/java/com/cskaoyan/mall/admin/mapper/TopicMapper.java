@@ -24,4 +24,6 @@ public interface TopicMapper {
                         @Param("title")String title, @Param("subtitle")String subtitle);
 
     int create(Topic topic);
+
+    List<com.cskaoyan.mall.wx.bean.Topic> getWxTopicList();
 }

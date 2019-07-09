@@ -3,6 +3,7 @@ package com.cskaoyan.mall.admin.service;
 import com.cskaoyan.mall.admin.bean.Category;
 import com.cskaoyan.mall.admin.bean.CategoryL1;
 import com.cskaoyan.mall.admin.bean.L1;
+import com.cskaoyan.mall.wx.bean.Channel;
 
 import java.util.List;
 
@@ -25,4 +26,5 @@ public interface CategoryService {
 
     int queryPidById(int id);
 
+    List<Channel> getWxChannelList();
 }

@@ -46,4 +46,9 @@ public class AdServiceImpl implements AdService {
         return adMapper.create(ad);
     }
 
+    @Override
+    public List<Ad> getWxBannerList() {
+        return adMapper.getWxBannerList();
+    }
+
 }

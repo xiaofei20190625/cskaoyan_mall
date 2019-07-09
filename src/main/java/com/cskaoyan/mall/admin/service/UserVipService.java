@@ -9,4 +9,6 @@ public interface UserVipService {
     PageVO<UserVip> findUserVipPageByUsernameAndMobile(int page, int limit, String username, String mobile, String sort, String order);
 
     UserVip findUserVip(String username);
+
+    UserVip findUserVipByiD(Integer id);
 }

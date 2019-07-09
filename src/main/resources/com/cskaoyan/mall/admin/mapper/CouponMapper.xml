@@ -299,4 +299,11 @@
         deleted = #{deleted,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
+  <select id="getWxCouponList" resultMap="BaseResultMap">
+    select <include refid="Query_List"/>
+    from cskaoyan_mall_coupon
+    where deleted = 0 limit 4
+  </select>
 </mapper>

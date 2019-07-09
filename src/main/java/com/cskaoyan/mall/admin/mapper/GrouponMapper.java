@@ -29,4 +29,8 @@ public interface GrouponMapper {
     Groupon findRulesId(Integer id);
 
     List<GoodsAndGrouponAndGrouponRules> get(GoodsAndGrouponAndGrouponRules demo);
+
+    List<Groupon> getWxGrouponList();
+
+    int[] queryGrouponIds();
 }

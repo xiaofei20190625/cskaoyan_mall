@@ -24,4 +24,6 @@ public interface UserVipMapper {
                                                    @Param("order") String order);
 
     UserVip findUserVip(String username);
+
+
 }

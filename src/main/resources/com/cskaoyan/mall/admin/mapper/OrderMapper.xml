@@ -42,6 +42,31 @@
     where goods_id like "%" #{goodsId} "%"
     order by #{sort}  #{order}
   </select>
+  <select id="selectAllByUid" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from cskaoyan_mall_order
+    where user_id=#{userId}
+  </select>
+  <select id="selectUnpayByUid" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from cskaoyan_mall_order
+    where user_id=#{userId} and order_status=101
+  </select>
+  <select id="selectReadyDeliverOrdersByUid" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from cskaoyan_mall_order
+    where user_id=#{userId} and (order_status=201 or order_status=202)
+    </select>
+  <select id="selectUnConfirmOrdersByUid" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from cskaoyan_mall_order
+    where user_id=#{userId} and order_status=301
+  </select>
+  <select id="selectUnAssessOrdersByUid" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from cskaoyan_mall_order
+    where user_id=#{userId} and (order_status=401 or order_status=402)
+  </select>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -379,7 +404,7 @@
       <result property="specifications" column="specifications"/>
       <result property="price" column="price"/>
       <result property="number" column="number"/>
-      <result property="picUrl" column="pic_url"/>
+      <result property="picUrl" column="pic_url" typeHandler="com.cskaoyan.mall.admin.typeHandler.StringToStingrArrayHandler"/>
     </collection>
   </resultMap>
   <select id="queryOrderDetailById" resultMap="orderDetailMap">

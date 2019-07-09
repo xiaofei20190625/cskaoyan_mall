@@ -23,4 +23,6 @@ public interface AdMapper {
                 @Param("name")String  name ,@Param("content") String content);
 
     int create(Ad ad);
+
+    List<Ad> getWxBannerList();
 }

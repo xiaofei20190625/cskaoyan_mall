@@ -44,4 +44,30 @@ public class TopicServiceImpl implements TopicService {
     public int create(Topic topic) {
         return topicMapper.create(topic);
     }
+
+    @Override
+    public List<Topic> wxGetList(int page , int size) {
+        PageHelper.startPage(page, size);
+        return  topicMapper.wxGetList();
+    }
+
+    @Override
+    public int count() {
+        return  topicMapper.count();
+    }
+
+    @Override
+    public Topic queryById(int id) {
+        return topicMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public List<Topic> queryAll() {
+        return topicMapper.wxGetList();
+    }
+
+    @Override
+    public List<Topic> related(int minId, int maxId, int id) {
+        return topicMapper.related(minId,maxId,id);
+    }
 }

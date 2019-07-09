@@ -1,6 +1,7 @@
 package com.cskaoyan.mall.admin.mapper;
 
 import com.cskaoyan.mall.admin.bean.Footprint;
+import com.cskaoyan.mall.wx.bean.EchoFootprint;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -22,5 +23,7 @@ public interface FootprintMapper {
                                                         @Param("goodsId") String goodsId,
                                                         @Param("sort") String sort,
                                                         @Param("order") String order);
+    List<EchoFootprint> echoFootprintListByUid(int userId);
+
 
 }

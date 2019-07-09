@@ -40,7 +40,7 @@
         and name = #{name,jdbcType=INTEGER}
       </if>
     </where>
-    order by #{sort} #{order}
+    order by ${sort} ${order}
   </select>
 
 

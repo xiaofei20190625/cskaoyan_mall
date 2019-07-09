@@ -160,7 +160,7 @@
         SELECT id,name,`desc`,pic_url,sort_order,floor_price,add_time,update_time,deleted
         from cskaoyan_mall_brand
         where deleted = 0 and id like "%"#{id}"%" and name like "%"#{name}"%"
-        order by #{sort} #{order}
+        order by ${sort} ${order}
     </select>
 
     <update id="deleteBrandById">
@@ -173,4 +173,16 @@
         VALUES
         (#{name},#{desc},#{picUrl},#{sortOrder},#{floorPrice},#{addTime},#{updateTime},#{deleted})
     </insert>
+
+  <resultMap id="wxBrandMap" type="com.cskaoyan.mall.wx.bean.Brand">
+    <result property="desc" column="desc"/>
+    <result property="floorPrice" column="floor_price"/>
+    <result property="id" column="id"/>
+    <result property="name" column="name"/>
+    <result property="picUrl" column="pic_url"/>
+  </resultMap>
+  <select id="getWxBrandList" resultMap="wxBrandMap">
+        select `desc`,floor_price,id,name,pic_url from cskaoyan_mall_brand
+        where deleted = 0 limit 4
+  </select>
 </mapper>

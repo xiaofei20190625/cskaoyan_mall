@@ -4,6 +4,7 @@ import com.cskaoyan.mall.admin.bean.Brand;
 import com.cskaoyan.mall.admin.vo.PageVO;
 
 import java.util.HashMap;
+
 import java.util.List;
 
 /**
@@ -22,5 +23,8 @@ public interface BrandService {
     Brand getBrandById(Integer id);
 
     List<HashMap> getBrand();
+
+
+    List<com.cskaoyan.mall.wx.bean.Brand> getWxBrandList();
 
 }

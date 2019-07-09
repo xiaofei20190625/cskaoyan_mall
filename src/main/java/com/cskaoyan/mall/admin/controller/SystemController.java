@@ -59,7 +59,7 @@ public ResponseVO<PageVO>rolelist(int page,int limit,String sort,String order,St
         responseVO.setData(roles);
         return responseVO;
     }
-    @RequestMapping("admin/update")
+    @RequestMapping("update")
     public ResponseVO<Admin> adminupdate(@RequestBody Admin admin){
         int roleupdate = adminService.roleupdate(admin);
         ResponseVO response = response(roleupdate,admin);

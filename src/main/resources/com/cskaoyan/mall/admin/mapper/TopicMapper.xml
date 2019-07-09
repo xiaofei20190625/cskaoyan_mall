@@ -220,4 +220,15 @@ from cskaoyan_mall_topic
       deleted = #{deleted,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
+  <resultMap id="wxTopicMap" type="com.cskaoyan.mall.wx.bean.Topic">
+
+  </resultMap>
+  <select id="getWxTopicList" resultMap="wxTopicMap">
+    select id,pic_url,price,read_count,subtitle,title
+    from cskaoyan_mall_topic
+    where deleted = 0
+    limit 4
+  </select>
 </mapper>

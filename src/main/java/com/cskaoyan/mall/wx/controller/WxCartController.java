@@ -1,13 +1,17 @@
 package com.cskaoyan.mall.wx.controller;
 
 import com.cskaoyan.mall.admin.vo.PageVO;
+import com.cskaoyan.mall.wx.service.CartService;
+import com.cskaoyan.mall.wx.userwx.UserTokenManager;
 import com.cskaoyan.mall.wx.vo.BaseRespVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +20,8 @@ import java.util.Map;
 @Api(tags = "WxCartController", description = "购物车")
 @RequestMapping("wx")
 public class WxCartController {
+    @Autowired
+    CartService cartService;
 
     /*CartList: WxApiRoot + 'cart/index', //获取购物车的数据
     CartAdd: WxApiRoot + 'cart/add', // 添加商品到购物车
@@ -47,4 +53,39 @@ public class WxCartController {
         return BaseRespVO.ok(data);
     }*/
 
+
+
+    @ApiOperation(value = "购物车商品数量")
+    @RequestMapping(value = "cart/goodscount")
+    @ResponseBody
+    public BaseRespVO getCartGoodscount(HttpServletRequest request){
+        String tokenKey = request.getHeader("X-Litemall-Token");
+        Integer userId = UserTokenManager.getUserId(tokenKey);
+        //通过请求头获得userId，进而可以获得一切关于user的信息
+        //**************************
+        if (userId == null) {
+            return BaseRespVO.fail();
+        }
+
+        int cartCount = cartService.getCartGoodscount(userId);
+
+        //***********************************
+        Map<Object, Object> data = new HashMap<Object, Object>();
+        data.put("data",cartCount);
+        //***********************************
+
+        return BaseRespVO.ok(data);
+    }
+
+    //cart/index
+    /*cart/add
+    goodsId: 1109008
+    number: 1
+    productId: 140
+
+
+    data: 60
+    errmsg: "成功"
+    errno: 0
+*/
 }

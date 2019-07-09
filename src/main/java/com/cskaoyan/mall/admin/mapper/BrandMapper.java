@@ -27,5 +27,9 @@ public interface BrandMapper {
 
     int insertBrand(Brand brand);
 
+
     List<Brand> getBrand();
+
+    List<com.cskaoyan.mall.wx.bean.Brand> getWxBrandList();
+
 }

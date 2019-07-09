@@ -38,15 +38,15 @@
         and id = #{id,jdbcType=INTEGER}
       </if>
     </where>
-    order by #{sort} #{order}
+    order by ${sort} ${order}
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from cskaoyan_mall_feedback
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.cskaoyan.mall.admin.bean.Feedback">
-    insert into cskaoyan_mall_feedback (id, user_id, username, 
+  <insert id="insert" parameterType="com.cskaoyan.mall.admin.bean.Feedback" keyProperty="id" useGeneratedKeys="true">
+    insert into cskaoyan_mall_feedback (user_id, username,
       mobile, feed_type, content, 
       status, has_picture, pic_urls, 
       add_time, update_time, deleted

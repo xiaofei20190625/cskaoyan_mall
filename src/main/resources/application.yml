@@ -15,6 +15,7 @@ pagehelper:
 spring:
   profiles:
     active: hxf
+
 ---
 spring:
   profiles: cq

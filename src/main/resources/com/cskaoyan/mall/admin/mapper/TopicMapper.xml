@@ -48,6 +48,18 @@ from cskaoyan_mall_topic
             #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT}, #{content,jdbcType=LONGVARCHAR}
            )
   </insert>
+  <!--wxGetList-->
+  <select id="wxGetList" resultMap="BaseResultMap">
+    select  * from cskaoyan_mall_topic
+  </select>
+  <!--count-->
+  <select id="count" resultType="_int">
+    select count(id) from cskaoyan_mall_topic;
+  </select>
+  <!--related-->
+  <select id="related" resultMap="BaseResultMap">
+    select  * from  cskaoyan_mall_topic where id between #{minId}  and #{maxId} and id != #{id}  limit 0,4;
+  </select>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
     select 
@@ -221,9 +233,13 @@ from cskaoyan_mall_topic
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-
-  <resultMap id="wxTopicMap" type="com.cskaoyan.mall.wx.bean.Topic">
-
+  <resultMap id="wxTopicMap" type="com.cskaoyan.mall.wx.bean.TopicWx">
+    <result property="id" column="id"/>
+    <result property="picUrl" column="pic_url"/>
+    <result property="price" column="price"/>
+    <result property="readCount" column="read_count"/>
+    <result property="subTitle" column="subtitle"/>
+    <result property="title" column="title"/>
   </resultMap>
   <select id="getWxTopicList" resultMap="wxTopicMap">
     select id,pic_url,price,read_count,subtitle,title
@@ -231,4 +247,5 @@ from cskaoyan_mall_topic
     where deleted = 0
     limit 4
   </select>
+
 </mapper>

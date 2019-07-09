@@ -2,6 +2,7 @@ package com.cskaoyan.mall.admin.service;
 
 import com.cskaoyan.mall.admin.bean.Brand;
 import com.cskaoyan.mall.admin.vo.PageVO;
+import com.cskaoyan.mall.wx.bean.BrandWx;
 
 import java.util.HashMap;
 
@@ -24,7 +25,6 @@ public interface BrandService {
 
     List<HashMap> getBrand();
 
-
-    List<com.cskaoyan.mall.wx.bean.Brand> getWxBrandList();
+    List<BrandWx> getWxBrandList();
 
 }

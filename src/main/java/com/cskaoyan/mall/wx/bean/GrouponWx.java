@@ -1,6 +1,6 @@
 package com.cskaoyan.mall.wx.bean;
 
-import com.cskaoyan.mall.wx.bean.Goods;
+import com.cskaoyan.mall.wx.bean.GoodsWx;
 
 
 import java.util.List;
@@ -9,19 +9,19 @@ import java.util.List;
  * Created by IceFloe_Rot
  * Date 2019/7/9 Time 11:19
  */
-public class Groupon {
-    private Goods goods;
+public class GrouponWx {
+    private GoodsWx goods;
     private Integer grouponMember;
     private Double grouponPrice;
 
-    public Groupon() {
+    public GrouponWx() {
     }
 
-    public Goods getGoods() {
+    public GoodsWx getGoods() {
         return goods;
     }
 
-    public void setGoods(Goods goods) {
+    public void setGoods(GoodsWx goods) {
         this.goods = goods;
     }
 

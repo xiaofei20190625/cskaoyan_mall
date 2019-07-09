@@ -50,4 +50,10 @@ public class GrouponRulesServiceImpl implements GrouponRulesService {
     public int update(GrouponRules grouponRules) {
         return grouponRulesMapper.updateByPrimaryKeySelective(grouponRules);
     }
+
+    @Override
+    public List<GrouponRules> wxGetList(int page, int size) {
+        PageHelper.startPage(page, size);
+        return  grouponRulesMapper.queryAll();
+    }
 }

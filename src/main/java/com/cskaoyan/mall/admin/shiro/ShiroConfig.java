@@ -28,19 +28,25 @@ public class ShiroConfig {
 
 		shiroFilterFactoryBean.setSecurityManager(defaultWebSecurityManager);
 
+
+
 		shiroFilterFactoryBean.setLoginUrl("/admin/auth/login");
+
 		HashMap<String, String> filterMap = new HashMap<>();
 
 		filterMap.put("/admin/auth/login","anon");
 		filterMap.put("/admin/auth/logout","logout");
 		filterMap.put("/admin/**","authc");
 		filterMap.put("/wx/auth/login","anon");
+
 		filterMap.put("/wx/home/index","anon");
+
 		filterMap.put("/wx/**","anon");
 
 		//filterMap.put("/user/query","perms[user:query]");
 		//filterMap.put("/user/query2","perms[user:query2]");
 
+		filterMap.put("/admin/**","authc");
 
 
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);

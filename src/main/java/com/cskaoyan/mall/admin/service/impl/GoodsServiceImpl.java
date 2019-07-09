@@ -6,6 +6,7 @@ import com.cskaoyan.mall.admin.service.GoodsService;
 import com.cskaoyan.mall.admin.vo.PageVO;
 import com.cskaoyan.mall.admin.vo.ResponseVO;
 import com.cskaoyan.mall.wx.bean.FloorGoods;
+import com.cskaoyan.mall.wx.bean.GoodsWx;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,12 +77,12 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public List<com.cskaoyan.mall.wx.bean.Goods> getWxHotGoodsList() {
+    public List<GoodsWx> getWxHotGoodsList() {
         return goodsMapper.getWxHotGoodsList();
     }
 
     @Override
-    public List<com.cskaoyan.mall.wx.bean.Goods> getWxNewGoodsList() {
+    public List<GoodsWx> getWxNewGoodsList() {
         return goodsMapper.getWxNewGoodsList();
     }
 }

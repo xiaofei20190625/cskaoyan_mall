@@ -10,7 +10,7 @@ import java.util.List;
 public class FloorGoods {
     private String id;
     private String name;
-    private List<Goods> goodsList;
+    private List<GoodsWx> goodsList;
 
     public FloorGoods() {
     }
@@ -31,11 +31,11 @@ public class FloorGoods {
         this.name = name;
     }
 
-    public List<Goods> getGoodsList() {
+    public List<GoodsWx> getGoodsList() {
         return goodsList;
     }
 
-    public void setGoodsList(List<Goods> goodsList) {
+    public void setGoodsList(List<GoodsWx> goodsList) {
         this.goodsList = goodsList;
     }
 }

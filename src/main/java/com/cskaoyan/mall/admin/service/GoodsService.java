@@ -4,6 +4,7 @@ import com.cskaoyan.mall.admin.bean.Goods;
 import com.cskaoyan.mall.admin.vo.PageVO;
 import com.cskaoyan.mall.admin.vo.ResponseVO;
 import com.cskaoyan.mall.wx.bean.FloorGoods;
+import com.cskaoyan.mall.wx.bean.GoodsWx;
 
 import java.util.List;
 
@@ -32,8 +33,8 @@ public interface GoodsService {
 
     List<FloorGoods> getWxFloorGoodsList();
 
-    List<com.cskaoyan.mall.wx.bean.Goods> getWxHotGoodsList();
+    List<GoodsWx> getWxHotGoodsList();
 
-    List<com.cskaoyan.mall.wx.bean.Goods> getWxNewGoodsList();
+    List<GoodsWx> getWxNewGoodsList();
 
 }

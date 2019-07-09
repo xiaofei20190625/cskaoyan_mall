@@ -254,10 +254,10 @@
         deleted = #{deleted,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <resultMap id="wxGrouponMap" type="com.cskaoyan.mall.wx.bean.Groupon">
+  <resultMap id="wxGrouponMap" type="com.cskaoyan.mall.wx.bean.GrouponWx">
       <result property="grouponMember" column="groupon_member"/>
       <result property="grouponPrice" column="groupon_price" />
-      <association property="goods" javaType="com.cskaoyan.mall.wx.bean.Goods">
+      <association property="goods" javaType="com.cskaoyan.mall.wx.bean.GoodsWx">
         <result property="brief" column="brief"/>
         <result property="counterPrice" column="counter_price"/>
         <result property="id" column="id"/>

@@ -29,12 +29,50 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="deleted" jdbcType="BIT" property="deleted" />
   </resultMap>
+
+
+  <!--<resultMap id="OrderInfoMap" type="com.cskaoyan.mall.wx.bean.OrderInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_sn" jdbcType="VARCHAR" property="orderSn" />
+    <result column="order_status" jdbcType="SMALLINT" property="orderStatus" />
+    <result column="consignee" jdbcType="VARCHAR" property="consignee" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="message" jdbcType="VARCHAR" property="message" />
+    <result column="goods_price" jdbcType="DECIMAL" property="goodsPrice" />
+    <result column="freight_price" jdbcType="DECIMAL" property="freightPrice" />
+    <result column="coupon_price" jdbcType="DECIMAL" property="couponPrice" />
+    <result column="integral_price" jdbcType="DECIMAL" property="integralPrice" />
+    <result column="groupon_price" jdbcType="DECIMAL" property="grouponPrice" />
+    <result column="order_price" jdbcType="DECIMAL" property="orderPrice" />
+    <result column="actual_price" jdbcType="DECIMAL" property="actualPrice" />
+    <result column="pay_id" jdbcType="VARCHAR" property="payId" />
+    <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
+    <result column="ship_sn" jdbcType="VARCHAR" property="shipSn" />
+    <result column="ship_channel" jdbcType="VARCHAR" property="shipChannel" />
+    <result column="ship_time" jdbcType="TIMESTAMP" property="shipTime" />
+    <result column="confirm_time" jdbcType="TIMESTAMP" property="confirmTime" />
+    <result column="comments" jdbcType="SMALLINT" property="comments" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="deleted" jdbcType="BIT" property="deleted" />
+  </resultMap>-->
   <sql id="Base_Column_List">
     id, user_id, order_sn, order_status, consignee, mobile, address, message, goods_price, 
     freight_price, coupon_price, integral_price, groupon_price, order_price, actual_price, 
     pay_id, pay_time, ship_sn, ship_channel, ship_time, confirm_time, comments, end_time, 
     add_time, update_time, deleted
   </sql>
+  <!--用orderInfo接受-->
+  <!--<select id="selectByOid" resultMap="OrderInfoMap">
+    SELECT
+    actual_price,add_time,address,consignee,coupon_price,
+    freight_price,goods_price,id,mobile,order_sn
+    from cskaoyan_mall_order
+    where id =#{orderId}
+  </select>-->
+
   <!--getListRecord-->
   <select id="getListRecord" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"/>
@@ -78,6 +116,7 @@
     delete from cskaoyan_mall_order
     where id = #{id,jdbcType=INTEGER}
   </delete>
+
   <insert id="insert" parameterType="com.cskaoyan.mall.admin.bean.Order">
     insert into cskaoyan_mall_order (id, user_id, order_sn, 
       order_status, consignee, mobile, 
@@ -401,10 +440,10 @@
     <collection property="orderGoods" ofType="com.cskaoyan.mall.admin.bean.OrderGoods">
       <result property="goodsName" column="goods_name"/>
       <result property="goodsSn" column="goods_sn"/>
-      <result property="specifications" column="specifications"/>
+      <result property="specifications" column="specifications" typeHandler="com.cskaoyan.mall.admin.typeHandler.StringToStingrArrayHandler"/>
       <result property="price" column="price"/>
       <result property="number" column="number"/>
-      <result property="picUrl" column="pic_url" typeHandler="com.cskaoyan.mall.admin.typeHandler.StringToStingrArrayHandler"/>
+      <result property="picUrl" column="pic_url"/>
     </collection>
   </resultMap>
   <select id="queryOrderDetailById" resultMap="orderDetailMap">

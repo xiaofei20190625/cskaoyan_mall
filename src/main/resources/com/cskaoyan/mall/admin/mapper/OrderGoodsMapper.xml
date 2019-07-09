@@ -10,8 +10,8 @@
     <result column="product_id" jdbcType="INTEGER" property="productId" />
     <result column="number" jdbcType="SMALLINT" property="number" />
     <result column="price" jdbcType="DECIMAL" property="price" />
-    <result column="specifications" jdbcType="VARCHAR" property="specifications" />
-    <result column="pic_url" jdbcType="VARCHAR" property="picUrl" typeHandler="com.cskaoyan.mall.admin.typeHandler.StringToStingrArrayHandler" />
+    <result column="specifications" jdbcType="VARCHAR" property="specifications" typeHandler="com.cskaoyan.mall.admin.typeHandler.StringToStingrArrayHandler" />
+    <result column="pic_url" jdbcType="VARCHAR" property="picUrl"/>
     <result column="comment" jdbcType="INTEGER" property="comment" />
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
@@ -27,6 +27,7 @@
     from cskaoyan_mall_order_goods
     where id = #{id,jdbcType=INTEGER}
   </select>
+
   <select id="selectByOId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
@@ -37,6 +38,10 @@
     delete from cskaoyan_mall_order_goods
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  <delete id="deleteByOid" parameterType="java.lang.Integer">
+    delete from cskaoyan_mall_order_goods
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </delete>
   <insert id="insert" parameterType="com.cskaoyan.mall.admin.bean.OrderGoods">
     insert into cskaoyan_mall_order_goods (id, order_id, goods_id, 
       goods_name, goods_sn, product_id, 
@@ -45,8 +50,8 @@
       update_time, deleted)
     values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, 
       #{goodsName,jdbcType=VARCHAR}, #{goodsSn,jdbcType=VARCHAR}, #{productId,jdbcType=INTEGER}, 
-      #{number,jdbcType=SMALLINT}, #{price,jdbcType=DECIMAL}, #{specifications,jdbcType=VARCHAR}, 
-      #{picUrl,typeHandler=com.cskaoyan.mall.admin.typeHandler.StringToStingrArrayHandler,jdbcType=VARCHAR}, #{comment,jdbcType=INTEGER}, #{addTime,jdbcType=TIMESTAMP},
+      #{number,jdbcType=SMALLINT}, #{price,jdbcType=DECIMAL}, #{specifications,typeHandler=com.cskaoyan.mall.admin.typeHandler.StringToStingrArrayHandler,jdbcType=VARCHAR},
+      #{picUrl,jdbcType=VARCHAR}, #{comment,jdbcType=INTEGER}, #{addTime,jdbcType=TIMESTAMP},
       #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.cskaoyan.mall.admin.bean.OrderGoods">
@@ -121,10 +126,10 @@
         #{price,jdbcType=DECIMAL},
       </if>
       <if test="specifications != null">
-        #{specifications,jdbcType=VARCHAR},
+        #{specifications,typeHandler=com.cskaoyan.mall.admin.typeHandler.StringToStingrArrayHandler,jdbcType=VARCHAR},
       </if>
       <if test="picUrl != null">
-        #{picUrl,typeHandler=com.cskaoyan.mall.admin.typeHandler.StringToStingrArrayHandler,jdbcType=VARCHAR},
+        #{picUrl,jdbcType=VARCHAR},
       </if>
       <if test="comment != null">
         #{comment,jdbcType=INTEGER},
@@ -165,10 +170,10 @@
         price = #{price,jdbcType=DECIMAL},
       </if>
       <if test="specifications != null">
-        specifications = #{specifications,jdbcType=VARCHAR},
+        specifications = #{specifications,typeHandler=com.cskaoyan.mall.admin.typeHandler.StringToStingrArrayHandler,jdbcType=VARCHAR},
       </if>
       <if test="picUrl != null">
-        pic_url = #{picUrl,typeHandler=com.cskaoyan.mall.admin.typeHandler.StringToStingrArrayHandler,jdbcType=VARCHAR},
+        pic_url = #{picUrl,jdbcType=VARCHAR},
       </if>
       <if test="comment != null">
         comment = #{comment,jdbcType=INTEGER},
@@ -194,8 +199,8 @@
       product_id = #{productId,jdbcType=INTEGER},
       number = #{number,jdbcType=SMALLINT},
       price = #{price,jdbcType=DECIMAL},
-      specifications = #{specifications,jdbcType=VARCHAR},
-      pic_url = #{picUrl,typeHandler=com.cskaoyan.mall.admin.typeHandler.StringToStingrArrayHandler,jdbcType=VARCHAR},
+      specifications = #{specifications,typeHandler=com.cskaoyan.mall.admin.typeHandler.StringToStingrArrayHandler,jdbcType=VARCHAR},
+      pic_url = #{picUrl,jdbcType=VARCHAR},
       comment = #{comment,jdbcType=INTEGER},
       add_time = #{addTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},

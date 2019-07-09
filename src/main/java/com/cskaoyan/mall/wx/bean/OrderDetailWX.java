@@ -5,7 +5,7 @@ import java.util.List;
 public class OrderDetailWX {
     List orderGoods;
 
-    List orderInfo;
+    OrderInfo orderInfo;
 
     public List getOrderGoods() {
         return orderGoods;
@@ -15,11 +15,11 @@ public class OrderDetailWX {
         this.orderGoods = orderGoods;
     }
 
-    public List getOrderInfo() {
+    public OrderInfo getOrderInfo() {
         return orderInfo;
     }
 
-    public void setOrderInfo(List orderInfo) {
+    public void setOrderInfo(OrderInfo orderInfo) {
         this.orderInfo = orderInfo;
     }
 }

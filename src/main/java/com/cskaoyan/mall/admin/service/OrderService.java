@@ -26,7 +26,14 @@ public interface OrderService {
 
     ResponseVO getUnAssessOrdersByUid(Integer userId,int page, int size);
 
+    ResponseVO showOrderDetailByOid(Integer orderId);
 
     OrderDetail getOrderDetailById(int id);
+
+    Order selectByPrimaryKey(Integer id);
+
+    int deleteByPrimaryKey(Integer id);
+
+
 }
 

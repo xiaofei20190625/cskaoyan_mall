@@ -2,6 +2,7 @@ package com.cskaoyan.mall.admin.mapper;
 
 import com.cskaoyan.mall.admin.bean.Order;
 import com.cskaoyan.mall.admin.bean.OrderDetail;
+import com.cskaoyan.mall.wx.bean.OrderInfo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -14,6 +15,8 @@ public interface OrderMapper {
     int insertSelective(Order record);
 
     Order selectByPrimaryKey(Integer id);
+
+    OrderInfo selectByOid(Integer orderId);
 
     int updateByPrimaryKeySelective(Order record);
 

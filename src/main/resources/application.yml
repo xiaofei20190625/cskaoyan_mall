@@ -2,7 +2,6 @@ server:
   port: 8080
   servlet:
     context-path: /
-
     multipart:
       max-file-size: 128MB
       max-request-size: 128MB
@@ -15,8 +14,8 @@ pagehelper:
 
 spring:
   profiles:
-
     active: lyn
+
 ---
 spring:
   profiles: cq

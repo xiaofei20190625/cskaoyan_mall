@@ -10,7 +10,7 @@
     <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="has_picture" jdbcType="BIT" property="hasPicture" />
-    <result column="pic_urls" jdbcType="VARCHAR" property="picUrls" />
+    <result column="pic_urls" jdbcType="VARCHAR" property="picUrls" typeHandler="com.cskaoyan.mall.admin.typeHandler.StringToStingrArrayHandler"/>
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="deleted" jdbcType="BIT" property="deleted" />
@@ -51,9 +51,9 @@
       status, has_picture, pic_urls, 
       add_time, update_time, deleted
       )
-    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
+    values (#{userId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR},
       #{mobile,jdbcType=VARCHAR}, #{feedType,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
-      #{status,jdbcType=INTEGER}, #{hasPicture,jdbcType=BIT}, #{picUrls,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{hasPicture,jdbcType=BIT}, #{picUrls,typeHandler=com.cskaoyan.mall.admin.typeHandler.StringToStingrArrayHandler,jdbcType=VARCHAR},
       #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT}
       )
   </insert>
@@ -123,7 +123,7 @@
         #{hasPicture,jdbcType=BIT},
       </if>
       <if test="picUrls != null">
-        #{picUrls,jdbcType=VARCHAR},
+        #{picUrls,typeHandler=com.cskaoyan.mall.admin.typeHandler.StringToStingrArrayHandler,jdbcType=VARCHAR},
       </if>
       <if test="addTime != null">
         #{addTime,jdbcType=TIMESTAMP},
@@ -161,7 +161,7 @@
         has_picture = #{hasPicture,jdbcType=BIT},
       </if>
       <if test="picUrls != null">
-        pic_urls = #{picUrls,jdbcType=VARCHAR},
+        pic_urls = #{picUrls,typeHandler=com.cskaoyan.mall.admin.typeHandler.StringToStingrArrayHandler,jdbcType=VARCHAR},
       </if>
       <if test="addTime != null">
         add_time = #{addTime,jdbcType=TIMESTAMP},
@@ -184,7 +184,7 @@
       content = #{content,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       has_picture = #{hasPicture,jdbcType=BIT},
-      pic_urls = #{picUrls,jdbcType=VARCHAR},
+      pic_urls = #{picUrls,typeHandler=com.cskaoyan.mall.admin.typeHandler.StringToStingrArrayHandler,jdbcType=VARCHAR},
       add_time = #{addTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       deleted = #{deleted,jdbcType=BIT}

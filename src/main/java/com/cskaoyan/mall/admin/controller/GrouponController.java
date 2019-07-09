@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @Description TODO
  */
 @RestController
-@RequestMapping("admin")
 public class GrouponController {
 
     @Autowired

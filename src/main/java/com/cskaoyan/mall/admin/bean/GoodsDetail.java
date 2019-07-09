@@ -1,4 +1,3 @@
-
 package com.cskaoyan.mall.admin.bean;
 
 import java.util.List;

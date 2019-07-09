@@ -1,5 +1,9 @@
 package com.cskaoyan.mall.admin.controller;
 
+import com.cskaoyan.mall.admin.bean.Admin;
+import com.cskaoyan.mall.admin.bean.Log;
+import com.cskaoyan.mall.admin.bean.Role;
+import com.cskaoyan.mall.admin.bean.Storage;
 import com.cskaoyan.mall.admin.bean.*;
 import com.cskaoyan.mall.admin.service.AdminService;
 import com.cskaoyan.mall.admin.service.LogService;
@@ -7,7 +11,6 @@ import com.cskaoyan.mall.admin.service.RoleService;
 import com.cskaoyan.mall.admin.service.StorageService;
 import com.cskaoyan.mall.admin.vo.PageVO;
 import com.cskaoyan.mall.admin.vo.ResponseVO;
-import com.cskaoyan.mall.admin.vo.SysPermissionVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

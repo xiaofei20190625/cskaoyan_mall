@@ -113,7 +113,6 @@
         #{hasPicture,jdbcType=BIT},
       </if>
       <if test="picUrls != null">
-
         #{picUrls,typeHandler=com.cskaoyan.mall.admin.typeHandler.StringToStingrArrayHandler},
      </if>
       <if test="star != null">

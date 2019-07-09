@@ -33,7 +33,7 @@
         and goods_id = #{goodsId,jdbcType=INTEGER}
       </if>
     </where>
-    order by #{sort} #{order}
+    order by ${sort} ${order}
   </select>
 
 

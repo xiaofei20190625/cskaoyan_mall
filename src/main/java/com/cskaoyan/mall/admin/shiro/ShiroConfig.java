@@ -33,6 +33,7 @@ public class ShiroConfig {
 
 		filterMap.put("/admin/auth/login","anon");
 		filterMap.put("/wx/auth/login","anon");
+		filterMap.put("/wx/**","anon");
 
 		filterMap.put("/admin/auth/login","anon");
 		filterMap.put("/admin/auth/logout","logout");

@@ -153,7 +153,7 @@
         SELECT id,name,`desc`,pic_url,sort_order,floor_price,add_time,update_time,deleted
         from cskaoyan_mall_brand
         where deleted = 0 and id like "%"#{id}"%" and name like "%"#{name}"%"
-        order by #{sort} #{order}
+        order by ${sort} ${order}
     </select>
 
     <update id="deleteBrandById">

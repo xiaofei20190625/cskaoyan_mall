@@ -10,34 +10,34 @@ import java.util.List;
  * Date 2019/7/9 Time 11:19
  */
 public class Groupon {
-    private List<Goods> goods;
-    private Integer groupon_member;
-    private Double groupon_price;
+    private Goods goods;
+    private Integer grouponMember;
+    private Double grouponPrice;
 
     public Groupon() {
     }
 
-    public List<Goods> getGoods() {
+    public Goods getGoods() {
         return goods;
     }
 
-    public void setGoods(List<Goods> goods) {
+    public void setGoods(Goods goods) {
         this.goods = goods;
     }
 
     public Integer getGroupon_member() {
-        return groupon_member;
+        return grouponMember;
     }
 
     public void setGroupon_member(Integer groupon_member) {
-        this.groupon_member = groupon_member;
+        this.grouponMember = groupon_member;
     }
 
     public Double getGroupon_price() {
-        return groupon_price;
+        return grouponPrice;
     }
 
     public void setGroupon_price(Double groupon_price) {
-        this.groupon_price = groupon_price;
+        this.grouponPrice = groupon_price;
     }
 }

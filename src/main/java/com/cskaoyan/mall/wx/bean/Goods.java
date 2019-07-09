@@ -1,5 +1,7 @@
 package com.cskaoyan.mall.wx.bean;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Created by IceFloe_Rot
  * Date 2019/7/9 Time 11:22
@@ -8,6 +10,10 @@ public class Goods {
     private String brief;
     private Double counterPrice;
     private Integer id;
+    @JsonProperty("isHot")
+    private Boolean isHot;
+    @JsonProperty("isNew")
+    private Boolean isNew;
     private String name;
     private String picUrl;
     private Double retailPrice;
@@ -61,5 +67,21 @@ public class Goods {
 
     public void setRetailPrice(Double retailPrice) {
         this.retailPrice = retailPrice;
+    }
+
+    public Boolean getHot() {
+        return isHot;
+    }
+
+    public void setHot(Boolean hot) {
+        isHot = hot;
+    }
+
+    public Boolean getNew() {
+        return isNew;
+    }
+
+    public void setNew(Boolean aNew) {
+        isNew = aNew;
     }
 }

@@ -59,4 +59,9 @@ public class BrandServiceImpl implements BrandService {
     public Brand getBrandById(Integer id) {
         return brandMapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public List<com.cskaoyan.mall.wx.bean.Brand> getWxBrandList() {
+        return brandMapper.getWxBrandList();
+    }
 }

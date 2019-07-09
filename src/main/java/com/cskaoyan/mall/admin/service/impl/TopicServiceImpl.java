@@ -44,4 +44,9 @@ public class TopicServiceImpl implements TopicService {
     public int create(Topic topic) {
         return topicMapper.create(topic);
     }
+
+    @Override
+    public List<com.cskaoyan.mall.wx.bean.Topic> getWxTopicList() {
+        return topicMapper.getWxTopicList();
+    }
 }

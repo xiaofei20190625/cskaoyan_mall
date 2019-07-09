@@ -32,7 +32,7 @@ public class SystemController {
 
 
 
-    @RequestMapping("list")
+    @RequestMapping("admin/list")
     public ResponseVO<PageVO> adminList(int page,int limit, String sort, String order,String username){
         PageVO<Admin> adminPageVO = adminService.findAdminPage(page,limit,username);
         ResponseVO<PageVO>  responseVO = new ResponseVO<>();

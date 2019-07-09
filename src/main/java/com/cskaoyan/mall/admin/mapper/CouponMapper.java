@@ -24,4 +24,5 @@ public interface CouponMapper {
 
     int create(Coupon coupon);
 
+    List<Coupon> getWxCouponList();
 }

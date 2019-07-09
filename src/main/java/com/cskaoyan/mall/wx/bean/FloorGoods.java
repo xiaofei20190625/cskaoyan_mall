@@ -1,6 +1,7 @@
 package com.cskaoyan.mall.wx.bean;
 
 
+import java.util.List;
 
 /**
  * Created by IceFloe_Rot
@@ -9,6 +10,7 @@ package com.cskaoyan.mall.wx.bean;
 public class FloorGoods {
     private String id;
     private String name;
+    private List<Goods> goodsList;
 
     public FloorGoods() {
     }
@@ -27,5 +29,13 @@ public class FloorGoods {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Goods> getGoodsList() {
+        return goodsList;
+    }
+
+    public void setGoodsList(List<Goods> goodsList) {
+        this.goodsList = goodsList;
     }
 }

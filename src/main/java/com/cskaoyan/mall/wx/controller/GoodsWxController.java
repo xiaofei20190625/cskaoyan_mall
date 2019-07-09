@@ -1,12 +1,13 @@
 package com.cskaoyan.mall.wx.controller;
 
 import com.cskaoyan.mall.admin.service.GoodsService;
-import com.cskaoyan.mall.admin.vo.ResponseVO;
-import com.cskaoyan.mall.wx.service.GoodsWxService;
+import com.cskaoyan.mall.wx.vo.BaseRespVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.HashMap;
 
 /**
  * Created by IceFloe_Rot
@@ -20,8 +21,12 @@ public class GoodsWxController {
 
     @RequestMapping("count")
     @ResponseBody
-    public ResponseVO goodsCount(){
-        ResponseVO<Object> responseVO = new ResponseVO<>();
+    public BaseRespVo goodsCount(){
+        int count = goodsService.getGoodsNum();
+        HashMap data = new HashMap();
+        data.put("goodsCount",count);
+        BaseRespVo baseRespVo = BaseRespVo.ok(data);
+        return baseRespVo;
     }
 
 }

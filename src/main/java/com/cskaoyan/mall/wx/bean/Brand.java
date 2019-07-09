@@ -9,7 +9,7 @@ package com.cskaoyan.mall.wx.bean;
 public class Brand {
     private String desc;
     private Double floorPrice;
-    private String id;
+    private Integer id;
     private String name;
     private String picUrl;
 
@@ -32,11 +32,11 @@ public class Brand {
         this.floorPrice = floorPrice;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

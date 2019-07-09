@@ -22,4 +22,10 @@ public class UserVipServiceImpl implements UserVipService {
         PageVO<UserVip> pagevo = new PageList<UserVip>().pagevo(page, limit, userVips);
         return pagevo;
     }
+
+    @Override
+    public UserVip findUserVip(String username) {
+        UserVip userVip = userVipMapper.findUserVip(username);
+        return userVip;
+    }
 }

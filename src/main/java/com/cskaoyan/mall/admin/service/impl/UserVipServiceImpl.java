@@ -28,4 +28,9 @@ public class UserVipServiceImpl implements UserVipService {
         UserVip userVip = userVipMapper.findUserVip(username);
         return userVip;
     }
+
+    @Override
+    public UserVip findUserVipByiD(Integer id) {
+        return userVipMapper.selectByPrimaryKey(id);
+    }
 }

@@ -38,7 +38,7 @@ public class GrouponRulesController {
         ResponseVO<GrouponRules> responseVO = new ResponseVO<>();
         Goods goods = goodsService.queryOneById(grouponRules.getGoodsId());
         //GrouponRules old = grouponRulesService.findGoodsId(grouponRules.getGoodsId());
-        if (goods != null && grouponRules.getDiscount() != null && grouponRules.getDiscountMember() != null && grouponRules.getExpireTime() != null){
+        if (goods != null && grouponRules.getDiscount() != 0 && grouponRules.getDiscountMember() != null && grouponRules.getExpireTime() != null){
             GrouponRules rules = new GrouponRules();
             rules.setGoodsId(goods.getId());
             rules.setGoodsName(goods.getName());

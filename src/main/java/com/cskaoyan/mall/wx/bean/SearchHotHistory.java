@@ -1,15 +1,11 @@
-package com.cskaoyan.mall.admin.bean;
+package com.cskaoyan.mall.wx.bean;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Date;
 
-/**
- * Created by IceFloe_Rot
- * Date 2019/7/5 Time 20:27
- */
-public class Keyword {
+public class SearchHotHistory {
     private Integer id;
     private String keyword;
     private String url;
@@ -24,10 +20,11 @@ public class Keyword {
     private Date updateTime;
     private Boolean deleted;
 
-    public Keyword() {
+    public SearchHotHistory() {
     }
 
-    public Keyword(String keyword) {
+
+    public SearchHotHistory(String keyword) {
         this.keyword = keyword;
     }
 

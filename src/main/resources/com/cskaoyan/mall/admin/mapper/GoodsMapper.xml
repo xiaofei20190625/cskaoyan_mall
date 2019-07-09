@@ -123,7 +123,7 @@
         limit 4
     </select>
 
-    <resultMap id="wxGoodsMap" type="com.cskaoyan.mall.wx.bean.GoodsWx">
+    <resultMap id="wxFloorGoodsMap" type="com.cskaoyan.mall.wx.bean.GoodsWx">
         <id column="gid" jdbcType="VARCHAR" property="id" />
         <result column="name" jdbcType="VARCHAR" property="name" />
         <result column="brief" jdbcType="VARCHAR" property="brief" />
@@ -133,7 +133,7 @@
         <result column="counter_price" jdbcType="VARCHAR" property="counterPrice" />
         <result column="retail_price" jdbcType="VARCHAR" property="retailPrice" />
     </resultMap>
-    <select id="selectGoodsWxByCategoryId" resultMap="wxGoodsMap">
+    <select id="selectGoodsWxByCategoryId" resultMap="wxFloorGoodsMap">
         select
 	      g.brief,g.counter_price,g.id AS gid,g.is_hot,g.is_new,g.name,g.pic_url,g.retail_price,
 	      c.id AS cid,c.pid
@@ -144,12 +144,23 @@
 		limit 4
     </select>
 
+    <resultMap id="wxGoodsMap" type="com.cskaoyan.mall.wx.bean.GoodsWx">
+        <id column="id" jdbcType="VARCHAR" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="brief" jdbcType="VARCHAR" property="brief" />
+        <result column="pic_url" jdbcType="VARCHAR" property="picUrl" />
+        <result column="is_new" jdbcType="VARCHAR" property="isNew" />
+        <result column="is_hot" jdbcType="VARCHAR" property="isHot" />
+        <result column="counter_price" jdbcType="VARCHAR" property="counterPrice" />
+        <result column="retail_price" jdbcType="VARCHAR" property="retailPrice" />
+    </resultMap>
     <select id="getWxHotGoodsList" resultMap="wxGoodsMap">
         select brief,counter_price,id,is_hot,is_new,name,pic_url,retail_price
         from cskaoyan_mall_goods
         where deleted = 0 and is_hot = 1
         limit 5
     </select>
+
 
     <select id="getWxNewGoodsList" resultMap="wxGoodsMap">
         select brief,counter_price,id,is_hot,is_new,name,pic_url,retail_price

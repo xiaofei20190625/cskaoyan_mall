@@ -14,7 +14,7 @@ pagehelper:
 
 spring:
   profiles:
-    active: hxf
+    active: lyn
 
 ---
 spring:

@@ -196,11 +196,10 @@ public class GoodsWxController {
     @ApiOperation(value = "根据品牌id获取品牌商品")
     @RequestMapping("list")
     @ResponseBody
-    public BaseRespVO getPageBrandsGoods(String brandId,int page,int size,Boolean isNew,String order,String sort,String categoryId){
+    public BaseRespVO getPageBrandsGoods(String keyword,String brandId,int page,int size,Boolean isNew,String order,String sort,Integer categoryId){
         PageVO<List> listPageVO =null;
         if(brandId==null){
-            int categoryId1 = Integer.parseInt(categoryId);
-            List<Goods> goodsList = goodsService.getPageBrandsGoodsByIds(isNew,order,sort,categoryId1);
+            List<Goods> goodsList = goodsService.getPageBrandsGoodsByIds(isNew,order,sort,categoryId,keyword);
             //***********************************
             //分页
             listPageVO = pageInfo(page, size, goodsList);

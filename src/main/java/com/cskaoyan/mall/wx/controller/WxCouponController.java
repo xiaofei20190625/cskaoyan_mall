@@ -8,6 +8,7 @@ import com.cskaoyan.mall.admin.vo.OperationVO;
 import com.cskaoyan.mall.wx.bean.CouponAndCouponUser;
 import com.cskaoyan.mall.wx.bean.CouponWx;
 import com.cskaoyan.mall.wx.userwx.UserTokenManager;
+import com.cskaoyan.mall.wx.utils.JSONUtils;
 import com.cskaoyan.mall.wx.vo.BaseRespVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -114,9 +115,15 @@ public class WxCouponController {
     //errmsg:"优惠券已领完"errno:740
     //成功 ， 0
     @RequestMapping(value = "receive" , method = RequestMethod.POST)
-    public OperationVO receive(@RequestBody int couponId) {
+    public OperationVO receive( Integer couponId) {
 
-        //String tokenKey = request.getHeader("X-Litemall-Token");
+        OperationVO operationVO = new OperationVO();
+        operationVO.setErrmsg("成功");
+        operationVO.setErrno(0);
+        return operationVO;
+    }
+
+  /*      //String tokenKey = request.getHeader("X-Litemall-Token");
         //int userIds = UserTokenManager.getUserId(tokenKey);
         int userId = 1 ;
         //System.out.println("CouponuserId = " + userId);
@@ -209,7 +216,7 @@ public class WxCouponController {
         return operationVO;
 
 
-    }
+    }*/
 }
 
 

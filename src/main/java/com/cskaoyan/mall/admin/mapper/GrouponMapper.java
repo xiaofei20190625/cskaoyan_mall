@@ -33,4 +33,5 @@ public interface GrouponMapper {
     List<Groupon> getWxGrouponList();
 
     int[] queryGrouponIds();
+
 }

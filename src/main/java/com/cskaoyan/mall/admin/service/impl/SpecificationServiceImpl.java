@@ -2,6 +2,7 @@ package com.cskaoyan.mall.admin.service.impl;
 import com.cskaoyan.mall.admin.bean.Specification;
 import com.cskaoyan.mall.admin.mapper.SpecificationMapper;
 import com.cskaoyan.mall.admin.service.SpecificationService;
+import com.cskaoyan.mall.wx.bean.SpecificationWx;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,8 +33,8 @@ public class SpecificationServiceImpl implements SpecificationService {
     }
 
     @Override
-    public List<Specification> queryByGoodsId(int goodsId) {
-        return specificationMapper.queryByGoodsId(goodsId);
+    public List<SpecificationWx> querySpecificationWxByGoodsId(int goodsId) {
+        return specificationMapper.querySpecificationWxByGoodsId(goodsId);
     }
 
     @Override
@@ -44,5 +45,10 @@ public class SpecificationServiceImpl implements SpecificationService {
     @Override
     public int updateByPrimaryKey(Specification record) {
         return specificationMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public List<Specification> queryByGoodsId(int id) {
+        return specificationMapper.queryByGoodsId(id);
     }
 }

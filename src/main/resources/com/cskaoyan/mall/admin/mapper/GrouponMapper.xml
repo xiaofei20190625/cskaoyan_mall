@@ -276,4 +276,6 @@
       on gr.goods_id = g.id
   </select>
 
+
+
 </mapper>

@@ -32,4 +32,6 @@ public interface RoleMapper {
     List<SysPermission2> systemPermissinons(int roleId);
 
     List<PermissionApi> querypermissionsApi(int roleId);
+
+    List<Role> getRolePage(@Param("name") String name);
 }

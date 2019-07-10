@@ -185,4 +185,9 @@
         select `desc`,floor_price,id,name,pic_url from cskaoyan_mall_brand
         where deleted = 0 limit 4
   </select>
+
+  <select id="selectBrandWxByPrimaryKey" resultMap="wxBrandMap">
+    select `desc`,floor_price,id,name,pic_url from cskaoyan_mall_brand
+        where deleted = 0 and id = #{brandId}
+  </select>
 </mapper>

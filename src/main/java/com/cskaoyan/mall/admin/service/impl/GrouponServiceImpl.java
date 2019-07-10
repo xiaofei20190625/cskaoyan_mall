@@ -4,6 +4,7 @@ import com.cskaoyan.mall.admin.bean.Groupon;
 import com.cskaoyan.mall.admin.bean.GrouponRules;
 import com.cskaoyan.mall.admin.mapper.GoodsMapper;
 import com.cskaoyan.mall.admin.mapper.GrouponMapper;
+import com.cskaoyan.mall.admin.mapper.GrouponRulesMapper;
 import com.cskaoyan.mall.admin.service.GrouponService;
 import com.cskaoyan.mall.admin.vo.PageVO;
 import com.github.pagehelper.PageHelper;
@@ -26,6 +27,8 @@ public class GrouponServiceImpl implements GrouponService {
     GrouponMapper grouponMapper ;
     @Autowired
     GoodsMapper goodsMapper;
+    @Autowired
+    GrouponRulesMapper grouponRulesMapper;
 
     @Override
     public PageVO<Groupon> getListRecord(int page, int limit, String sort, String order, String goodsId) {
@@ -48,5 +51,10 @@ public class GrouponServiceImpl implements GrouponService {
     @Override
     public List<Groupon> getWxGrouponList() {
         return grouponMapper.getWxGrouponList();
+    }
+
+    @Override
+    public List<Groupon> getGrouponRulesByGoodsId(int goodsId) {
+        return grouponRulesMapper.getGrouponRulesByGoodsId(goodsId);
     }
 }

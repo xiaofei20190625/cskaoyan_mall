@@ -23,9 +23,9 @@ public class OrderGoods {
 
     private BigDecimal price;
 
-    private String specifications;
+    private String[] specifications;
 
-    private String[] picUrl;
+    private String picUrl;
 
     private Integer comment;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -101,19 +101,19 @@ public class OrderGoods {
         this.price = price;
     }
 
-    public String getSpecifications() {
+    public String[] getSpecifications() {
         return specifications;
     }
 
-    public void setSpecifications(String specifications) {
-        this.specifications = specifications == null ? null : specifications.trim();
+    public void setSpecifications(String[] specifications) {
+        this.specifications = specifications;
     }
 
-    public String[] getPicUrl() {
+    public String getPicUrl() {
         return picUrl;
     }
 
-    public void setPicUrl(String[] picUrl) {
+    public void setPicUrl(String picUrl) {
         this.picUrl = picUrl;
     }
 

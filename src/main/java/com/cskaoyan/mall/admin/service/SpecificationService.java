@@ -1,6 +1,7 @@
 package com.cskaoyan.mall.admin.service;
 
 import com.cskaoyan.mall.admin.bean.Specification;
+import com.cskaoyan.mall.wx.bean.SpecificationWx;
 
 import java.util.List;
 
@@ -13,9 +14,11 @@ public interface SpecificationService {
 
     Specification selectByPrimaryKey(Integer id);
 
-    List<Specification> queryByGoodsId(int goodsId);
+    List<SpecificationWx> querySpecificationWxByGoodsId(int goodsId);
 
     int updateByPrimaryKeySelective(Specification record);
 
     int updateByPrimaryKey(Specification record);
+
+    List<Specification> queryByGoodsId(int id);
 }

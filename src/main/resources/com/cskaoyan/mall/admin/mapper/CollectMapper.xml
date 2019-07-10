@@ -131,4 +131,10 @@
       deleted = #{deleted,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="verifyCollectByUserIdAndGoodsId" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from cskaoyan_mall_collect
+    where deleted = 0 and user_id = #{userId} and value_id = #{goodsId}
+  </select>
 </mapper>

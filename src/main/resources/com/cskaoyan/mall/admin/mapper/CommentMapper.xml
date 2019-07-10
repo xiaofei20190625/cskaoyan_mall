@@ -180,4 +180,27 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
+  <resultMap id="wxCommentMap" type="com.cskaoyan.mall.wx.bean.CommentWx">
+    <result property="addTime" column="add_time"/>
+    <result property="avater" column="avater"/>
+    <result property="content" column="content"/>
+    <result property="id" column="id"/>
+    <result property="nickname" column="nickname"/>
+    <result property="picList" column="pic_urls" typeHandler="com.cskaoyan.mall.admin.typeHandler.StringToStingrArrayHandler"/>
+  </resultMap>
+  <select id="getCommentsByGoodsId" resultMap="wxCommentMap">
+    select
+    c.add_time,c.content,c.id,c.pic_urls,
+    u.avatar,u.nickname
+    from cskaoyan_mall_comment c
+    left join cskaoyan_mall_user u
+    on c.user_id = u.id
+    where c.deleted = 0 and u.deleted = 0 and value_id = #{goodsId}
+  </select>
+
+  <select id="getCommentCountByGoodsId" resultType="int">
+    select count(*) from cskaoyan_mall_comment
+    where deleted = 0 and value_id = #{goodsId}
+  </select>
+
 </mapper>

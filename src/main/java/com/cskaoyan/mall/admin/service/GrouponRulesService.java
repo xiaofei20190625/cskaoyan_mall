@@ -16,4 +16,6 @@ public interface GrouponRulesService {
     int update(GrouponRules grouponRules);
 
     List<GrouponRules> wxGetList(int page, int size);
+
+    int count();
 }

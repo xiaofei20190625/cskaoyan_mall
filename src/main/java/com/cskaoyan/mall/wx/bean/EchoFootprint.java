@@ -1,11 +1,14 @@
 package com.cskaoyan.mall.wx.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class EchoFootprint {
     int id;
     int goodsId;
     String name;
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     Date addTime;
     String brief;
     String picUrl;

@@ -8,7 +8,7 @@ package com.cskaoyan.mall.wx.bean;
  */
 public class Channel {
     private String iconUrl;
-    private String id;
+    private Integer id;
     private String name;
 
     public Channel() {
@@ -22,11 +22,11 @@ public class Channel {
         this.iconUrl = iconUrl;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

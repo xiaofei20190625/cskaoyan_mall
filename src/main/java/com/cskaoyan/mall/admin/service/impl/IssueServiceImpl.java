@@ -53,4 +53,9 @@ public class IssueServiceImpl implements IssueService {
     public Issue getIssueById(Integer id) {
         return issueMapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public List<Issue> getAllIssue() {
+        return issueMapper.getAllIssue();
+    }
 }

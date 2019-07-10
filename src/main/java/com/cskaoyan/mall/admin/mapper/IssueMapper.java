@@ -21,4 +21,6 @@ public interface IssueMapper {
     int updateByPrimaryKey(Issue issue);
 
     Issue selectByPrimaryKey(@Param("id") Integer id);
+
+    List<Issue> getAllIssue();
 }

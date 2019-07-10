@@ -30,4 +30,7 @@ public interface CategoryService {
 
     List<Channel> getWxChannelList();
 
+    List<Category> queryAllCategoriesL1();
+
+    List<Category> queryAllCategoriesL2(Integer currentCategoryId);
 }

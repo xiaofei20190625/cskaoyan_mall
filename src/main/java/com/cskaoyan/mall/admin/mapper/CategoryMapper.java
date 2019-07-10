@@ -39,6 +39,9 @@ public interface CategoryMapper {
 
     List<Channel> getWxChannelList();
 
+    List<Category> queryAllCategoriesL1();
 
+
+    List<Category> queryAllCategoriesL2(@Param("id") Integer id);
 }
 

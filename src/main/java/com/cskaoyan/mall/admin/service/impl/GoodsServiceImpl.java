@@ -101,4 +101,5 @@ public class GoodsServiceImpl implements GoodsService {
         List<GoodsWx> wxRelatedGoods = goodsMapper.getWxRelatedGoodsByCategoryId(categoryId);
         return wxRelatedGoods;
     }
+
 }

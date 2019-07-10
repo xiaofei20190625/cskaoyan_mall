@@ -55,8 +55,9 @@
              and   category_id = #{categoryId}
             </if>
         </where>
-         order by #{sort} #{order}
-
+        <if test="sort!=null and order!=null">
+            order by ${sort} ${order}
+        </if>
     </select>
     <select id="getPageBrandsGoodsById"  resultMap="BaseResultMap">
         select  <include refid="Base_Column_List"/>

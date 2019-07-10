@@ -6,10 +6,14 @@ import com.cskaoyan.mall.admin.bean.*;
 import com.cskaoyan.mall.admin.service.GoodsService;
 
 import com.cskaoyan.mall.admin.service.*;
+import com.cskaoyan.mall.admin.vo.PageVO;
 import com.cskaoyan.mall.wx.bean.*;
 
 import com.cskaoyan.mall.wx.userwx.UserTokenManager;
 import com.cskaoyan.mall.wx.vo.BaseRespVO;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by IceFloe_Rot
@@ -44,6 +49,8 @@ public class GoodsWxController {
     SpecificationService specificationService;
     @Autowired
     CollectService collectService;
+    @Autowired
+    CategoryService categoryService;
 
 
 
@@ -128,6 +135,66 @@ public class GoodsWxController {
         goodsList.put("goodsList", relatedGoods);
         BaseRespVO baseRespVO = BaseRespVO.ok(goodsList);
         return baseRespVO;
+    }
+
+    @RequestMapping("category")
+    @ResponseBody
+    public BaseRespVO goodsCategory(Integer id){
+        HashMap<String, Object> currentSubCategory = getSubCategoryById(id);
+        BaseRespVO baseRespVO = BaseRespVO.ok(currentSubCategory);
+        return baseRespVO;
+    }
+
+    private HashMap<String, Object> getSubCategoryById(Integer currentSubCategoryId) {
+        HashMap<String, Object> hashMap = new HashMap<>();
+        Integer parentCategoryId = categoryService.queryPidById(currentSubCategoryId);
+
+        List<Category> brotherCategory = categoryService.queryAllCategoriesL2(parentCategoryId);
+        Category currentCategory = categoryService.getCategoryById(currentSubCategoryId);
+        Category parentCategory = categoryService.getCategoryById(parentCategoryId);
+
+        hashMap.put("brotherCategory", brotherCategory);
+        hashMap.put("currentCategory",currentCategory);
+        hashMap.put("parentCategory", parentCategory);
+        return hashMap;
+    }
+
+    private PageVO<List> pageInfo(int page, int size, List list) {
+        PageHelper.startPage(page, size);
+        PageInfo<List> pageInfo = new PageInfo<>(list);
+        PageVO<List> listPageVO = new PageVO<>(pageInfo.getTotal(), pageInfo.getList());
+        return listPageVO;
+    }
+
+    //goods/list?brandId=1001003&page=1&size=100
+    @ApiOperation(value = "根据品牌id获取品牌商品")
+    @RequestMapping("list")
+    @ResponseBody
+    public BaseRespVO getPageBrandsGoods(String brandId,int page,int size,Boolean isNew,String order,String sort,String categoryId){
+        PageVO<List> listPageVO =null;
+        if(brandId==null){
+            int categoryId1 = Integer.parseInt(categoryId);
+            List<Goods> goodsList = goodsService.getPageBrandsGoodsByIds(isNew,order,sort,categoryId1);
+            //***********************************
+            //分页
+            listPageVO = pageInfo(page, size, goodsList);
+        }
+        if (categoryId==null){
+            List<Goods> goodsList = goodsService.getPageBrandsGoodsById(brandId);
+            //***********************************
+            //分页
+            listPageVO = pageInfo(page, size, goodsList);
+        }
+        //***********************************
+        List<CategoryL1> allCategories = categoryService.getAllCategories();
+        Map<Object, Object> data = new HashMap<Object, Object>();
+        data.put("count",listPageVO.getTotal());
+        //filterCategoryList分类
+        data.put("filterCategoryList",allCategories);
+        data.put("goodsList",listPageVO.getItems());
+        //***********************************
+        return BaseRespVO.ok(data);
+
     }
 
 }

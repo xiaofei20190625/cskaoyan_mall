@@ -46,4 +46,5 @@ public interface GoodsMapper {
 
 
     Integer getCategoryIdByGoodsId(@Param("goodsId") Integer goodsId);
+
 }

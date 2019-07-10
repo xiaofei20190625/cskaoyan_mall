@@ -11,8 +11,7 @@ import com.cskaoyan.mall.admin.vo.ResponseVO;
 import com.cskaoyan.mall.wx.bean.NewOrderMsg;
 import com.cskaoyan.mall.wx.service.OrderGoodsService;
 import com.cskaoyan.mall.wx.userwx.UserTokenManager;
-import com.cskaoyan.mall.wx.utils.JacksonUtil;
-import com.google.gson.Gson;
+
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.springframework.beans.factory.annotation.Autowired;

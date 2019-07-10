@@ -4,6 +4,7 @@ import com.cskaoyan.mall.admin.bean.Order;
 import com.cskaoyan.mall.admin.bean.OrderDetail;
 import com.cskaoyan.mall.admin.vo.PageVO;
 import com.cskaoyan.mall.admin.vo.ResponseVO;
+import com.cskaoyan.mall.wx.bean.OrderInfo;
 
 import java.util.List;
 
@@ -43,5 +44,6 @@ public interface OrderService {
 
 
 
+    OrderInfo selectByOid(Integer orderId);
 }
 

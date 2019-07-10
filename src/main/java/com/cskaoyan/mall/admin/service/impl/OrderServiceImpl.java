@@ -236,5 +236,9 @@ public class OrderServiceImpl implements OrderService {
     public int confirmByOid(Integer orderId) {
         return orderMapper.confirmByOid(orderId);
     }
+    @Override
+    public OrderInfo selectByOid(Integer orderId) {
+        return orderMapper.selectByOid(orderId);
+    }
 
 }

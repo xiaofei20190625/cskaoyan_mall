@@ -57,4 +57,24 @@ public class GrouponServiceImpl implements GrouponService {
     public List<Groupon> getGrouponRulesByGoodsId(int goodsId) {
         return grouponRulesMapper.getGrouponRulesByGoodsId(goodsId);
     }
+
+    @Override
+    public List<Groupon> queryAll() {
+        return grouponMapper.queryAll();
+    }
+
+    @Override
+    public int count() {
+        return grouponMapper.count();
+    }
+
+    @Override
+    public int countGrouponId() {
+        return grouponMapper.countGrouponId();
+    }
+
+    @Override
+    public Groupon getGrouponId(int grouponId) {
+        return grouponMapper.selectByPrimaryKey(grouponId);
+    }
 }

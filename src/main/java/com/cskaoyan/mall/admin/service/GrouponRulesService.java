@@ -18,4 +18,6 @@ public interface GrouponRulesService {
     List<GrouponRules> wxGetList(int page, int size);
 
     int count();
+
+    GrouponRules getRulesId(Integer rulesId);
 }

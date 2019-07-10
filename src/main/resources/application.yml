@@ -14,9 +14,7 @@ pagehelper:
 
 spring:
   profiles:
-
     active: zw
-
 ---
 spring:
   profiles: cq

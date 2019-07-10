@@ -31,7 +31,7 @@
   </resultMap>
 
 
-  <!--<resultMap id="OrderInfoMap" type="com.cskaoyan.mall.wx.bean.OrderInfo">
+  <resultMap id="OrderInfoMap" type="com.cskaoyan.mall.wx.bean.OrderInfo">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="order_sn" jdbcType="VARCHAR" property="orderSn" />
     <result column="order_status" jdbcType="SMALLINT" property="orderStatus" />
@@ -57,7 +57,7 @@
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="deleted" jdbcType="BIT" property="deleted" />
-  </resultMap>-->
+  </resultMap>
   <sql id="Base_Column_List">
     id, user_id, order_sn, order_status, consignee, mobile, address, message, goods_price, 
     freight_price, coupon_price, integral_price, groupon_price, order_price, actual_price, 
@@ -65,13 +65,13 @@
     add_time, update_time, deleted
   </sql>
   <!--用orderInfo接受-->
-  <!--<select id="selectByOid" resultMap="OrderInfoMap">
+  <select id="selectByOid" resultMap="OrderInfoMap">
     SELECT
     actual_price,add_time,address,consignee,coupon_price,
     freight_price,goods_price,id,mobile,order_sn
     from cskaoyan_mall_order
     where id =#{orderId}
-  </select>-->
+  </select>
 
   <!--getListRecord-->
   <select id="getListRecord" resultMap="BaseResultMap">

@@ -16,4 +16,12 @@ public interface GrouponService {
     List<Groupon> getWxGrouponList();
 
     List<Groupon> getGrouponRulesByGoodsId(int goodsId);
+
+    List<Groupon> queryAll();
+
+    int count();
+
+    int countGrouponId();
+
+    Groupon getGrouponId(int grouponId);
 }

@@ -29,5 +29,9 @@ public interface GrouponRulesMapper {
 
     List<GrouponRules> wxGetList();
 
+
+    int count();
+
     List<Groupon> getGrouponRulesByGoodsId(@Param("goodsId") int goodsId);
+
 }

@@ -169,5 +169,18 @@
         limit 6
     </select>
 
+    <!--getGoodsWx-->
+    <resultMap id="GoodsToGroupon" type="com.cskaoyan.mall.admin.bean.GoodsToGroupon">
+        <id column="id" jdbcType="VARCHAR" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="brief" jdbcType="VARCHAR" property="brief" />
+        <result column="pic_url" jdbcType="VARCHAR" property="picUrl" />
+        <result column="counter_price" jdbcType="VARCHAR" property="counterPrice" />
+        <result column="retail_price" jdbcType="VARCHAR" property="retailPrice" />
+    </resultMap>
+    <select id="getGoodsWx" resultMap="GoodsToGroupon">
+        select brief,counter_price,id ,name , pic_url,retail_price from  cskaoyan_mall_goods where id = #{goodsId}
+    </select>
+
 
 </mapper>

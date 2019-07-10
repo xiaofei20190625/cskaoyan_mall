@@ -30,9 +30,17 @@
 
   <select id="getCartGoodscount" parameterType="java.lang.Integer" resultType="int">
     select
-    count(goods_id)
+    count(number)
     from cskaoyan_mall_cart
     where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+
+
+  <select id="getCartIdAast"  resultType="int">
+    select
+    id
+    from cskaoyan_mall_cart
+    where user_id = #{userId} and add_time = #{date}
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

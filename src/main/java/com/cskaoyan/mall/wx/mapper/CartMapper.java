@@ -1,6 +1,9 @@
 package com.cskaoyan.mall.wx.mapper;
 
 import com.cskaoyan.mall.wx.bean.Cart;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.Date;
 
 public interface CartMapper {
     int deleteByPrimaryKey(Integer id);
@@ -17,4 +20,5 @@ public interface CartMapper {
 
     int getCartGoodscount(Integer userId);
 
+    int getCartIdAast(@Param("userId") Integer userId, @Param("date") Date date);
 }

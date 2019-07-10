@@ -6,6 +6,7 @@ import com.cskaoyan.mall.admin.vo.PageVO;
 import com.cskaoyan.mall.admin.vo.ResponseVO;
 import com.cskaoyan.mall.wx.bean.FloorGoods;
 import com.cskaoyan.mall.wx.bean.GoodsWx;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -39,5 +40,7 @@ public interface GoodsService {
     List<GoodsWx> getWxNewGoodsList();
 
     GoodsToGroupon getGoodsWx(Integer goodsId);
+
+    List<GoodsWx> getWxRelatedGoods(Integer id);
 
 }

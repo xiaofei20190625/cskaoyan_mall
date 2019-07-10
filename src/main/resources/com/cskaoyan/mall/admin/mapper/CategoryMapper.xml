@@ -4,6 +4,7 @@
     <resultMap id="categoryL1Map" type="com.cskaoyan.mall.admin.bean.CategoryL1">
         <result property="id" column="id"/>
         <result property="name" column="name"/>
+        <result property="keywords" column="keywords"/>
         <result property="desc" column="desc"/>
         <result property="pid" column="pid"/>
         <result property="iconUrl" column="icon_url"/>
@@ -17,7 +18,7 @@
     </resultMap>
     <select id="queryAllCategories" resultMap="categoryL1Map">
         SELECT
-        id,name,`desc`,pid,icon_url,pic_url,`level`,sort_order,add_time,update_time,deleted
+        id,name,keywords,`desc`,pid,icon_url,pic_url,`level`,sort_order,add_time,update_time,deleted
         from cskaoyan_mall_category
         where deleted = 0 and `level` = 'L1'
     </select>
@@ -33,6 +34,7 @@
     <resultMap id="categoryL2Map" type="com.cskaoyan.mall.admin.bean.Category">
         <result property="id" column="id"/>
         <result property="name" column="name"/>
+        <result property="keywords" column="keywords"/>
         <result property="desc" column="desc"/>
         <result property="pid" column="pid"/>
         <result property="iconUrl" column="icon_url"/>
@@ -45,7 +47,7 @@
     </resultMap>
     <select id="queryAllCategoriesL2" resultMap="categoryL2Map">
         SELECT
-        id,name,`desc`,pid,icon_url,pic_url,`level`,sort_order,add_time,update_time,deleted
+        id,name,keywords,`desc`,pid,icon_url,pic_url,`level`,sort_order,add_time,update_time,deleted
         from cskaoyan_mall_category
         where deleted = 0 and `level` = 'L2' and pid = #{id}
     </select>
@@ -252,5 +254,28 @@
     <select id="getWxChannelList" resultMap="channelMap">
         select icon_url,id,name from cskaoyan_mall_category
         where deleted = 0 and level = 'L1'
+    </select>
+
+
+
+    <resultMap id="WxCategoryMap" type="com.cskaoyan.mall.admin.bean.Category">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="keywords" column="keywords"/>
+        <result property="desc" column="desc"/>
+        <result property="pid" column="pid"/>
+        <result property="iconUrl" column="icon_url"/>
+        <result property="picUrl" column="pic_url"/>
+        <result property="level" column="level"/>
+        <result property="sortOrder" column="sort_order"/>
+        <result property="addTime" column="add_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="deleted" column="deleted"/>
+    </resultMap>
+    <select id="queryAllCategoriesL1" resultMap="WxCategoryMap">
+        SELECT
+        id,name,keywords,`desc`,pid,icon_url,pic_url,`level`,sort_order,add_time,update_time,deleted
+        from cskaoyan_mall_category
+        where deleted = 0 and `level` = 'L1'
     </select>
 </mapper>

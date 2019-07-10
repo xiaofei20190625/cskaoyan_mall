@@ -23,4 +23,5 @@ public interface CollectMapper {
                                                     @Param("sort") String sort,
                                                     @Param("order") String order);
 
+    Collect verifyCollectByUserIdAndGoodsId(@Param("goodsId") int goodsId,@Param("userId") Integer userId);
 }

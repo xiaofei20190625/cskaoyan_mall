@@ -20,4 +20,13 @@ public class CollectServiceImpl implements CollectService {
         PageVO<Collect> collectPageVO = new PageList<Collect>().pagevo(page,limit,collects);
         return collectPageVO;
     }
+
+    @Override
+    public int verifyCollectByUserIdAndGoodsId(int goodsId, Integer userId) {
+        Collect collect = collectMapper.verifyCollectByUserIdAndGoodsId(goodsId, userId);
+        if (collect != null){
+            return 1;
+        }
+        return 0;
+    }
 }

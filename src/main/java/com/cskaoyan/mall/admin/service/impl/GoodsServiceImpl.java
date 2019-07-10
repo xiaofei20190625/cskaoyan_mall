@@ -2,6 +2,7 @@ package com.cskaoyan.mall.admin.service.impl;
 
 import com.cskaoyan.mall.admin.bean.Goods;
 import com.cskaoyan.mall.admin.bean.GoodsToGroupon;
+import com.cskaoyan.mall.admin.mapper.CategoryMapper;
 import com.cskaoyan.mall.admin.mapper.GoodsMapper;
 import com.cskaoyan.mall.admin.service.GoodsService;
 import com.cskaoyan.mall.admin.vo.PageVO;
@@ -18,6 +19,8 @@ import java.util.List;
 public class GoodsServiceImpl implements GoodsService {
     @Autowired
     GoodsMapper goodsMapper;
+    @Autowired
+    CategoryMapper categoryMapper;
     @Override
     public ResponseVO<PageVO<Goods>> queryAll(int page, int limit) {
         PageHelper.startPage(page, limit);
@@ -91,4 +94,12 @@ public class GoodsServiceImpl implements GoodsService {
     public GoodsToGroupon getGoodsWx(Integer goodsId) {
         return goodsMapper.getGoodsWx(goodsId);
     }
+
+    @Override
+    public List<GoodsWx> getWxRelatedGoods(Integer id) {
+        Integer categoryId = goodsMapper.getCategoryIdByGoodsId(id);
+        List<GoodsWx> wxRelatedGoods = goodsMapper.getWxRelatedGoodsByCategoryId(categoryId);
+        return wxRelatedGoods;
+    }
+
 }

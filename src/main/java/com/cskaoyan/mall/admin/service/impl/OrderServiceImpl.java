@@ -222,4 +222,9 @@ public class OrderServiceImpl implements OrderService {
         return orderMapper.deleteByPrimaryKey(id);
     }
 
+    @Override
+    public OrderInfo selectByOid(Integer orderId) {
+        return orderMapper.selectByOid(orderId);
+    }
+
 }

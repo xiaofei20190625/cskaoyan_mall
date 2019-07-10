@@ -37,7 +37,7 @@
 </select>
   <!--selectList-->
 <select id="selectList" resultMap="BaseResultMap">
-  select  * from  cskaoyan_mall_coupon_user where  status = 0
+  select  * from  cskaoyan_mall_coupon_user where  status = 0 and user_id = #{userId}
 </select>
 
 

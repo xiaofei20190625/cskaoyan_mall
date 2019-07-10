@@ -15,6 +15,6 @@ public interface CouponUserService {
 
     List<CouponUser> queryByCouponIdList(int couponId);
 
-    List<CouponUser> selectList();
+    List<CouponUser> selectList(int userId);
 
 }

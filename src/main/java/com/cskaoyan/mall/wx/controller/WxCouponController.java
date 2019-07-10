@@ -221,11 +221,39 @@ public class WxCouponController {
     }
 
     //http://192.168.2.100:8081/wx/coupon/selectlist?cartId=369&grouponRulesId=0
-    @RequestMapping(value = "selectlist" , method = RequestMethod.GET)
-    public BaseRespVO selectList(@RequestBody int cartId , @RequestBody int grouponRulesId){
-        List<CouponUser> couponUserList = couponUserService.selectList();
+    @RequestMapping(value = "selectlist" , method = RequestMethod.GET )
+    public BaseRespVO selectList(@RequestBody(required = false) Map<Object , Object> data ,HttpServletRequest request){
+        //@RequestBody int cartId , @RequestBody int grouponRulesId
+        String tokenKey = request.getHeader("X-Litemall-Token");
+        int userId = UserTokenManager.getUserId(tokenKey);
+        //int cartId = (int) data.get("cartId");
+        //int grouponRulesId = (int) data.get("grouponRulesId");
         BaseRespVO vo = new BaseRespVO();
-        vo.setData(couponUserList);
+        List<CouponUser> couponUserList = couponUserService.selectList(userId);
+        if(couponUserList == null){
+            vo.setData(null);
+            vo.setErrmsg("没有优惠券");
+            vo.setErrno(-1);
+            return vo;
+        }
+        List<CouponWx> couponWxList = new ArrayList<>();
+        for (int i = 0; i < couponUserList.size(); i++) {
+            CouponUser couponUser = couponUserList.get(i);
+            Integer couponId = couponUser.getCouponId();
+            Coupon coupon = couponService.queryCouponById(couponId);
+            CouponWx couponWx = new CouponWx();
+            couponWx.setDesc(coupon.getDesc());
+            couponWx.setDiscount(coupon.getDiscount());
+            couponWx.setEndTime(couponUser.getEndTime());
+            couponWx.setId(coupon.getId());
+            couponWx.setMin(coupon.getMin());
+            couponWx.setName(coupon.getName());
+            couponWx.setStartTime(couponUser.getStartTime());
+            couponWx.setTag(coupon.getTag());
+            couponWxList.add(couponWx);
+        }
+
+        vo.setData(couponWxList);
         vo.setErrmsg("成功");
         vo.setErrno(0);
         return  vo;

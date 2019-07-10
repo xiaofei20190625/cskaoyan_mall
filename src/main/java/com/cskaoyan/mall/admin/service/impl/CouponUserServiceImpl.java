@@ -52,7 +52,7 @@ public class CouponUserServiceImpl implements CouponUserService {
     }
 
     @Override
-    public List<CouponUser> selectList() {
-        return couponUserMapper.selectList();
+    public List<CouponUser> selectList(int userId) {
+        return couponUserMapper.selectList(userId);
     }
 }

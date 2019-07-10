@@ -1,13 +1,17 @@
 package com.cskaoyan.mall.wx.controller;
 
+import com.cskaoyan.mall.admin.bean.Comment;
+import com.cskaoyan.mall.admin.bean.Order;
 import com.cskaoyan.mall.admin.bean.OrderGoods;
 import com.cskaoyan.mall.admin.mapper.OrderGoodsMapper;
+import com.cskaoyan.mall.admin.service.CommentService;
 import com.cskaoyan.mall.admin.service.OrderService;
 import com.cskaoyan.mall.admin.vo.OperationVO;
 import com.cskaoyan.mall.admin.vo.ResponseVO;
+import com.cskaoyan.mall.wx.bean.NewOrderMsg;
 import com.cskaoyan.mall.wx.service.OrderGoodsService;
 import com.cskaoyan.mall.wx.userwx.UserTokenManager;
-import com.google.gson.Gson;
+
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -27,9 +32,19 @@ public class OrderWXController {
     OrderGoodsService orderGoodsService;
     @Autowired
     OrderGoodsMapper orderGoodsMapper;
+    @Autowired
+    CommentService commentService;
+
+    //提交订单
+    //http://192.168.2.100:8081/wx/order/submit
+    @RequestMapping("order/submit")
+    public ResponseVO submitOrder(@RequestBody NewOrderMsg newOrderMsg) {
+        Order order = new Order();
+        return null;
+    }
     //各种订单显示
     @RequestMapping("order/list")
-    public ResponseVO getUnpayOrderList(int showType, int page, int size, HttpServletRequest request) {
+    public ResponseVO getOrderList(int showType, int page, int size, HttpServletRequest request) {
         //获得请求头
         String tokenKey = request.getHeader("X-Litemall-Token");
         Integer userId = UserTokenManager.getUserId(tokenKey);
@@ -68,10 +83,55 @@ public class OrderWXController {
         return responseVO;
     }
 
-    //取消订单
-    //http://192.168.2.100:8081/wx/order/cancel
+    //用户直接取消订单
     @RequestMapping("order/cancel")
     public OperationVO cancelOrder(@RequestBody String jsonOrderId) {
+        JsonParser jsonParser = new JsonParser();
+        JsonObject object = jsonParser.parse(jsonOrderId).getAsJsonObject();
+        int orderId = object.get("orderId").getAsInt();
+        int cancle = orderService.cancleOrderByOid(orderId);
+        if (cancle == 1) {
+            OperationVO operationVO = new OperationVO(0, "成功");
+            return operationVO;
+        } else {
+            OperationVO operationVO = new OperationVO(-1, "失败");
+            return operationVO;
+        }
+    }
+    //退款取消订单
+    @RequestMapping("order/refund")
+    public OperationVO refundCancelOrder(@RequestBody String jsonOrderId) {
+        JsonParser jsonParser = new JsonParser();
+        JsonObject object = jsonParser.parse(jsonOrderId).getAsJsonObject();
+        int orderId = object.get("orderId").getAsInt();
+        int refundCancle = orderService.refundOrderByOid(orderId);
+        if (refundCancle == 1) {
+            OperationVO operationVO = new OperationVO(0, "成功");
+            return operationVO;
+        } else {
+            OperationVO operationVO = new OperationVO(-1, "失败");
+            return operationVO;
+        }
+    }
+    //确认收货
+    @RequestMapping("order/confirm")
+    public OperationVO confirmOrder(@RequestBody String jsonOrderId) {
+        JsonParser jsonParser = new JsonParser();
+        JsonObject object = jsonParser.parse(jsonOrderId).getAsJsonObject();
+        int orderId = object.get("orderId").getAsInt();
+        int confirm = orderService.confirmByOid(orderId);
+        if (confirm == 1) {
+            OperationVO operationVO = new OperationVO(0, "成功");
+            return operationVO;
+        } else {
+            OperationVO operationVO = new OperationVO(-1, "失败");
+            return operationVO;
+        }
+    }
+    //删除订单
+    //http://192.168.2.100:8081/wx/order/delete
+    @RequestMapping("order/delete")
+    public OperationVO deleteOrder(@RequestBody String jsonOrderId) {
         JsonParser jsonParser = new JsonParser();
         JsonObject object = jsonParser.parse(jsonOrderId).getAsJsonObject();
         int orderId = object.get("orderId").getAsInt();
@@ -86,4 +146,37 @@ public class OrderWXController {
         }
     }
 
+    //商品评论页面回显
+    @RequestMapping("order/goods")
+    public ResponseVO echoCommentPage(Integer orderId, Integer goodsId) {
+        OrderGoods orderGoods = orderGoodsService.selectByOrderIdAndGoodsId(orderId, goodsId);
+        ResponseVO<OrderGoods> responseVO = new ResponseVO<>(orderGoods, "成功", 0);
+        return responseVO;
+    }
+
+    //评论的提交
+    //http://192.168.2.100:8081/wx/order/comment
+    @RequestMapping("order/comment")
+    public OperationVO submitComment(@RequestBody Comment comment, HttpServletRequest request) {
+        //获得请求头
+        String tokenKey = request.getHeader("X-Litemall-Token");
+        Integer userId = UserTokenManager.getUserId(tokenKey);
+        comment.setUserId(userId);
+        comment.setType((byte)0);
+        Date now = new Date();
+        comment.setAddTime(now);
+        comment.setUpdateTime(now);
+        OrderGoods orderGoods = orderGoodsService.selectByPrimaryKey(comment.getOrderGoodsId());
+        Integer goodsId = orderGoods.getGoodsId();
+        comment.setValueId(goodsId);
+        int insert = commentService.insert(comment);
+        Integer commentId = comment.getId();
+        orderGoods.setComment(commentId);
+        int update = orderGoodsService.updateByPrimaryKey(orderGoods);
+        if (insert == 1 && update == 1) {
+            return new OperationVO(0, "成功");
+        } else {
+            return new OperationVO(-1, "失败");
+        }
+    }
 }

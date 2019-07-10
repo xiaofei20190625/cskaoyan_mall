@@ -34,4 +34,9 @@ public interface GrouponMapper {
 
     int[] queryGrouponIds();
 
+    List<Groupon> queryAll();
+
+    int count();
+
+    int countGrouponId();
 }

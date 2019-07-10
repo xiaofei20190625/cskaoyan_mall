@@ -46,12 +46,12 @@
     delete from cskaoyan_mall_comment
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.cskaoyan.mall.admin.bean.Comment">
-    insert into cskaoyan_mall_comment (id, value_id, type, 
+  <insert id="insert" parameterType="com.cskaoyan.mall.admin.bean.Comment" keyProperty="id" useGeneratedKeys="true">
+    insert into cskaoyan_mall_comment (value_id, type,
       content, user_id, has_picture, 
       pic_urls, star, add_time, 
       update_time, deleted)
-    values (#{id,jdbcType=INTEGER}, #{valueId,jdbcType=INTEGER}, #{type,jdbcType=TINYINT}, 
+    values (#{valueId,jdbcType=INTEGER}, #{type,jdbcType=TINYINT},
       #{content,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{hasPicture,jdbcType=BIT}, 
       #{picUrls,typeHandler=com.cskaoyan.mall.admin.typeHandler.StringToStingrArrayHandler,jdbcType=VARCHAR}, #{star,jdbcType=SMALLINT}, #{addTime,jdbcType=TIMESTAMP},
       #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT})

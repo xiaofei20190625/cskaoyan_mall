@@ -37,6 +37,12 @@
     from cskaoyan_mall_footprint
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByUidAndGoodsId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from cskaoyan_mall_footprint
+    where user_id = #{userId} and goods_id = #{goodsId}
+  </select>
 
 
 
@@ -63,10 +69,10 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.cskaoyan.mall.admin.bean.Footprint">
-    insert into cskaoyan_mall_footprint (id, user_id, goods_id, 
+    insert into cskaoyan_mall_footprint (id, user_id, goods_id,
       add_time, update_time, deleted
       )
-    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER},
       #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT}
       )
   </insert>

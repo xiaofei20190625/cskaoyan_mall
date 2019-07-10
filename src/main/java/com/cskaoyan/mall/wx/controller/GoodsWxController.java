@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,6 +52,8 @@ public class GoodsWxController {
     CollectService collectService;
     @Autowired
     CategoryService categoryService;
+    @Autowired
+    FootprintService footprintService;
 
 
 
@@ -73,6 +76,29 @@ public class GoodsWxController {
         System.out.println(userId);
         GoodsDetailWx data = getGoodsDetailById(id, userId);
         BaseRespVO baseRespVo = BaseRespVO.ok(data);
+        //添加足迹
+        //用户已登录，执行添加足迹
+        Date now = new Date();
+        if (userId != null) {
+            //判断该商品是否已经加入足迹列表
+            Footprint footprint = footprintService.selectByUidAndGoodsId(userId, id);
+            //该商品没有加入过足迹列表
+            if (footprint == null) {
+                footprint = new Footprint();
+                footprint.setUserId(userId);
+                footprint.setGoodsId(id);
+                footprint.setAddTime(now);
+                footprint.setUpdateTime(now);
+                int insert = footprintService.insert(footprint);
+            }
+            //该商品加入过足迹，只需要更新时间
+            else {
+                footprint.setUpdateTime(now);
+                int update = footprintService.updateByPrimaryKey(footprint);
+            }
+
+        }
+
         return baseRespVo;
     }
 

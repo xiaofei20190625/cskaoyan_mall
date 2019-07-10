@@ -4,6 +4,7 @@ import com.cskaoyan.mall.admin.bean.Coupon;
 import com.cskaoyan.mall.admin.mapper.CouponMapper;
 import com.cskaoyan.mall.admin.service.CouponService;
 import com.cskaoyan.mall.admin.vo.PageVO;
+import com.cskaoyan.mall.wx.bean.CouponAndCouponUser;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,23 @@ public class CouponServiceImpl implements CouponService {
     @Override
     public List<Coupon> getWxCouponList() {
         return couponMapper.getWxCouponList();
+    }
+
+    @Override
+    public List<Coupon> wxGetList(int page, int size) {
+        PageHelper.startPage(page, size);
+        return couponMapper.wxGetList();
+    }
+
+    @Override
+    public int count() {
+        return couponMapper.count();
+    }
+
+    @Override
+    public List<CouponAndCouponUser> myList(int page, int size, int status) {
+        PageHelper.startPage(page, size);
+        return couponMapper.myList(status);
     }
 
 

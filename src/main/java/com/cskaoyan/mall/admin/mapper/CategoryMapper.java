@@ -39,5 +39,6 @@ public interface CategoryMapper {
 
     List<Channel> getWxChannelList();
 
+
 }
 

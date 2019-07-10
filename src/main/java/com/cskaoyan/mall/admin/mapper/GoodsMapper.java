@@ -42,4 +42,8 @@ public interface GoodsMapper {
 
     GoodsToGroupon  getGoodsWx(@Param("goodsId") Integer goodsId);
 
+    List<GoodsWx> getWxRelatedGoodsByCategoryId(@Param("categoryId") Integer categoryId);
+
+
+    Integer getCategoryIdByGoodsId(@Param("goodsId") Integer goodsId);
 }

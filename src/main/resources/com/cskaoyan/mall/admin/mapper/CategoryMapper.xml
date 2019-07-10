@@ -253,4 +253,5 @@
         select icon_url,id,name from cskaoyan_mall_category
         where deleted = 0 and level = 'L1'
     </select>
+
 </mapper>

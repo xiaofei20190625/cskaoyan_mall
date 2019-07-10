@@ -40,4 +40,5 @@ public interface GoodsService {
 
     GoodsToGroupon getGoodsWx(Integer goodsId);
 
+    List<GoodsWx> getWxRelatedGoods(Integer id);
 }

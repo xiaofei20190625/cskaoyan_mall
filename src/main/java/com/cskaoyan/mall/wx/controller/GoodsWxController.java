@@ -6,11 +6,7 @@ import com.cskaoyan.mall.admin.bean.*;
 import com.cskaoyan.mall.admin.service.GoodsService;
 
 import com.cskaoyan.mall.admin.service.*;
-import com.cskaoyan.mall.wx.bean.CommentWx;
-import com.cskaoyan.mall.wx.bean.GoodsDetailWx;
-
-import com.cskaoyan.mall.wx.bean.GrouponWx;
-import com.cskaoyan.mall.wx.bean.SpecificationWx;
+import com.cskaoyan.mall.wx.bean.*;
 
 import com.cskaoyan.mall.wx.userwx.UserTokenManager;
 import com.cskaoyan.mall.wx.vo.BaseRespVO;
@@ -122,6 +118,16 @@ public class GoodsWxController {
         goodsDetailWx.setSpecificationList(specificationList);
         goodsDetailWx.setUserHasCollect(isCollected);
         return goodsDetailWx;
+    }
+
+    @RequestMapping("related")
+    @ResponseBody
+    public BaseRespVO goodsRelated(Integer id){
+        List<GoodsWx> relatedGoods = goodsService.getWxRelatedGoods(id);
+        HashMap<String, List> goodsList = new HashMap<>();
+        goodsList.put("goodsList", relatedGoods);
+        BaseRespVO baseRespVO = BaseRespVO.ok(goodsList);
+        return baseRespVO;
     }
 
 }

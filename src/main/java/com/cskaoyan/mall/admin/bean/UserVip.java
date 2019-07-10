@@ -1,38 +1,27 @@
 package com.cskaoyan.mall.admin.bean;
 
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 public class UserVip {
     private Integer id;
-
+    @Size(min = 6,max = 20,message = "用户名长度在6~20个字符之间")
     private String username;
-
+    @Size(min = 6,max = 14,message = "密码长度在6~14个字符之间")
     private String password;
-
     private Byte gender;
-
     private Date birthday;
-
     private Date lastLoginTime;
-
     private String lastLoginIp;
-
     private Byte userLevel;
-
     private String nickname;
-
+    @Size(min = 11,max = 11,message = "请输入11位有效手机号")
     private String mobile;
-
     private String avatar;
-
     private String weixinOpenid;
-
     private Byte status;
-
     private Date addTime;
-
     private Date updateTime;
-
     private Boolean deleted;
 
     public Integer getId() {

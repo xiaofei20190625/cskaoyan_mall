@@ -33,4 +33,6 @@ public interface CategoryService {
     List<Category> queryAllCategoriesL1();
 
     List<Category> queryAllCategoriesL2(Integer currentCategoryId);
+
+    List<CategoryL1> getFilterCategoryList(String keyword);
 }

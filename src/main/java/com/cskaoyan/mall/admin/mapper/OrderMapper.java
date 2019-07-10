@@ -22,6 +22,12 @@ public interface OrderMapper {
 
     int updateByPrimaryKey(Order record);
 
+    int cancleOrderByOid(Integer orderId);
+
+    int refundOrderByOid(Integer orderId);
+
+    int confirmByOid(Integer orderId);
+
 
     List<Order> queryPageOrder(@Param("sort") String sort,
                                @Param("order") String order,

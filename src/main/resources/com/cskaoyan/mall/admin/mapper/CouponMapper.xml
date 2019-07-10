@@ -57,7 +57,60 @@
   </insert>
   <!--listUser-->
 
+  <!--wxGetList-->
+  <select id="wxGetList" resultMap="BaseResultMap">
+      select  * from  cskaoyan_mall_coupon
+  </select>
+  <!--count-->
+  <select id="count" resultType="_int">
+    select  count(id) from  cskaoyan_mall_coupon
+  </select>
 
+
+  <resultMap id="Coupon_CouponUser" type="com.cskaoyan.mall.wx.bean.CouponAndCouponUser">
+    <collection property="coupon" javaType="com.cskaoyan.mall.admin.bean.Coupon">
+      <id column="id" jdbcType="INTEGER" property="id" />
+      <result column="name" jdbcType="VARCHAR" property="name" />
+      <result column="desc" jdbcType="VARCHAR" property="desc" />
+      <result column="tag" jdbcType="VARCHAR" property="tag" />
+      <result column="total" jdbcType="INTEGER" property="total" />
+      <result column="discount" jdbcType="DECIMAL" property="discount" />
+      <result column="min" jdbcType="DECIMAL" property="min" />
+      <result column="limit" jdbcType="SMALLINT" property="limit" />
+      <result column="type" jdbcType="SMALLINT" property="type" />
+      <result column="status" jdbcType="SMALLINT" property="status" />
+      <result column="goods_type" jdbcType="SMALLINT" property="goodsType" />
+      <result column="goods_value" jdbcType="VARCHAR" property="goodsValue" typeHandler="com.cskaoyan.mall.admin.typeHandler.GoodValueTypeHandler" />
+      <result column="code" jdbcType="VARCHAR" property="code" />
+      <result column="time_type" jdbcType="SMALLINT" property="timeType" />
+      <result column="days" jdbcType="SMALLINT" property="days" />
+      <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+      <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+      <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+      <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+      <result column="deleted" jdbcType="BIT" property="deleted" />
+    </collection>
+    <collection property="couponUser" javaType="com.cskaoyan.mall.admin.bean.CouponUser">
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="user_id" property="userId" jdbcType="INTEGER" />
+        <result column="coupon_id"  property="couponId" jdbcType="INTEGER" />
+        <result column="status"  property="status" jdbcType="SMALLINT" />
+        <result column="used_time" property="usedTime" jdbcType="TIMESTAMP" />
+        <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+        <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+        <result column="order_id" property="orderId" jdbcType="INTEGER" />
+        <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="deleted" property="deleted" jdbcType="BIT" />
+    </collection>
+  </resultMap>
+  <!--myList-->
+<select id="myList" resultMap="Coupon_CouponUser">
+  select  c.desc ,c.discount ,u.end_time , c.id , c.min, c.name,u.start_time , c.tag
+  from cskaoyan_mall_coupon c ,
+       cskaoyan_mall_coupon_user u
+  where c.status = u.status  and c.id = u.coupon_id and u.status = #{status}
+</select>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
@@ -72,7 +125,7 @@
   <insert id="insert" parameterType="com.cskaoyan.mall.admin.bean.Coupon">
     insert into cskaoyan_mall_coupon (id, name, desc,
                                       tag, total, discount,
-                                      min, limit, type,
+                                      min, `limit`, type,
                                       status, goods_type, goods_value,
                                       code, time_type, days,
                                       start_time, end_time, add_time,
@@ -111,7 +164,7 @@
         min,
       </if>
       <if test="limit != null">
-        limit,
+        `limit`,
       </if>
       <if test="type != null">
         type,
@@ -284,7 +337,7 @@
         total = #{total,jdbcType=INTEGER},
         discount = #{discount,jdbcType=DECIMAL},
         min = #{min,jdbcType=DECIMAL},
-        limit = #{limit,jdbcType=SMALLINT},
+        `limit` = #{limit,jdbcType=SMALLINT},
         type = #{type,jdbcType=SMALLINT},
         status = #{status,jdbcType=SMALLINT},
         goods_type = #{goodsType,jdbcType=SMALLINT},

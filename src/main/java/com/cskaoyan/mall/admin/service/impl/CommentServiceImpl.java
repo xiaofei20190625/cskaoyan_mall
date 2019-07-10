@@ -42,6 +42,11 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    public int insert(Comment record) {
+        return commentMapper.insert(record);
+    }
+
+    @Override
     public List<CommentWx> getCommentsByGoodsId(int goodsId) {
         return commentMapper.getCommentsByGoodsId(goodsId);
     }

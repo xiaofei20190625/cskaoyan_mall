@@ -11,29 +11,18 @@ import java.util.Date;
 
 public class Category {
     private Integer id;
-
     private String name;
-
     private String keywords;
-
     private String desc;
-
     private Integer pid;
-
     private String iconUrl;
-
     private String picUrl;
-
     private String level;
-
     private Byte sortOrder;
-
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date addTime;
-
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
-
     private Boolean deleted;
 
     public Category() {

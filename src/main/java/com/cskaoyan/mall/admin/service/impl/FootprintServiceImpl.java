@@ -36,4 +36,19 @@ public class FootprintServiceImpl implements FootprintService {
         ResponseVO responseVO = new ResponseVO(footprintVO, "成功", 0);
         return responseVO;
     }
+
+    @Override
+    public Footprint selectByUidAndGoodsId(Integer userId, Integer goodsId) {
+        return footprintMapper.selectByUidAndGoodsId(userId, goodsId);
+    }
+
+    @Override
+    public int updateByPrimaryKey(Footprint record) {
+        return footprintMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public int insert(Footprint record) {
+        return footprintMapper.insert(record);
+    }
 }

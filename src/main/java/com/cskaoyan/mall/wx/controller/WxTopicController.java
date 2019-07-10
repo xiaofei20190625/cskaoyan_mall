@@ -37,7 +37,7 @@ public class WxTopicController {
         //键值对封装输出映射
         Map<Object , Object> result = new HashMap<>();
         result.put("count", count);
-        result.put("ata",topicList);
+        result.put("data",topicList);
         return  BaseRespVO.ok(result);
 /*        topicVO.setCount(count);
         topicVO.setData(topicList);

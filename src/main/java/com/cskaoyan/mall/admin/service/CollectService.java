@@ -7,4 +7,5 @@ public interface CollectService {
 
     PageVO<Collect> findCollectPageByValueIdAndUserId(int page, int limit, String userId, String valueId, String sort, String order);
 
+    int verifyCollectByUserIdAndGoodsId(int goodsId, Integer userId);
 }

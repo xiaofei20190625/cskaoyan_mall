@@ -31,8 +31,6 @@ public class WxBrandController {
     @Autowired
     BrandService brandService;
     @Autowired
-    GoodsService goodsService;
-    @Autowired
     CategoryService categoryService;
 
     //wx/brand/list?page=1&size=10
@@ -58,13 +56,6 @@ public class WxBrandController {
         return BaseRespVO.ok(data);
     }
 
-    private PageVO<List> pageInfo(int page, int size, List list) {
-        PageHelper.startPage(page, size);
-        PageInfo<List> pageInfo = new PageInfo<>(list);
-        PageVO<List> listPageVO = new PageVO<>(pageInfo.getTotal(), pageInfo.getList());
-        return listPageVO;
-    }
-
 
     @ApiOperation(value = "根据品牌id获取品牌详情")
     @RequestMapping(value = "brand/detail")
@@ -81,40 +72,12 @@ public class WxBrandController {
         return BaseRespVO.ok(data);
     }
 
-    //goods/list?brandId=1001003&page=1&size=100
-    @ApiOperation(value = "根据品牌id获取品牌商品")
-    @RequestMapping(value = "goods/list")
-    @ResponseBody
-    public BaseRespVO getPageBrandsGoods(String brandId,int page,int size,Boolean isNew,String order,String sort,String categoryId){
-        PageVO<List> listPageVO =null;
-
-        if(brandId==null){
-            int categoryId1 = Integer.parseInt(categoryId);
-            List<Goods> goodsList = goodsService.getPageBrandsGoodsByIds(isNew,order,sort,categoryId1);
-            //***********************************
-            //分页
-            listPageVO = pageInfo(page, size, goodsList);
-
-
-        }
-        if (categoryId==null){
-
-            List<Goods> goodsList = goodsService.getPageBrandsGoodsById(brandId);
-            //***********************************
-            //分页
-            listPageVO = pageInfo(page, size, goodsList);
-
-        }
-        //***********************************
-        List<CategoryL1> allCategories = categoryService.getAllCategories();
-        Map<Object, Object> data = new HashMap<Object, Object>();
-        data.put("count",listPageVO.getTotal());
-        //filterCategoryList分类
-        data.put("filterCategoryList",allCategories);
-        data.put("goodsList",listPageVO.getItems());
-
-        //***********************************
-        return BaseRespVO.ok(data);
-
+    private PageVO<List> pageInfo(int page, int size, List list) {
+        PageHelper.startPage(page, size);
+        PageInfo<List> pageInfo = new PageInfo<>(list);
+        PageVO<List> listPageVO = new PageVO<>(pageInfo.getTotal(), pageInfo.getList());
+        return listPageVO;
     }
+
+
 }

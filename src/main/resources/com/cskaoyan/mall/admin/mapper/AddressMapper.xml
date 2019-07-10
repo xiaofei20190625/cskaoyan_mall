@@ -58,7 +58,7 @@
   <update id="addressdelete" parameterType="com.cskaoyan.mall.admin.bean.Address">
     update cskaoyan_mall_address
     set
-      is_default =false
+      deleted =true
     where id = #{id,jdbcType=INTEGER}
   </update>
 
@@ -67,7 +67,7 @@
     select
     <include refid="Base_Column_List" />
     from cskaoyan_mall_address
-    where user_id = #{user_id,jdbcType=INTEGER}
+    where user_id = #{user_id,jdbcType=INTEGER} and deleted =false
   </select>
 
   <select id="addressdetail"  resultMap="BaseResultMap">

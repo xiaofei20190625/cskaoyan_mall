@@ -39,6 +39,13 @@ public class OrderWXController {
     //http://192.168.2.100:8081/wx/order/submit
     @RequestMapping("order/submit")
     public ResponseVO submitOrder(@RequestBody NewOrderMsg newOrderMsg) {
+        int addressId = newOrderMsg.getAddressId();
+        int carid = newOrderMsg.getCarid();
+        int couponId = newOrderMsg.getCouponId();
+        int grouponLinkId = newOrderMsg.getGrouponLinkId();
+        int grouponRulesId = newOrderMsg.getGrouponRulesId();
+        String message = newOrderMsg.getMessage();
+
         Order order = new Order();
         return null;
     }

@@ -9,6 +9,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,5 +28,26 @@ public class CouponUserServiceImpl implements CouponUserService {
         PageInfo<CouponUser> couponUserPageInfo = new PageInfo<>(couponList);
         PageVO<CouponUser> couponUserPageVO = new PageVO<>(couponUserPageInfo.getTotal(),couponUserPageInfo.getList());
         return  couponUserPageVO ;
+    }
+
+    @Override
+    public CouponUser queryByCouponId(int couponId) {
+        return couponUserMapper.queryByCouponId(couponId);
+    }
+
+    @Override
+    public int insert(Integer userId, int couponId, Date startTime, Date endTime, Date addTime) {
+        CouponUser couponUser = new CouponUser();
+        couponUser.setUserId(userId);
+        couponUser.setCouponId(couponId);
+        couponUser.setStartTime(startTime);
+        couponUser.setEndTime(endTime);
+        couponUser.setAddTime(addTime);
+        return couponUserMapper.insertSelective(couponUser);
+    }
+
+    @Override
+    public List<CouponUser> queryByCouponIdList(int couponId) {
+        return couponUserMapper.queryByCouponIdList(couponId);
     }
 }

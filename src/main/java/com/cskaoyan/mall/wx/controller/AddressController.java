@@ -5,6 +5,7 @@ import com.cskaoyan.mall.admin.bean.Address;
 import com.cskaoyan.mall.admin.bean.Region;
 import com.cskaoyan.mall.admin.service.AddressService;
 import com.cskaoyan.mall.wx.userwx.UserTokenManager;
+import com.cskaoyan.mall.wx.utils.JSONUtils;
 import com.cskaoyan.mall.wx.vo.BaseRespVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -50,10 +51,11 @@ public class AddressController {
 
 
     @RequestMapping("address/delete")
-    public BaseRespVO addressdelete(HttpServletRequest request,@RequestBody Integer id) {
+    public BaseRespVO addressdelete(@RequestBody Object id) {
 
-
-        Integer Address3 = addressService.addressdelete(id);
+        HashMap hashMap = JSONUtils.toHashMap(id);
+        int id1 = (int) hashMap.get("id");
+        Integer Address3 = addressService.addressdelete(id1);
 
 
         return BaseRespVO.ok(Address3);

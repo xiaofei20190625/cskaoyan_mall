@@ -20,4 +20,8 @@ public interface CouponUserMapper {
 
     List<CouponUser> getListUser(@Param("sort") String sort, @Param("order")String order,
                                  @Param("couponId")int couponId, @Param("userId")String userId, @Param("status")String status);
+
+    CouponUser queryByCouponId(@Param("couponId") int couponId);
+
+    List<CouponUser> queryByCouponIdList(@Param("couponId")int couponId);
 }

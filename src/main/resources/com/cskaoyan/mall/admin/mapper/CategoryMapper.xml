@@ -278,4 +278,14 @@
         from cskaoyan_mall_category
         where deleted = 0 and `level` = 'L1'
     </select>
+
+    <select id="getFilterCategoryList" resultMap="categoryL2Map">
+        SELECT
+        id,name,keywords,`desc`,pid,icon_url,pic_url,`level`,sort_order,add_time,update_time,deleted
+        from cskaoyan_mall_category
+        where deleted = 0 and `level` = 'L2'
+        <if test="keyword!=null">
+            and name like "%"#{keyword}"%"
+        </if>
+    </select>
 </mapper>

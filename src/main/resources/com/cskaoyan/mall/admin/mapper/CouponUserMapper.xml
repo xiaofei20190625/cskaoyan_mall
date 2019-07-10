@@ -27,6 +27,17 @@
     where coupon_id = #{couponId}  and  user_id like "%" #{userId} "%" and  status like  "%" #{status} "%"
     order by #{sort}  #{order}
   </select>
+  <!--queryByCouponId-->
+  <select id="queryByCouponId" resultMap="BaseResultMap">
+    select  * from  cskaoyan_mall_coupon_user where  coupon_id = #{couponId}
+  </select>
+  <!--queryByCouponIdList-->
+<select id="queryByCouponIdList" resultMap="BaseResultMap" >
+  select  * from  cskaoyan_mall_coupon_user where  coupon_id = #{couponId}
+</select>
+
+
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

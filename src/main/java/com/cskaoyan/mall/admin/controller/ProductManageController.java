@@ -41,6 +41,11 @@ public class ProductManageController {
             ResponseVO<PageVO<Goods>> responseVO = goodsService.queryAll(page, limit);
             return responseVO;
         } else {
+            if (goodsSn == null) {
+                goodsSn = "";
+            } else if (name == null) {
+                name = "";
+            }
             ResponseVO<PageVO<Goods>> responseVO = goodsService.fuzzyQuery(page, limit, goodsSn, name);
             return responseVO;
         }

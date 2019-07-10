@@ -23,4 +23,6 @@ public interface CouponService {
     int count();
 
     List<CouponAndCouponUser> myList(int page, int size, int status);
+
+    Coupon queryCouponById(int couponId);
 }

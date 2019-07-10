@@ -219,6 +219,17 @@ public class WxCouponController {
 
 
     }
+
+    //http://192.168.2.100:8081/wx/coupon/selectlist?cartId=369&grouponRulesId=0
+    @RequestMapping(value = "selectlist" , method = RequestMethod.GET)
+    public BaseRespVO selectList(@RequestBody int cartId , @RequestBody int grouponRulesId){
+        List<CouponUser> couponUserList = couponUserService.selectList();
+        BaseRespVO vo = new BaseRespVO();
+        vo.setData(couponUserList);
+        vo.setErrmsg("成功");
+        vo.setErrno(0);
+        return  vo;
+    }
 }
 
 

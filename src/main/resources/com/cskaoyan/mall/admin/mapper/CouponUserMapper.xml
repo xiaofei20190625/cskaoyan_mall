@@ -35,7 +35,10 @@
 <select id="queryByCouponIdList" resultMap="BaseResultMap" >
   select  * from  cskaoyan_mall_coupon_user where  coupon_id = #{couponId}
 </select>
-
+  <!--selectList-->
+<select id="selectList" resultMap="BaseResultMap">
+  select  * from  cskaoyan_mall_coupon_user where  status = 0
+</select>
 
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">

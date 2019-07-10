@@ -24,4 +24,6 @@ public interface CouponUserMapper {
     CouponUser queryByCouponId(@Param("couponId") int couponId);
 
     List<CouponUser> queryByCouponIdList(@Param("couponId")int couponId);
+
+    List<CouponUser> selectList();
 }

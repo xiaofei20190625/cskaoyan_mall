@@ -50,4 +50,9 @@ public class CouponUserServiceImpl implements CouponUserService {
     public List<CouponUser> queryByCouponIdList(int couponId) {
         return couponUserMapper.queryByCouponIdList(couponId);
     }
+
+    @Override
+    public List<CouponUser> selectList() {
+        return couponUserMapper.selectList();
+    }
 }

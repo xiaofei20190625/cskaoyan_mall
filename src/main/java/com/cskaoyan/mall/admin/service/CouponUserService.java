@@ -14,4 +14,7 @@ public interface CouponUserService {
     int insert(Integer userId, int couponId, Date startTime, Date endTime, Date addTime);
 
     List<CouponUser> queryByCouponIdList(int couponId);
+
+    List<CouponUser> selectList();
+
 }

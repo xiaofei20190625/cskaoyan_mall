@@ -12,6 +12,7 @@ import com.cskaoyan.mall.wx.bean.GoodsDetailWx;
 import com.cskaoyan.mall.wx.bean.GrouponWx;
 import com.cskaoyan.mall.wx.bean.SpecificationWx;
 
+import com.cskaoyan.mall.wx.userwx.UserTokenManager;
 import com.cskaoyan.mall.wx.vo.BaseRespVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,6 +46,8 @@ public class GoodsWxController {
     ProductService productService;
     @Autowired
     SpecificationService specificationService;
+    @Autowired
+    CollectService collectService;
 
 
 
@@ -61,13 +64,16 @@ public class GoodsWxController {
 
     @RequestMapping("detail")
     @ResponseBody
-    public BaseRespVO goodsDetail(Integer id){
-        GoodsDetailWx data = getGoodsDetailById(id);
+    public BaseRespVO goodsDetail(Integer id, HttpServletRequest request){
+        String tokenKey = request.getHeader("X-Litemall-Token");
+        Integer userId = UserTokenManager.getUserId(tokenKey);
+        System.out.println(userId);
+        GoodsDetailWx data = getGoodsDetailById(id, userId);
         BaseRespVO baseRespVo = BaseRespVO.ok(data);
         return baseRespVo;
     }
 
-    private GoodsDetailWx getGoodsDetailById(int goodsId) {
+    private GoodsDetailWx getGoodsDetailById(int goodsId, Integer userId) {
         GoodsDetailWx goodsDetailWx = new GoodsDetailWx();
         Goods goods = goodsService.queryOneById(goodsId);
 
@@ -98,6 +104,13 @@ public class GoodsWxController {
         //SpecificationList
         List<SpecificationWx> specificationList = specificationService.querySpecificationWxByGoodsId(goodsId);
 
+        //collect
+        int isCollected = 0;
+        if (userId != null){
+            isCollected = collectService.verifyCollectByUserIdAndGoodsId(goodsId, userId);
+        }
+
+
         goodsDetailWx.setAttribute(attribute);
         goodsDetailWx.setBrand(brand);
         goodsDetailWx.setComment(comment);
@@ -107,7 +120,7 @@ public class GoodsWxController {
         goodsDetailWx.setProductList(productList);
         goodsDetailWx.setShareImage(shareImage);
         goodsDetailWx.setSpecificationList(specificationList);
-        goodsDetailWx.setUserHasCollect(0);
+        goodsDetailWx.setUserHasCollect(isCollected);
         return goodsDetailWx;
     }
 

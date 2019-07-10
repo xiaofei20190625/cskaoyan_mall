@@ -8,11 +8,31 @@
         <result property="name" column="name"/>
         <result property="type" column="type"/>
         <result property="code" column="code"/>
+        <result property="pid" column="pid"/>
         <collection property="children" column="id" select="com.cskaoyan.mall.admin.mapper.RegionMapper.queryAllCityByPid"/>
     </resultMap>
     <select id="queryAllProvince" resultMap="provinceMap">
       SELECT id,`name`,`type`,`code`,pid FROM cskaoyan_mall_region WHERE `type` = 1
     </select>
+    <select id="queryProvince" resultType="string">
+        SELECT `name`  FROM cskaoyan_mall_region WHERE `type` = 1
+        and id = #{provinceId}
+    </select>
+
+    <resultMap id="regionMap" type="com.cskaoyan.mall.admin.bean.Region">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="type" column="type"/>
+        <result property="code" column="code"/>
+        <result property="pid" column="pid"/>
+    </resultMap>
+
+
+
+    <select id="regionlist" resultMap="regionMap">
+        SELECT id,`name`,`type`,`code`,pid FROM cskaoyan_mall_region WHERE  pid = #{pid}
+    </select>
+
 
     <resultMap id="cityMap" type="com.cskaoyan.mall.admin.bean.City">
         <result property="id" column="id"/>
@@ -21,9 +41,18 @@
         <result property="code" column="code"/>
         <collection property="children" column="id" select="com.cskaoyan.mall.admin.mapper.RegionMapper.queryAllDistrictByCode"/>
     </resultMap>
+
     <select id="queryAllCityByPid" resultMap="cityMap">
         SELECT id,`name`,`type`,`code`,pid as ccode FROM cskaoyan_mall_region WHERE `type` = 2 and pid = #{id}
     </select>
+
+    <select id="queryCityByPid" resultType="string">
+        SELECT `name`  FROM cskaoyan_mall_region WHERE `type` = 2
+         and id = #{cityId}
+    </select>
+
+
+
 
     <resultMap id="districtMap" type="com.cskaoyan.mall.admin.bean.Discrict">
         <result property="id" column="id"/>
@@ -33,5 +62,9 @@
     </resultMap>
     <select id="queryAllDistrictByCode" resultMap="districtMap">
         SELECT id,`name`,`type`,`code`,pid as dcode FROM cskaoyan_mall_region WHERE `type` = 3 and pid = #{id}
+    </select>
+    <select id="queryDistrictByCode" resultType="string">
+        SELECT `name` FROM cskaoyan_mall_region WHERE `type` = 3
+        and code = #{areaId}
     </select>
 </mapper>

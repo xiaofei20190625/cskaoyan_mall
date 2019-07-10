@@ -1,6 +1,7 @@
 package com.cskaoyan.mall.admin.mapper;
 
-import com.cskaoyan.mall.admin.bean.Province;
+import com.cskaoyan.mall.admin.bean.*;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -10,4 +11,11 @@ import java.util.List;
  */
 public interface RegionMapper {
     List<Province> queryAllProvince();
+    String queryProvince(@Param("provinceId") Integer provinceId);
+    String queryCityByPid(@Param("cityId") Integer cityId );
+    String queryDistrictByCode(@Param("areaId") Integer areaId);
+
+    List<Region> regionlist(int pid);
 }
+
+

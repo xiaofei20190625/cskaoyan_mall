@@ -3,9 +3,12 @@ package com.cskaoyan.mall.admin.bean;
 import java.util.Date;
 
 public class Address {
+
+
     private Integer id;
 
     private String name;
+
 
     private Integer userId;
 
@@ -26,6 +29,27 @@ public class Address {
     private Date updateTime;
 
     private Boolean deleted;
+
+
+    public Address() {
+    }
+    public Address(Integer id, String name, Integer userId, Integer provinceId, Integer cityId, Integer areaId, String address, String mobile, Boolean isDefault, Date addTime, Date updateTime, Boolean deleted) {
+        this.id = id;
+        this.name = name;
+        this.userId = userId;
+        this.provinceId = provinceId;
+        this.cityId = cityId;
+        this.areaId = areaId;
+        this.address = address;
+        this.mobile = mobile;
+        this.isDefault = isDefault;
+        this.addTime = addTime;
+        this.updateTime = updateTime;
+        this.deleted = deleted;
+    }
+    public Address(Integer userId) {
+        this.userId = userId;
+    }
 
     public Integer getId() {
         return id;

@@ -93,7 +93,7 @@
   <select id="selectReadyDeliverOrdersByUid" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"/>
     from cskaoyan_mall_order
-    where user_id=#{userId} and (order_status=201 or order_status=202)
+    where user_id=#{userId} and order_status=201
     </select>
   <select id="selectUnConfirmOrdersByUid" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"/>
@@ -409,6 +409,21 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       deleted = #{deleted,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="cancleOrderByOid">
+    update cskaoyan_mall_order
+    set order_status = 102
+    where id = #{orderId}
+  </update>
+  <update id="refundOrderByOid">
+    update cskaoyan_mall_order
+    set order_status = 202
+    where id = #{orderId}
+  </update>
+  <update id="confirmByOid">
+    update cskaoyan_mall_order
+    set order_status = 401
+    where id = #{orderId}
   </update>
 
 

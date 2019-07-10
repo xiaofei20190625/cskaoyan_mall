@@ -54,6 +54,10 @@
             <if test="categoryId!=0">
              and   category_id = #{categoryId}
             </if>
+            <if test="keyword!=null">
+                and keywords like "%"#{keyword}"%"
+                or name like "%"#{keyword}"%"
+            </if>
         </where>
         <if test="sort!=null and order!=null">
             order by ${sort} ${order}

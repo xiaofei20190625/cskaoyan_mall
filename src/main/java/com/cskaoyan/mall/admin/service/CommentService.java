@@ -18,6 +18,8 @@ public interface CommentService {
 
     int delete(Integer id);
 
+    int insert(Comment record);
+
     List<CommentWx> getCommentsByGoodsId(int goodsId);
 
     int getCommentCountByGoodsId(int goodsId);

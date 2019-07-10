@@ -35,6 +35,14 @@ public interface OrderService {
 
     int deleteByPrimaryKey(Integer id);
 
+    int cancleOrderByOid(Integer orderId);
+
+    int refundOrderByOid(Integer orderId);
+
+    int confirmByOid(Integer orderId);
+
+
+
 
     OrderInfo selectByOid(Integer orderId);
 }

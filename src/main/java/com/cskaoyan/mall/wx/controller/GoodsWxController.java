@@ -20,9 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by IceFloe_Rot
@@ -51,6 +49,8 @@ public class GoodsWxController {
     CollectService collectService;
     @Autowired
     CategoryService categoryService;
+    @Autowired
+    FootprintService footprintService;
 
 
 
@@ -73,9 +73,30 @@ public class GoodsWxController {
         System.out.println(userId);
         GoodsDetailWx data = getGoodsDetailById(id, userId);
         BaseRespVO baseRespVo = BaseRespVO.ok(data);
+        //添加足迹
+        //用户已登录，执行添加足迹
+        Date now = new Date();
+        if (userId != null) {
+            //判断该商品是否已经加入足迹列表
+            Footprint footprint = footprintService.selectByUidAndGoodsId(userId, id);
+            //该商品没有加入过足迹列表
+            if (footprint == null) {
+                footprint = new Footprint();
+                footprint.setUserId(userId);
+                footprint.setGoodsId(id);
+                footprint.setAddTime(now);
+                footprint.setUpdateTime(now);
+                int insert = footprintService.insert(footprint);
+            }
+            //该商品加入过足迹，只需要更新时间
+            else {
+                footprint.setUpdateTime(now);
+                int update = footprintService.updateByPrimaryKey(footprint);
+            }
+        }
+
         return baseRespVo;
     }
-
     private GoodsDetailWx getGoodsDetailById(int goodsId, Integer userId) {
         GoodsDetailWx goodsDetailWx = new GoodsDetailWx();
         Goods goods = goodsService.queryOneById(goodsId);
@@ -166,31 +187,73 @@ public class GoodsWxController {
         return listPageVO;
     }
 
-    //goods/list?brandId=1001003&page=1&size=100
+    /*//goods/list?brandId=1001003&page=1&size=100
     @ApiOperation(value = "根据品牌id获取品牌商品")
     @RequestMapping("list")
     @ResponseBody
-    public BaseRespVO getPageBrandsGoods(String brandId,int page,int size,Boolean isNew,String order,String sort,String categoryId){
+    public BaseRespVO getPageBrandsGoods(String keyword,String brandId,int page,int size,Boolean isNew,String order,String sort,Integer categoryId){
         PageVO<List> listPageVO =null;
+        List<Goods> goodsList = null;
         if(brandId==null){
-            int categoryId1 = Integer.parseInt(categoryId);
-            List<Goods> goodsList = goodsService.getPageBrandsGoodsByIds(isNew,order,sort,categoryId1);
+            goodsList = goodsService.getPageBrandsGoodsByIds(isNew,order,sort,categoryId,keyword);
             //***********************************
             //分页
             listPageVO = pageInfo(page, size, goodsList);
         }
         if (categoryId==null){
-            List<Goods> goodsList = goodsService.getPageBrandsGoodsById(brandId);
+            goodsList = goodsService.getPageBrandsGoodsById(brandId);
             //***********************************
             //分页
             listPageVO = pageInfo(page, size, goodsList);
         }
         //***********************************
-        List<CategoryL1> allCategories = categoryService.getAllCategories();
+        HashSet<Integer> categoryIdSet = new HashSet<>();
+        for (Goods goods : goodsList){
+            categoryIdSet.add(goods.getCategoryId());
+        }
+        int[] cetegoryIdArr = new int[categoryIdSet.size()];
+        for (int i = 0; i < cetegoryIdArr.length; i++) {
+            cetegoryIdArr[i] =
+        }
+//        List<CategoryL1> allCategories = categoryService.getAllCategories();
+        List<CategoryL1> filterCategoryList = categoryService.getFilterCategoryList(keyword);
+
         Map<Object, Object> data = new HashMap<Object, Object>();
         data.put("count",listPageVO.getTotal());
         //filterCategoryList分类
-        data.put("filterCategoryList",allCategories);
+        data.put("filterCategoryList",filterCategoryList);
+        data.put("goodsList",listPageVO.getItems());
+        //***********************************
+        return BaseRespVO.ok(data);
+
+    }*/
+    //goods/list?brandId=1001003&page=1&size=100
+    @ApiOperation(value = "根据品牌id获取品牌商品")
+    @RequestMapping("list")
+    @ResponseBody
+    public BaseRespVO getPageBrandsGoods(String keyword,String brandId,int page,int size,Boolean isNew,String order,String sort,Integer categoryId){
+        PageVO<List> listPageVO =null;
+        List<Goods> goodsList = null;
+        if(brandId==null){
+            goodsList = goodsService.getPageBrandsGoodsByIds(isNew,order,sort,categoryId,keyword);
+            //***********************************
+            //分页
+            listPageVO = pageInfo(page, size, goodsList);
+        }
+        if (categoryId==null){
+            goodsList = goodsService.getPageBrandsGoodsById(brandId);
+            //***********************************
+            //分页
+            listPageVO = pageInfo(page, size, goodsList);
+        }
+        //***********************************
+
+        List<CategoryL1> filterCategoryList = categoryService.getAllCategories();
+
+        Map<Object, Object> data = new HashMap<Object, Object>();
+        data.put("count",listPageVO.getTotal());
+        //filterCategoryList分类
+        data.put("filterCategoryList",filterCategoryList);
         data.put("goodsList",listPageVO.getItems());
         //***********************************
         return BaseRespVO.ok(data);

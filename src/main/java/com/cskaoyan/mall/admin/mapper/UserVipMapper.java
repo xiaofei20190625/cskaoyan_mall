@@ -1,6 +1,7 @@
 package com.cskaoyan.mall.admin.mapper;
 
 import com.cskaoyan.mall.admin.bean.UserVip;
+import com.cskaoyan.mall.wx.bean.RegisterUser;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -24,6 +25,4 @@ public interface UserVipMapper {
                                                    @Param("order") String order);
 
     UserVip findUserVip(String username);
-
-
 }

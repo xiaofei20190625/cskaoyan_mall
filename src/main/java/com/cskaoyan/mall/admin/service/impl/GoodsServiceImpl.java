@@ -59,6 +59,15 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
+    public List<Goods> getPageBrandsGoodsByIds( Boolean isNew, String order, String sort, int categoryId) {
+        return goodsMapper.getPageBrandsGoodsByIds(isNew,order, sort, categoryId);
+    }
+
+    @Override
+    public List<Goods> getPageBrandsGoodsById(String brandId) {
+        return goodsMapper.getPageBrandsGoodsById(brandId);
+    }
+    @Override
     public int getGoodsNum() {
         return goodsMapper.getGoodsNum();
     }

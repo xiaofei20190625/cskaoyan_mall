@@ -3,71 +3,72 @@ package com.cskaoyan.mall.wx.bean;
 import com.cskaoyan.mall.admin.bean.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by IceFloe_Rot
  * Date 2019/7/9 Time 17:21
  */
 public class GoodsDetailWx {
-    private Attribute attribute;
-    private BrandWx brand;
-    private Comment comment;
-    private GrouponWx groupon;
-    private GoodsWx info;
-    private Issue issue;
+    private List<Attribute> attribute;
+    private Brand brand;
+    private Map<String,Object> comment;
+    private List<Groupon> groupon;
+    private Goods info;
+    private List<Issue> issue;
     private List<Product> productList;
     private String shareImage;
-    private List<Specification> specificationList;
-    private Boolean userHasCollect;
+    private List<SpecificationWx> specificationList;
+    private Integer userHasCollect;
 
     public GoodsDetailWx() {
     }
 
-    public Attribute getAttribute() {
+    public List<Attribute> getAttribute() {
         return attribute;
     }
 
-    public void setAttribute(Attribute attribute) {
+    public void setAttribute(List<Attribute> attribute) {
         this.attribute = attribute;
     }
 
-    public BrandWx getBrand() {
+    public Brand getBrand() {
         return brand;
     }
 
-    public void setBrand(BrandWx brand) {
+    public void setBrand(Brand brand) {
         this.brand = brand;
     }
 
-    public Comment getComment() {
+    public Map<String,Object> getComment() {
         return comment;
     }
 
-    public void setComment(Comment comment) {
+    public void setComment(Map<String,Object> comment) {
         this.comment = comment;
     }
 
-    public GrouponWx getGroupon() {
+    public List<Groupon> getGroupon() {
         return groupon;
     }
 
-    public void setGroupon(GrouponWx groupon) {
+    public void setGroupon(List<Groupon> groupon) {
         this.groupon = groupon;
     }
 
-    public GoodsWx getInfo() {
+    public Goods getInfo() {
         return info;
     }
 
-    public void setInfo(GoodsWx info) {
+    public void setInfo(Goods info) {
         this.info = info;
     }
 
-    public Issue getIssue() {
+    public List<Issue> getIssue() {
         return issue;
     }
 
-    public void setIssue(Issue issue) {
+    public void setIssue(List<Issue> issue) {
         this.issue = issue;
     }
 
@@ -87,19 +88,19 @@ public class GoodsDetailWx {
         this.shareImage = shareImage;
     }
 
-    public List<Specification> getSpecificationList() {
+    public List<SpecificationWx> getSpecificationList() {
         return specificationList;
     }
 
-    public void setSpecificationList(List<Specification> specificationList) {
+    public void setSpecificationList(List<SpecificationWx> specificationList) {
         this.specificationList = specificationList;
     }
 
-    public Boolean getUserHasCollect() {
+    public Integer getUserHasCollect() {
         return userHasCollect;
     }
 
-    public void setUserHasCollect(Boolean userHasCollect) {
+    public void setUserHasCollect(Integer userHasCollect) {
         this.userHasCollect = userHasCollect;
     }
 }

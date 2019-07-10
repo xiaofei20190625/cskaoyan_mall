@@ -1,20 +1,33 @@
 package com.cskaoyan.mall.wx.controller;
 
+import com.cskaoyan.mall.admin.bean.OrderGoods;
+import com.cskaoyan.mall.admin.mapper.OrderGoodsMapper;
 import com.cskaoyan.mall.admin.service.OrderService;
+import com.cskaoyan.mall.admin.vo.OperationVO;
 import com.cskaoyan.mall.admin.vo.ResponseVO;
+import com.cskaoyan.mall.wx.service.OrderGoodsService;
 import com.cskaoyan.mall.wx.userwx.UserTokenManager;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 @RequestMapping("wx")
 public class OrderWXController {
     @Autowired
     OrderService orderService;
-    //订单显示
+    @Autowired
+    OrderGoodsService orderGoodsService;
+    @Autowired
+    OrderGoodsMapper orderGoodsMapper;
+    //各种订单显示
     @RequestMapping("order/list")
     public ResponseVO getUnpayOrderList(int showType, int page, int size, HttpServletRequest request) {
         //获得请求头
@@ -49,10 +62,28 @@ public class OrderWXController {
     }
 
     //订单详情
-    //http://192.168.2.100:8081/wx/order/detail?orderId=72
     @RequestMapping("order/detail")
     public ResponseVO getOrderDetail(int orderId) {
-        return null;
+        ResponseVO responseVO = orderService.showOrderDetailByOid(orderId);
+        return responseVO;
+    }
+
+    //取消订单
+    //http://192.168.2.100:8081/wx/order/cancel
+    @RequestMapping("order/cancel")
+    public OperationVO cancelOrder(@RequestBody String jsonOrderId) {
+        JsonParser jsonParser = new JsonParser();
+        JsonObject object = jsonParser.parse(jsonOrderId).getAsJsonObject();
+        int orderId = object.get("orderId").getAsInt();
+        int delete1 = orderService.deleteByPrimaryKey(orderId);
+        int delete2 = orderGoodsService.deleteByOid(orderId);
+        if (delete1 == 1 && delete2 >= 1) {
+            OperationVO operationVO = new OperationVO(0, "成功");
+            return operationVO;
+        } else {
+            OperationVO operationVO = new OperationVO(-1, "失败");
+            return operationVO;
+        }
     }
 
 }

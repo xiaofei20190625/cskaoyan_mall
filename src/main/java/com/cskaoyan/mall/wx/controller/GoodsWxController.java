@@ -1,14 +1,26 @@
 package com.cskaoyan.mall.wx.controller;
 
+
+import com.cskaoyan.mall.admin.bean.*;
+
+import com.cskaoyan.mall.admin.service.GoodsService;
+
 import com.cskaoyan.mall.admin.service.*;
+import com.cskaoyan.mall.wx.bean.CommentWx;
 import com.cskaoyan.mall.wx.bean.GoodsDetailWx;
-import com.cskaoyan.mall.wx.vo.BaseRespVo;
+
+import com.cskaoyan.mall.wx.bean.GrouponWx;
+import com.cskaoyan.mall.wx.bean.SpecificationWx;
+
+import com.cskaoyan.mall.wx.vo.BaseRespVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by IceFloe_Rot
@@ -24,6 +36,8 @@ public class GoodsWxController {
     @Autowired
     BrandService brandService;
     @Autowired
+    CommentService commentService;
+    @Autowired
     GrouponService grouponService;
     @Autowired
     IssueService issueService;
@@ -37,35 +51,63 @@ public class GoodsWxController {
 
     @RequestMapping("count")
     @ResponseBody
-    public BaseRespVo goodsCount(){
+    public BaseRespVO goodsCount(){
         int count = goodsService.getGoodsNum();
         HashMap data = new HashMap();
         data.put("goodsCount",count);
-        BaseRespVo baseRespVo = BaseRespVo.ok(data);
+        BaseRespVO baseRespVo = BaseRespVO.ok(data);
         return baseRespVo;
     }
 
-    /*@RequestMapping("detail")
+    @RequestMapping("detail")
     @ResponseBody
-    public BaseRespVo goodsDetail(Integer id){
+    public BaseRespVO goodsDetail(Integer id){
         GoodsDetailWx data = getGoodsDetailById(id);
-    }*/
+        BaseRespVO baseRespVo = BaseRespVO.ok(data);
+        return baseRespVo;
+    }
 
-    private GoodsDetailWx getGoodsDetailById(int id) {
+    private GoodsDetailWx getGoodsDetailById(int goodsId) {
         GoodsDetailWx goodsDetailWx = new GoodsDetailWx();
+        Goods goods = goodsService.queryOneById(goodsId);
 
-//        attributeService.
+        //Attribute
+        List<Attribute> attribute = attributeService.getAttributeByGoodsId(goodsId);
+        //Brand
+        Brand brand = null;
+        if (goods.getBrandId() != 0 && goods.getBrandId() != null){
+            brand = brandService.getBrandById(goods.getBrandId());
+        }
+        //Comment
+        HashMap<String, Object> comment = new HashMap<>();
+        List<CommentWx> comments = commentService.getCommentsByGoodsId(goodsId);
+        int count = commentService.getCommentCountByGoodsId(goodsId);
+        comment.put("data",comments);
+        comment.put("count", count);
+        //Groupon
+        List<Groupon> groupon = grouponService.getGrouponRulesByGoodsId(goodsId);
+        //Info
+        Goods info = goodsService.queryOneById(goodsId);
+        //Issue
+        List<Issue> issue = issueService.getAllIssue();
+        //Product
+        List<Product> productList = productService.queryByGoodsId(goodsId);
+        //Shareimage
+        String shareImage = "";
 
-//        goodsDetailWx.setAttribute();
-//        goodsDetailWx.setBrand();
-//        goodsDetailWx.setComment();
-//        goodsDetailWx.setGroupon();
-//        goodsDetailWx.setInfo();
-//        goodsDetailWx.setIssue();
-//        goodsDetailWx.setProductList();
-//        goodsDetailWx.setShareImage();
-//        goodsDetailWx.setSpecificationList();
-//        goodsDetailWx.setUserHasCollect();
+        //SpecificationList
+        List<SpecificationWx> specificationList = specificationService.querySpecificationWxByGoodsId(goodsId);
+
+        goodsDetailWx.setAttribute(attribute);
+        goodsDetailWx.setBrand(brand);
+        goodsDetailWx.setComment(comment);
+        goodsDetailWx.setGroupon(groupon);
+        goodsDetailWx.setInfo(info);
+        goodsDetailWx.setIssue(issue);
+        goodsDetailWx.setProductList(productList);
+        goodsDetailWx.setShareImage(shareImage);
+        goodsDetailWx.setSpecificationList(specificationList);
+        goodsDetailWx.setUserHasCollect(0);
         return goodsDetailWx;
     }
 

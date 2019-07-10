@@ -1,5 +1,6 @@
 package com.cskaoyan.mall.admin.mapper;
 
+import com.cskaoyan.mall.admin.bean.Groupon;
 import com.cskaoyan.mall.admin.bean.GrouponRules;
 import org.apache.ibatis.annotations.Param;
 
@@ -28,5 +29,9 @@ public interface GrouponRulesMapper {
 
     List<GrouponRules> wxGetList();
 
+
     int count();
+
+    List<Groupon> getGrouponRulesByGoodsId(@Param("goodsId") int goodsId);
+
 }

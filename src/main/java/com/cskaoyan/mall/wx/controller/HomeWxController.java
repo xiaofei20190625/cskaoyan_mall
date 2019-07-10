@@ -4,10 +4,13 @@ import com.cskaoyan.mall.admin.bean.Ad;
 import com.cskaoyan.mall.admin.bean.Coupon;
 import com.cskaoyan.mall.admin.bean.Groupon;
 import com.cskaoyan.mall.admin.service.*;
+
+import com.cskaoyan.mall.wx.vo.BaseRespVO;
+
 import com.cskaoyan.mall.wx.bean.*;
 
 import com.cskaoyan.mall.wx.service.TopicServiceWx;
-import com.cskaoyan.mall.wx.vo.BaseRespVo;
+
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,9 +47,9 @@ public class HomeWxController {
     @ApiOperation(value = "获取主页页面")
     @RequestMapping("index")
     @ResponseBody
-    public BaseRespVo homePage(){
+    public BaseRespVO homePage(){
         HashMap data = getHomeIndexMap();
-        BaseRespVo baseRespVo = BaseRespVo.ok(data);
+        BaseRespVO baseRespVo = BaseRespVO.ok(data);
         return baseRespVo;
     }
 

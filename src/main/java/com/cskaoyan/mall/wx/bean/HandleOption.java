@@ -10,28 +10,28 @@ public class HandleOption {
     boolean refund;
 
     public static void set101(HandleOption handleOption) {
-        handleOption.setCancel(false);
-        handleOption.setComment(false);
-        handleOption.setConfirm(false);
-        handleOption.setDelete(false);
-        handleOption.setPay(false);
-        handleOption.setRebuy(false);
-        handleOption.setRefund(false);
-    }
-    public static void set102(HandleOption handleOption) {
         handleOption.setCancel(true);
         handleOption.setComment(false);
         handleOption.setConfirm(false);
         handleOption.setDelete(false);
+        handleOption.setPay(true);
+        handleOption.setRebuy(false);
+        handleOption.setRefund(false);
+    }
+    public static void set102(HandleOption handleOption) {
+        handleOption.setCancel(false);
+        handleOption.setComment(false);
+        handleOption.setConfirm(false);
+        handleOption.setDelete(true);
         handleOption.setPay(false);
         handleOption.setRebuy(false);
         handleOption.setRefund(false);
     }
     public static void set103(HandleOption handleOption) {
-        handleOption.setCancel(true);
+        handleOption.setCancel(false);
         handleOption.setComment(false);
         handleOption.setConfirm(false);
-        handleOption.setDelete(false);
+        handleOption.setDelete(true);
         handleOption.setPay(false);
         handleOption.setRebuy(false);
         handleOption.setRefund(false);
@@ -41,44 +41,44 @@ public class HandleOption {
         handleOption.setComment(false);
         handleOption.setConfirm(false);
         handleOption.setDelete(false);
-        handleOption.setPay(true);
+        handleOption.setPay(false);
         handleOption.setRebuy(false);
-        handleOption.setRefund(false);
+        handleOption.setRefund(true);
     }
     public static void set202(HandleOption handleOption) {
         handleOption.setCancel(false);
         handleOption.setComment(false);
         handleOption.setConfirm(false);
         handleOption.setDelete(false);
-        handleOption.setPay(true);
+        handleOption.setPay(false);
         handleOption.setRebuy(false);
-        handleOption.setRefund(false);
+        handleOption.setRefund(true);
     }
     public static void set301(HandleOption handleOption) {
         handleOption.setCancel(false);
         handleOption.setComment(false);
-        handleOption.setConfirm(false);
+        handleOption.setConfirm(true);
         handleOption.setDelete(false);
-        handleOption.setPay(true);
+        handleOption.setPay(false);
         handleOption.setRebuy(false);
         handleOption.setRefund(false);
     }
     public static void set401(HandleOption handleOption) {
         handleOption.setCancel(false);
-        handleOption.setComment(false);
-        handleOption.setConfirm(true);
-        handleOption.setDelete(false);
-        handleOption.setPay(true);
-        handleOption.setRebuy(false);
+        handleOption.setComment(true);
+        handleOption.setConfirm(false);
+        handleOption.setDelete(true);
+        handleOption.setPay(false);
+        handleOption.setRebuy(true);
         handleOption.setRefund(false);
     }
     public static void set402(HandleOption handleOption) {
         handleOption.setCancel(false);
-        handleOption.setComment(false);
-        handleOption.setConfirm(true);
-        handleOption.setDelete(false);
-        handleOption.setPay(true);
-        handleOption.setRebuy(false);
+        handleOption.setComment(true);
+        handleOption.setConfirm(false);
+        handleOption.setDelete(true);
+        handleOption.setPay(false);
+        handleOption.setRebuy(true);
         handleOption.setRefund(false);
     }
 

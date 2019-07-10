@@ -200,4 +200,11 @@ update_time
     where id = #{id,jdbcType=INTEGER}
   </update>
 
+
+  <select id="getGrouponRulesByGoodsId" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from cskaoyan_mall_groupon_rules
+    where deleted = 0 and goods_id = #{goodsId}
+  </select>
+
 </mapper>

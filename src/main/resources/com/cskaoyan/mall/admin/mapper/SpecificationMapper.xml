@@ -12,7 +12,7 @@
     <result column="deleted" jdbcType="BIT" property="deleted" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, goods_id, specification, value, pic_url, add_time, update_time, deleted
+    id, goods_id, specification, `value`, pic_url, add_time, update_time, deleted
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -20,19 +20,14 @@
     from cskaoyan_mall_goods_specification
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <select id="queryByGoodsId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from cskaoyan_mall_goods_specification
-    where goods_id = #{goodsId}
-  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from cskaoyan_mall_goods_specification
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.cskaoyan.mall.admin.bean.Specification">
     insert into cskaoyan_mall_goods_specification (id, goods_id, specification, 
-      value, pic_url, add_time, 
+      `value`, pic_url, add_time,
       update_time, deleted)
     values (#{id,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{specification,jdbcType=VARCHAR}, 
       #{value,jdbcType=VARCHAR}, #{picUrl,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, 
@@ -103,7 +98,7 @@
         specification = #{specification,jdbcType=VARCHAR},
       </if>
       <if test="value != null">
-        value = #{value,jdbcType=VARCHAR},
+        `value` = #{value,jdbcType=VARCHAR},
       </if>
       <if test="picUrl != null">
         pic_url = #{picUrl,jdbcType=VARCHAR},
@@ -124,11 +119,37 @@
     update cskaoyan_mall_goods_specification
     set goods_id = #{goodsId,jdbcType=INTEGER},
       specification = #{specification,jdbcType=VARCHAR},
-      value = #{value,jdbcType=VARCHAR},
+      `value` = #{value,jdbcType=VARCHAR},
       pic_url = #{picUrl,jdbcType=VARCHAR},
       add_time = #{addTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       deleted = #{deleted,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <resultMap id="specificationMap" type="com.cskaoyan.mall.wx.bean.SpecificationWx">
+    <result property="name" column="specification"/>
+    <collection property="valueList" ofType="com.cskaoyan.mall.admin.bean.Specification">
+      <result property="addTime" column="add_time"/>
+      <result property="deleted" column="deleted"/>
+      <result property="goodsId" column="goods_id"/>
+      <result property="id" column="id"/>
+      <result property="picUrl" column="pic_url"/>
+      <result property="specification" column="specification"/>
+      <result property="updateTime" column="update_time"/>
+      <result property="value" column="value"/>
+    </collection>
+  </resultMap>
+  <select id="querySpecificationWxByGoodsId" parameterType="java.lang.Integer" resultMap="specificationMap">
+    select
+      add_time,deleted,goods_Id,id,pic_url,specification,update_time,`value`
+    from cskaoyan_mall_goods_specification
+    where deleted = 0 and goods_id = #{goodsId}
+  </select>
+
+  <select id="queryByGoodsId" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from cskaoyan_mall_goods_specification
+    where goods_id = #{id}
+  </select>
 </mapper>

@@ -27,8 +27,11 @@ public class RoleServiceImpl implements RoleService {
     public PageVO<Role> findRolePage(int page, int limit, String name) {
         PageHelper.startPage(page,limit);
         //字符串拼起来用%号，后面xml就可以用#来查询
-        name="%"+name+"%";
-        List<Role> roleList = roleMapper.findRolePage(name);
+        if (name != null) {
+            name="%"+name+"%";
+        }
+//        List<Role> roleList = roleMapper.findRolePage(name);
+        List<Role> roleList = roleMapper.getRolePage(name);
         PageInfo<Role> rolePageInfo = new PageInfo<>(roleList);
         PageVO<Role> rolePageVO = new PageVO<>(rolePageInfo.getTotal(), rolePageInfo.getList());
         return rolePageVO;

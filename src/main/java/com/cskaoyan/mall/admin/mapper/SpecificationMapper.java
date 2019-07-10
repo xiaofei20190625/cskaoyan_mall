@@ -1,6 +1,8 @@
 package com.cskaoyan.mall.admin.mapper;
 
 import com.cskaoyan.mall.admin.bean.Specification;
+import com.cskaoyan.mall.wx.bean.SpecificationWx;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -13,9 +15,11 @@ public interface SpecificationMapper {
 
     Specification selectByPrimaryKey(Integer id);
 
-    List<Specification> queryByGoodsId(int goodsId);
+    List<SpecificationWx> querySpecificationWxByGoodsId(@Param("goodsId") int goodsId);
 
     int updateByPrimaryKeySelective(Specification record);
 
     int updateByPrimaryKey(Specification record);
+
+    List<Specification> queryByGoodsId(@Param("id") int id);
 }

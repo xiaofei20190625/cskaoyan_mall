@@ -248,7 +248,8 @@ public class GoodsWxController {
         }
         //***********************************
 
-        List<CategoryL1> filterCategoryList = categoryService.getAllCategories();
+//        List<CategoryL1> filterCategoryList = categoryService.getAllCategories();
+        List<Category> filterCategoryList = categoryService.getFilterCategoryList(keyword);
 
         Map<Object, Object> data = new HashMap<Object, Object>();
         data.put("count",listPageVO.getTotal());

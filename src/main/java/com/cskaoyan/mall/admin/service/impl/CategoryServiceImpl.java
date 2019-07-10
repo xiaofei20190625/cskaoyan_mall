@@ -81,7 +81,10 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<CategoryL1> getFilterCategoryList(String keyword) {
+    public List<Category> getFilterCategoryList(String keyword) {
+        if (keyword == null){
+            keyword = "";
+        }
         return categoryMapper.getFilterCategoryList(keyword);
     }
 }

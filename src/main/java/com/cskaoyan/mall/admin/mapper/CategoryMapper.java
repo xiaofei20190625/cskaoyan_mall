@@ -44,6 +44,6 @@ public interface CategoryMapper {
 
     List<Category> queryAllCategoriesL2(@Param("id") Integer id);
 
-    List<CategoryL1> getFilterCategoryList(@Param("keyword") String keyword);
+    List<Category> getFilterCategoryList(@Param("keyword") String keyword);
 }
 

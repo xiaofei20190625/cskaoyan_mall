@@ -170,9 +170,19 @@ public class GoodsWxController {
         HashMap<String, Object> hashMap = new HashMap<>();
         Integer parentCategoryId = categoryService.queryPidById(currentSubCategoryId);
 
-        List<Category> brotherCategory = categoryService.queryAllCategoriesL2(parentCategoryId);
-        Category currentCategory = categoryService.getCategoryById(currentSubCategoryId);
-        Category parentCategory = categoryService.getCategoryById(parentCategoryId);
+        List<Category> brotherCategory = null;
+        Category currentCategory = null;
+        Category parentCategory = null;
+        if (parentCategoryId != 0){
+            brotherCategory = categoryService.queryAllCategoriesL2(parentCategoryId);
+            currentCategory = categoryService.getCategoryById(currentSubCategoryId);
+            parentCategory = categoryService.getCategoryById(parentCategoryId);
+        }else {
+            brotherCategory = categoryService.queryAllCategoriesL2(currentSubCategoryId);
+            Category firstCategory = brotherCategory.get(0);
+            currentCategory = categoryService.getCategoryById(firstCategory.getId());
+            parentCategory = categoryService.getCategoryById(currentSubCategoryId);
+        }
 
         hashMap.put("brotherCategory", brotherCategory);
         hashMap.put("currentCategory",currentCategory);
@@ -248,7 +258,8 @@ public class GoodsWxController {
         }
         //***********************************
 
-        List<CategoryL1> filterCategoryList = categoryService.getAllCategories();
+//        List<CategoryL1> filterCategoryList = categoryService.getAllCategories();
+        List<Category> filterCategoryList = categoryService.getFilterCategoryList(keyword);
 
         Map<Object, Object> data = new HashMap<Object, Object>();
         data.put("count",listPageVO.getTotal());

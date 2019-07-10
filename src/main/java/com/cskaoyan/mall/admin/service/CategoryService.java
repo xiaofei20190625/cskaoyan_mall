@@ -34,5 +34,5 @@ public interface CategoryService {
 
     List<Category> queryAllCategoriesL2(Integer currentCategoryId);
 
-    List<CategoryL1> getFilterCategoryList(String keyword);
+    List<Category> getFilterCategoryList(String keyword);
 }

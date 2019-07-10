@@ -279,13 +279,26 @@
         where deleted = 0 and `level` = 'L1'
     </select>
 
-    <select id="getFilterCategoryList" resultMap="categoryL2Map">
-        SELECT
-        id,name,keywords,`desc`,pid,icon_url,pic_url,`level`,sort_order,add_time,update_time,deleted
-        from cskaoyan_mall_category
-        where deleted = 0 and `level` = 'L2'
-        <if test="keyword!=null">
-            and name like "%"#{keyword}"%"
-        </if>
+
+    <resultMap id="filterCategoryMap" type="com.cskaoyan.mall.admin.bean.Category">
+        <result property="id" column="cid"/>
+        <result property="name" column="name"/>
+        <result property="keywords" column="keywords"/>
+        <result property="desc" column="desc"/>
+        <result property="pid" column="pid"/>
+        <result property="iconUrl" column="icon_url"/>
+        <result property="picUrl" column="pic_url"/>
+        <result property="level" column="level"/>
+        <result property="sortOrder" column="sort_order"/>
+        <result property="addTime" column="add_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="deleted" column="deleted"/>
+    </resultMap>
+    <select id="getFilterCategoryList" resultMap="filterCategoryMap">
+        SELECT DISTINCT
+        c.id AS cid,c.name,c.keywords,c.desc,c.pid,c.icon_url,c.pic_url,c.`level`,c.sort_order,c.add_time,c.update_time,c.deleted
+        from cskaoyan_mall_category c
+        left join cskaoyan_mall_goods g
+        on g.category_id = c.id where g.name like "%"#{keyword}"%" and c.deleted =0 and c.`level` ='L2'
     </select>
 </mapper>

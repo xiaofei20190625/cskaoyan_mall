@@ -109,8 +109,18 @@
     from cskaoyan_mall_groupon
     where rules_id = #{rulesId,jdbcType=INTEGER}
   </select>
-
-
+  <!--queryAll-->
+  <select id="queryAll" resultMap="BaseResultMap">
+    select  * from cskaoyan_mall_groupon;
+  </select>
+  <!--count-->
+<select id="count" resultType="_int">
+  select  count(id) from cskaoyan_mall_groupon;
+</select>
+  <!--countGrouponId-->
+<select id="countGrouponId" resultType="_int">
+  select count(groupon_id) from cskaoyan_mall_groupon;
+</select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
@@ -275,5 +285,7 @@
       left join cskaoyan_mall_goods g
       on gr.goods_id = g.id
   </select>
+
+
 
 </mapper>

@@ -15,6 +15,8 @@ public interface FootprintMapper {
 
     Footprint selectByPrimaryKey(Integer id);
 
+    Footprint selectByUidAndGoodsId(@Param("userId") Integer userId,@Param("goodsId") Integer goodsId);
+
     int updateByPrimaryKeySelective(Footprint record);
 
     int updateByPrimaryKey(Footprint record);

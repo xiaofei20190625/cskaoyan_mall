@@ -32,6 +32,10 @@
         update_time,deleted
     </sql>
 
+    <sql id="WxGoods_Column_List">
+        brief,counter_price,id,is_hot,is_new,name,pic_url,retail_price
+    </sql>
+
     <!--getListRecord-->
     <select id="getListRecord"  resultMap="BaseResultMap">
         select  <include refid="Base_Column_List"/>
@@ -50,9 +54,14 @@
             <if test="categoryId!=0">
              and   category_id = #{categoryId}
             </if>
+            <if test="keyword!=null">
+                and keywords like "%"#{keyword}"%"
+                or name like "%"#{keyword}"%"
+            </if>
         </where>
-         order by #{sort} #{order}
-
+        <if test="sort!=null and order!=null">
+            order by ${sort} ${order}
+        </if>
     </select>
     <select id="getPageBrandsGoodsById"  resultMap="BaseResultMap">
         select  <include refid="Base_Column_List"/>
@@ -115,12 +124,33 @@
         <result property="id" column="id"/>
         <result property="name" column="name"/>
         <collection property="goodsList" column="id"
-                    select="com.cskaoyan.mall.admin.mapper.GoodsMapper.selectGoodsByCategoryId"/>
+                    select="com.cskaoyan.mall.admin.mapper.GoodsMapper.selectGoodsWxByCategoryId"/>
     </resultMap>
     <select id="getWxFloorGoods" resultMap="floorGoodsMap">
         select id,name from cskaoyan_mall_category
         where deleted = 0 and level = 'L1'
         limit 4
+    </select>
+
+    <resultMap id="wxFloorGoodsMap" type="com.cskaoyan.mall.wx.bean.GoodsWx">
+        <id column="gid" jdbcType="VARCHAR" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="brief" jdbcType="VARCHAR" property="brief" />
+        <result column="pic_url" jdbcType="VARCHAR" property="picUrl" />
+        <result column="is_new" jdbcType="VARCHAR" property="isNew" />
+        <result column="is_hot" jdbcType="VARCHAR" property="isHot" />
+        <result column="counter_price" jdbcType="VARCHAR" property="counterPrice" />
+        <result column="retail_price" jdbcType="VARCHAR" property="retailPrice" />
+    </resultMap>
+    <select id="selectGoodsWxByCategoryId" resultMap="wxFloorGoodsMap">
+        select
+	      g.brief,g.counter_price,g.id AS gid,g.is_hot,g.is_new,g.name,g.pic_url,g.retail_price,
+	      c.id AS cid,c.pid
+        from cskaoyan_mall_goods g
+        left join cskaoyan_mall_category c
+        on g.category_id = c.id
+		where g.deleted = 0 and c.deleted = 0 and pid = #{id}
+		limit 4
     </select>
 
     <resultMap id="wxGoodsMap" type="com.cskaoyan.mall.wx.bean.GoodsWx">
@@ -133,28 +163,46 @@
         <result column="counter_price" jdbcType="VARCHAR" property="counterPrice" />
         <result column="retail_price" jdbcType="VARCHAR" property="retailPrice" />
     </resultMap>
-    <select id="selectGoodsByCategoryId" resultMap="wxGoodsMap">
-        select
-	      g.brief,g.counter_price,g.id AS gid,g.is_hot,g.is_new,g.name,g.pic_url,g.retail_price,
-	      c.id AS cid,c.pid
-        from cskaoyan_mall_goods g
-        left join cskaoyan_mall_category c
-        on g.category_id = c.id
-		where g.deleted = 0 and c.deleted = 0 and pid = #{id}
-		limit 4
-    </select>
-
     <select id="getWxHotGoodsList" resultMap="wxGoodsMap">
-        select brief,counter_price,id,is_hot,is_new,name,pic_url,retail_price
+        select <include refid="WxGoods_Column_List"/>
         from cskaoyan_mall_goods
         where deleted = 0 and is_hot = 1
         limit 5
     </select>
 
+
     <select id="getWxNewGoodsList" resultMap="wxGoodsMap">
-        select brief,counter_price,id,is_hot,is_new,name,pic_url,retail_price
+        select <include refid="WxGoods_Column_List"/>
         from cskaoyan_mall_goods
         where deleted = 0 and is_new = 1
+        limit 6
+    </select>
+
+    <!--getGoodsWx-->
+    <resultMap id="GoodsToGroupon" type="com.cskaoyan.mall.admin.bean.GoodsToGroupon">
+        <id column="id" jdbcType="VARCHAR" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="brief" jdbcType="VARCHAR" property="brief" />
+        <result column="pic_url" jdbcType="VARCHAR" property="picUrl" />
+        <result column="counter_price" jdbcType="VARCHAR" property="counterPrice" />
+        <result column="retail_price" jdbcType="VARCHAR" property="retailPrice" />
+    </resultMap>
+    <select id="getGoodsWx" resultMap="GoodsToGroupon">
+        select brief,counter_price,id ,name , pic_url,retail_price
+        from  cskaoyan_mall_goods
+        where id = #{goodsId}
+    </select>
+
+    <select id="getCategoryIdByGoodsId" resultType="java.lang.Integer">
+        select category_id
+        from cskaoyan_mall_goods
+        where deleted = 0 and id = #{goodsId}
+    </select>
+
+    <select id="getWxRelatedGoodsByCategoryId" resultMap="wxGoodsMap">
+        select <include refid="WxGoods_Column_List"/>
+        from cskaoyan_mall_goods
+        where deleted = 0 and category_id = #{categoryId}
         limit 6
     </select>
 

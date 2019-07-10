@@ -13,7 +13,7 @@ public interface BrandMapper {
 
     int insertSelective(Brand record);
 
-    Brand selectByPrimaryKey(Integer id);
+    Brand selectByPrimaryKey(@Param("id") Integer id);
 
     int updateByPrimaryKeySelective(Brand record);
 
@@ -31,5 +31,7 @@ public interface BrandMapper {
     List<Brand> getBrand();
 
     List<BrandWx> getWxBrandList();
+
+    BrandWx selectBrandWxByPrimaryKey(@Param("brandId") int brandId);
 
 }

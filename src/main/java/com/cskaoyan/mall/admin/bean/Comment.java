@@ -5,6 +5,8 @@ import java.util.Date;
 public class Comment {
     private Integer id;
 
+    private Integer orderGoodsId;
+
     private Integer valueId;
 
     private Byte type;
@@ -24,6 +26,14 @@ public class Comment {
     private Date updateTime;
 
     private Boolean deleted;
+
+    public Integer getOrderGoodsId() {
+        return orderGoodsId;
+    }
+
+    public void setOrderGoodsId(Integer orderGoodsId) {
+        this.orderGoodsId = orderGoodsId;
+    }
 
     public Integer getId() {
         return id;

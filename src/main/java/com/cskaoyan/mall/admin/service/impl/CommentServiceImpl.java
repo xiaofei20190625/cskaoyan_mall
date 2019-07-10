@@ -4,6 +4,7 @@ import com.cskaoyan.mall.admin.mapper.CommentMapper;
 import com.cskaoyan.mall.admin.service.CommentService;
 import com.cskaoyan.mall.admin.vo.PageVO;
 import com.cskaoyan.mall.admin.vo.ResponseVO;
+import com.cskaoyan.mall.wx.bean.CommentWx;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,21 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public int delete(Integer id) {
         return commentMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public int insert(Comment record) {
+        return commentMapper.insert(record);
+    }
+
+    @Override
+    public List<CommentWx> getCommentsByGoodsId(int goodsId) {
+        return commentMapper.getCommentsByGoodsId(goodsId);
+    }
+
+    @Override
+    public int getCommentCountByGoodsId(int goodsId) {
+        return commentMapper.getCommentCountByGoodsId(goodsId);
     }
 
     @Override

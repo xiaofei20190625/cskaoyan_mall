@@ -3,15 +3,20 @@ package com.cskaoyan.mall.wx.controller;
 
 import com.cskaoyan.mall.admin.bean.UserVip;
 import com.cskaoyan.mall.admin.service.UserVipService;
+import com.cskaoyan.mall.wx.bean.RegisterUser;
 import com.cskaoyan.mall.wx.userwx.UserInfo;
 import com.cskaoyan.mall.wx.userwx.UserToken;
 import com.cskaoyan.mall.wx.userwx.UserTokenManager;
 import com.cskaoyan.mall.wx.utils.JSONUtils;
 import com.cskaoyan.mall.wx.vo.BaseRespVO;
+import com.cskaoyan.mall.wx.vo.ErrVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -87,5 +92,40 @@ public class WxAuthController {
 		//***********************************
 
 		return BaseRespVO.ok(data);
+	}
+
+	@RequestMapping("/auth/logout")
+	@ResponseBody
+	public HashMap<String,String> logout(){
+		HashMap<String, String> hashMap = new HashMap<>();
+		return hashMap;
+	}
+
+	@RequestMapping("/auth/register")
+	@ResponseBody
+	public ErrVo register(@Valid @RequestBody UserVip user, BindingResult bindingResult){
+		//数据校验
+		if (bindingResult.hasErrors()){
+			FieldError fieldError = bindingResult.getFieldError();
+			String field = fieldError.getField();
+			String errorMessage = fieldError.getDefaultMessage();
+			ErrVo errVo = new ErrVo(errorMessage, 703);
+			return errVo;
+		}
+		//检查用户名是否重复
+		UserVip userIfExist = userVipService.findUserVip(user.getUsername());
+		if (userIfExist != null){
+			ErrVo errVo = new ErrVo("用户名已经被注册，请登录", 703);
+			return errVo;
+		}
+		//注册
+		int i = userVipService.registerUser(user);
+		if (i == 1) {
+			ErrVo errVo = new ErrVo("成功", 0);
+
+			return errVo;
+		}
+		ErrVo errVo = new ErrVo("注册失败，请重试", 500);
+		return errVo;
 	}
 }

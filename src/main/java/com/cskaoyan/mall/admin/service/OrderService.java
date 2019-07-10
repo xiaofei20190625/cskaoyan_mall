@@ -4,6 +4,7 @@ import com.cskaoyan.mall.admin.bean.Order;
 import com.cskaoyan.mall.admin.bean.OrderDetail;
 import com.cskaoyan.mall.admin.vo.PageVO;
 import com.cskaoyan.mall.admin.vo.ResponseVO;
+import com.cskaoyan.mall.wx.bean.OrderInfo;
 
 import java.util.List;
 
@@ -26,7 +27,23 @@ public interface OrderService {
 
     ResponseVO getUnAssessOrdersByUid(Integer userId,int page, int size);
 
+    ResponseVO showOrderDetailByOid(Integer orderId);
 
     OrderDetail getOrderDetailById(int id);
+
+    Order selectByPrimaryKey(Integer id);
+
+    int deleteByPrimaryKey(Integer id);
+
+    int cancleOrderByOid(Integer orderId);
+
+    int refundOrderByOid(Integer orderId);
+
+    int confirmByOid(Integer orderId);
+
+
+
+
+    OrderInfo selectByOid(Integer orderId);
 }
 

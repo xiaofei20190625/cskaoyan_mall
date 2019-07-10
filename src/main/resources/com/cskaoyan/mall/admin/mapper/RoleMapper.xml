@@ -43,6 +43,15 @@
     </where>
   </select>
 
+  <select id="getRolePage" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from cskaoyan_mall_role
+    where deleted = 0
+    <if test="name!=null">
+      and name like #{name}
+    </if>
+  </select>
+
 
 
   <select id="queryRole"  resultMap="BaseResultMap">

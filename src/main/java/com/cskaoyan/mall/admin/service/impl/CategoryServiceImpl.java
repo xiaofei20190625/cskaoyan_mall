@@ -69,4 +69,14 @@ public class CategoryServiceImpl implements CategoryService {
         return categoryMapper.getWxChannelList();
 
     }
+
+    @Override
+    public List<Category> queryAllCategoriesL1() {
+        return categoryMapper.queryAllCategoriesL1();
+    }
+
+    @Override
+    public List<Category> queryAllCategoriesL2(Integer currentCategoryId) {
+        return categoryMapper.queryAllCategoriesL2(currentCategoryId);
+    }
 }

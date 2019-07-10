@@ -22,4 +22,6 @@ public interface AddressService {
     Address addressSearchId(Integer id);
 
     int addressUpdate(Address address1);
+
+    int addressdelete(Integer id);
 }

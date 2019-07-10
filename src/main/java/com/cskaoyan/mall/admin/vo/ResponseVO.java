@@ -14,6 +14,10 @@ public class ResponseVO<T> {
         this.errno = errno;
     }
 
+    public ResponseVO(T data) {
+        this.data = data;
+    }
+
     public T getData() {
         return data;
     }

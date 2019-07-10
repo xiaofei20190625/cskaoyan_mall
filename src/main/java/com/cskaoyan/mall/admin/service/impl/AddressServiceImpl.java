@@ -117,8 +117,14 @@ public class AddressServiceImpl implements AddressService {
 
     }
 
+    @Override
+    public int addressdelete(Integer id) {
 
 
+        Integer address2 = addressMapper.addressdelete(id);
+
+        return address2;
+    }
 
 
 }

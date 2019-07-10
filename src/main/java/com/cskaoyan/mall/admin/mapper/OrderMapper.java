@@ -2,6 +2,7 @@ package com.cskaoyan.mall.admin.mapper;
 
 import com.cskaoyan.mall.admin.bean.Order;
 import com.cskaoyan.mall.admin.bean.OrderDetail;
+import com.cskaoyan.mall.wx.bean.OrderInfo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -15,9 +16,17 @@ public interface OrderMapper {
 
     Order selectByPrimaryKey(Integer id);
 
+    OrderInfo selectByOid(Integer orderId);
+
     int updateByPrimaryKeySelective(Order record);
 
     int updateByPrimaryKey(Order record);
+
+    int cancleOrderByOid(Integer orderId);
+
+    int refundOrderByOid(Integer orderId);
+
+    int confirmByOid(Integer orderId);
 
 
     List<Order> queryPageOrder(@Param("sort") String sort,

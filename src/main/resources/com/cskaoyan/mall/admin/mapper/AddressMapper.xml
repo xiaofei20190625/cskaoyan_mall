@@ -55,6 +55,13 @@
 
 
 
+  <update id="addressdelete" parameterType="com.cskaoyan.mall.admin.bean.Address">
+    update cskaoyan_mall_address
+    set
+      is_default =false
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
 
   <select id="addresslist"  resultMap="BaseResultMap">
     select

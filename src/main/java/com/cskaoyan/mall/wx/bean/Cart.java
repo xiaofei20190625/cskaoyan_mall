@@ -18,7 +18,7 @@ public class Cart {
 
     private BigDecimal price;
 
-    private Short number;
+    private Integer number;
 
     private String specifications;
 
@@ -88,11 +88,11 @@ public class Cart {
         this.price = price;
     }
 
-    public Short getNumber() {
+    public Integer getNumber() {
         return number;
     }
 
-    public void setNumber(Short number) {
+    public void setNumber(Integer number) {
         this.number = number;
     }
 

@@ -19,4 +19,6 @@ public interface AttributeService {
     int updateByPrimaryKeySelective(Attribute record);
 
     int updateByPrimaryKey(Attribute record);
+
+    List<Attribute> getAttributeByGoodsId(int goodsId);
 }

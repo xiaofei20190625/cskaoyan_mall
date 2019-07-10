@@ -9,6 +9,8 @@ import com.cskaoyan.mall.admin.bean.Order;
 import com.cskaoyan.mall.admin.vo.PageVO;
 import com.cskaoyan.mall.admin.vo.ResponseVO;
 import com.cskaoyan.mall.wx.bean.HandleOption;
+import com.cskaoyan.mall.wx.bean.OrderDetailWX;
+import com.cskaoyan.mall.wx.bean.OrderInfo;
 import com.cskaoyan.mall.wx.bean.OrderResponse;
 import com.cskaoyan.mall.wx.vo.DataListVO;
 import com.github.pagehelper.PageHelper;
@@ -21,11 +23,13 @@ import java.util.List;
 
 
 @Service
-public class OrderServiceImpl  implements OrderService {
+public class OrderServiceImpl implements OrderService {
     @Autowired
     OrderMapper orderMapper;
     @Autowired
     OrderGoodsMapper orderGoodsMapper;
+    @Autowired
+    OrderService orderService;
 
     @Override
     public PageVO<Order> getListRecord(int page, int limit, String sort, String order, String goodsId) {
@@ -76,6 +80,68 @@ public class OrderServiceImpl  implements OrderService {
         ResponseVO responseVO = getResponseVOByOrderList(orders, userId, page, size);
         return responseVO;    }
 
+    @Override
+    public ResponseVO showOrderDetailByOid(Integer orderId) {
+        OrderInfo orderInfo = new OrderInfo();
+        OrderDetailWX orderDetailWX = new OrderDetailWX();
+        List<OrderGoods> orderGoods = orderGoodsMapper.selectByOId(orderId);
+        orderDetailWX.setOrderGoods(orderGoods);
+        //查出Order并封装成OrderInfo
+        Order order = orderService.selectByPrimaryKey(orderId);
+        Short orderStatus = order.getOrderStatus();
+        HandleOption handleOption = new HandleOption();
+        switch (orderStatus) {
+            case 101:
+                HandleOption.set101(handleOption);
+                orderInfo.setOrderStatusText("未付款");
+                break;
+            case 102:
+                HandleOption.set102(handleOption);
+                orderInfo.setOrderStatusText("已取消");
+                break;
+            case 103:
+                HandleOption.set103(handleOption);
+                orderInfo.setOrderStatusText("已取消(系统)");
+                break;
+            case 201:
+                HandleOption.set201(handleOption);
+                orderInfo.setOrderStatusText("已付款");
+                break;
+            case 202:
+                HandleOption.set202(handleOption);
+                orderInfo.setOrderStatusText("已付款");
+                break;
+            case 301:
+                HandleOption.set301(handleOption);
+                orderInfo.setOrderStatusText("已发货");
+                break;
+            case 401:
+                HandleOption.set401(handleOption);
+                orderInfo.setOrderStatusText("已收货");
+                break;
+            case 402:
+                HandleOption.set402(handleOption);
+                orderInfo.setOrderStatusText("已收货");
+                break;
+        }
+        orderInfo.setActualPrice(order.getActualPrice());
+        orderInfo.setAddTime(order.getAddTime());
+        orderInfo.setAddress(order.getAddress());
+        orderInfo.setConsignee(order.getConsignee());
+        orderInfo.setCouponPrice(order.getCouponPrice());
+        orderInfo.setFreightPrice(order.getFreightPrice());
+        orderInfo.setGoodsPrice(order.getGoodsPrice());
+        orderInfo.setHandleOption(handleOption);
+        orderInfo.setId(orderId);
+        orderInfo.setMobile(order.getMobile());
+        orderInfo.setOrderSn(order.getOrderSn());
+        orderDetailWX.setOrderGoods(orderGoods);
+        orderDetailWX.setOrderInfo(orderInfo);
+        ResponseVO<OrderDetailWX> responseVO = new ResponseVO<>(orderDetailWX, "成功", 0);
+        return responseVO;
+
+    }
+
     public ResponseVO getResponseVOByOrderList(List<Order> orders, Integer userId,int page, int size) {
         PageHelper.startPage(page, size);
         //dataListVO中的data
@@ -88,7 +154,7 @@ public class OrderServiceImpl  implements OrderService {
             switch (status) {
                 case 101:
                     HandleOption.set101(handleOption);
-                    orderResponse.setOrderStatusText("未支付");
+                    orderResponse.setOrderStatusText("未付款");
                     break;
                 case 102:
                     HandleOption.set102(handleOption);
@@ -104,7 +170,7 @@ public class OrderServiceImpl  implements OrderService {
                     break;
                 case 202:
                     HandleOption.set202(handleOption);
-                    orderResponse.setOrderStatusText("已付款");
+                    orderResponse.setOrderStatusText("已取消(退款)");
                     break;
                 case 301:
                     HandleOption.set301(handleOption);
@@ -144,6 +210,35 @@ public class OrderServiceImpl  implements OrderService {
     @Override
     public OrderDetail getOrderDetailById(int id) {
         return orderMapper.queryOrderDetailById(id);
+    }
+
+    @Override
+    public Order selectByPrimaryKey(Integer id) {
+        return orderMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public int deleteByPrimaryKey(Integer id) {
+        return orderMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public int cancleOrderByOid(Integer orderId) {
+        return orderMapper.cancleOrderByOid(orderId);
+    }
+
+    @Override
+    public int refundOrderByOid(Integer orderId) {
+        return orderMapper.refundOrderByOid(orderId);
+    }
+
+    @Override
+    public int confirmByOid(Integer orderId) {
+        return orderMapper.confirmByOid(orderId);
+    }
+    @Override
+    public OrderInfo selectByOid(Integer orderId) {
+        return orderMapper.selectByOid(orderId);
     }
 
 }

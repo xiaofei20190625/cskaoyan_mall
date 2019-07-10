@@ -1,6 +1,7 @@
 package com.cskaoyan.mall.admin.service;
 
 import com.cskaoyan.mall.admin.bean.Goods;
+import com.cskaoyan.mall.admin.bean.GoodsToGroupon;
 import com.cskaoyan.mall.admin.vo.PageVO;
 import com.cskaoyan.mall.admin.vo.ResponseVO;
 import com.cskaoyan.mall.wx.bean.FloorGoods;
@@ -29,4 +30,6 @@ public interface GoodsService {
     List<GoodsWx> getWxHotGoodsList();
 
     List<GoodsWx> getWxNewGoodsList();
+
+    GoodsToGroupon getGoodsWx(Integer goodsId);
 }

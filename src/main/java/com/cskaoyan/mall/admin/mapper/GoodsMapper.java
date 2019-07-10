@@ -1,6 +1,7 @@
 package com.cskaoyan.mall.admin.mapper;
 
 import com.cskaoyan.mall.admin.bean.Goods;
+import com.cskaoyan.mall.admin.bean.GoodsToGroupon;
 import com.cskaoyan.mall.wx.bean.FloorGoods;
 import com.cskaoyan.mall.wx.bean.GoodsWx;
 import org.apache.ibatis.annotations.Param;
@@ -30,4 +31,6 @@ public interface GoodsMapper {
     List<GoodsWx> getWxHotGoodsList();
 
     List<GoodsWx> getWxNewGoodsList();
+
+    GoodsToGroupon  getGoodsWx(@Param("goodsId") Integer goodsId);
 }

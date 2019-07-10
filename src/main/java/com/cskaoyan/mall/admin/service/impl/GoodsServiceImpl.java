@@ -1,6 +1,7 @@
 package com.cskaoyan.mall.admin.service.impl;
 
 import com.cskaoyan.mall.admin.bean.Goods;
+import com.cskaoyan.mall.admin.bean.GoodsToGroupon;
 import com.cskaoyan.mall.admin.mapper.GoodsMapper;
 import com.cskaoyan.mall.admin.service.GoodsService;
 import com.cskaoyan.mall.admin.vo.PageVO;
@@ -75,5 +76,10 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public List<GoodsWx> getWxNewGoodsList() {
         return goodsMapper.getWxNewGoodsList();
+    }
+
+    @Override
+    public GoodsToGroupon getGoodsWx(Integer goodsId) {
+        return goodsMapper.getGoodsWx(goodsId);
     }
 }

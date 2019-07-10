@@ -56,4 +56,9 @@ public class GrouponRulesServiceImpl implements GrouponRulesService {
         PageHelper.startPage(page, size);
         return  grouponRulesMapper.queryAll();
     }
+
+    @Override
+    public int count() {
+        return grouponRulesMapper.count();
+    }
 }

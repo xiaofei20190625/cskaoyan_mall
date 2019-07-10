@@ -27,4 +27,6 @@ public interface GrouponRulesMapper {
     List<GrouponRules> queryAll();
 
     List<GrouponRules> wxGetList();
+
+    int count();
 }

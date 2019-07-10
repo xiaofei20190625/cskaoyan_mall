@@ -96,12 +96,10 @@ public class GoodsWxController {
                 footprint.setUpdateTime(now);
                 int update = footprintService.updateByPrimaryKey(footprint);
             }
-
         }
 
         return baseRespVo;
     }
-
     private GoodsDetailWx getGoodsDetailById(int goodsId, Integer userId) {
         GoodsDetailWx goodsDetailWx = new GoodsDetailWx();
         Goods goods = goodsService.queryOneById(goodsId);

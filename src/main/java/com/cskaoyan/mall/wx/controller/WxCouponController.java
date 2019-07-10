@@ -115,18 +115,20 @@ public class WxCouponController {
     //errmsg:"优惠券已领完"errno:740
     //成功 ， 0
     @RequestMapping(value = "receive" , method = RequestMethod.POST)
-    public OperationVO receive( Integer couponId) {
+    public OperationVO receive(@RequestBody Map<String , Object> data ,HttpServletRequest request) {
 
-        OperationVO operationVO = new OperationVO();
+/*        OperationVO operationVO = new OperationVO();
         operationVO.setErrmsg("成功");
         operationVO.setErrno(0);
         return operationVO;
-    }
+    }*/
 
-  /*      //String tokenKey = request.getHeader("X-Litemall-Token");
-        //int userIds = UserTokenManager.getUserId(tokenKey);
-        int userId = 1 ;
-        //System.out.println("CouponuserId = " + userId);
+        String tokenKey = request.getHeader("X-Litemall-Token");
+        int userId = UserTokenManager.getUserId(tokenKey);
+        //int userId = 1 ;
+        System.out.println("CouponuserId = " + userId);
+
+        int couponId = (int) data.get("couponId");
 
         OperationVO operationVO = new OperationVO();
         Coupon coupon = couponService.queryCouponById(couponId);
@@ -216,7 +218,7 @@ public class WxCouponController {
         return operationVO;
 
 
-    }*/
+    }
 }
 
 

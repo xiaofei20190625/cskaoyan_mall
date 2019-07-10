@@ -41,6 +41,11 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    public int insert(Comment record) {
+        return commentMapper.insert(record);
+    }
+
+    @Override
     public Comment selectByPrimaryKey(Integer id) {
         return commentMapper.selectByPrimaryKey(id);
     }

@@ -14,4 +14,7 @@ public interface CommentService {
     int updateByPrimaryKey(Comment record);
 
     int delete(Integer id);
+
+    int insert(Comment record);
+
 }

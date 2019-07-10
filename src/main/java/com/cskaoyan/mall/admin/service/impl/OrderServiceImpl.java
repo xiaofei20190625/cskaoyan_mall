@@ -170,7 +170,7 @@ public class OrderServiceImpl implements OrderService {
                     break;
                 case 202:
                     HandleOption.set202(handleOption);
-                    orderResponse.setOrderStatusText("已付款");
+                    orderResponse.setOrderStatusText("已取消(退款)");
                     break;
                 case 301:
                     HandleOption.set301(handleOption);
@@ -220,6 +220,21 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public int deleteByPrimaryKey(Integer id) {
         return orderMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public int cancleOrderByOid(Integer orderId) {
+        return orderMapper.cancleOrderByOid(orderId);
+    }
+
+    @Override
+    public int refundOrderByOid(Integer orderId) {
+        return orderMapper.refundOrderByOid(orderId);
+    }
+
+    @Override
+    public int confirmByOid(Integer orderId) {
+        return orderMapper.confirmByOid(orderId);
     }
 
 }

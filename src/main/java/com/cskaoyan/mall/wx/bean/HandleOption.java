@@ -49,10 +49,10 @@ public class HandleOption {
         handleOption.setCancel(false);
         handleOption.setComment(false);
         handleOption.setConfirm(false);
-        handleOption.setDelete(false);
+        handleOption.setDelete(true);
         handleOption.setPay(false);
         handleOption.setRebuy(false);
-        handleOption.setRefund(true);
+        handleOption.setRefund(false);
     }
     public static void set301(HandleOption handleOption) {
         handleOption.setCancel(false);

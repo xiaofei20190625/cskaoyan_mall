@@ -2,6 +2,7 @@ package com.cskaoyan.mall.admin.service;
 
 import com.cskaoyan.mall.admin.bean.UserVip;
 import com.cskaoyan.mall.admin.vo.PageVO;
+import com.cskaoyan.mall.wx.bean.RegisterUser;
 
 
 public interface UserVipService {
@@ -11,4 +12,6 @@ public interface UserVipService {
     UserVip findUserVip(String username);
 
     UserVip findUserVipByiD(Integer id);
+
+    int registerUser(UserVip user);
 }

@@ -79,4 +79,9 @@ public class CategoryServiceImpl implements CategoryService {
     public List<Category> queryAllCategoriesL2(Integer currentCategoryId) {
         return categoryMapper.queryAllCategoriesL2(currentCategoryId);
     }
+
+    @Override
+    public List<CategoryL1> getFilterCategoryList(String keyword) {
+        return categoryMapper.getFilterCategoryList(keyword);
+    }
 }

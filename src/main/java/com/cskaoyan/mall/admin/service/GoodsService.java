@@ -27,7 +27,7 @@ public interface GoodsService {
     int update(Goods goods);
 
 
-    List<Goods> getPageBrandsGoodsByIds( Boolean isNew, String order, String sort, int categoryId);
+    List<Goods> getPageBrandsGoodsByIds( Boolean isNew, String order, String sort, int categoryId, String keyword);
 
     List<Goods> getPageBrandsGoodsById(String brandId);
 

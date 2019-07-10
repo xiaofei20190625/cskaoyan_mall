@@ -73,5 +73,10 @@ public class CouponServiceImpl implements CouponService {
         return couponMapper.myList(status);
     }
 
+    @Override
+    public Coupon queryCouponById(int couponId) {
+        return couponMapper.selectByPrimaryKey(couponId);
+    }
+
 
 }

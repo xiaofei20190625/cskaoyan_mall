@@ -5,10 +5,24 @@ package com.cskaoyan.mall.admin.bean;
  * Date 2019/7/4 Time 16:29
  */
 public class Region {
+
+
+
+
     Integer id;
     String name;
     Integer type;
     Integer code;
+    Integer  pid;
+
+    public Integer getPid() {
+        return pid;
+    }
+
+    public void setPid(Integer pid) {
+        this.pid = pid;
+    }
+
 
     public Region() {
     }
@@ -19,7 +33,13 @@ public class Region {
         this.type = type;
         this.code = code;
     }
-
+    public Region(Integer id, String name, Integer type, Integer code, Integer pid) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.code = code;
+        this.pid = pid;
+    }
     public Integer getId() {
         return id;
     }

@@ -43,6 +43,8 @@
   <resultMap id="BaseResultMap3" type="string">
     <result column="keyword" jdbcType="VARCHAR" property="keyword" />
   </resultMap>
+
+
   <select id="findSearchHelp" resultMap="BaseResultMap3" >
     select
     keyword
@@ -58,9 +60,11 @@
     from cskaoyan_mall_keyword
     where is_hot = true and is_default=true and sort_order = 1
   </select>
+
   <sql id="Base_Column_List">
     id, user_id, keyword, 'from', add_time, update_time, deleted
   </sql>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

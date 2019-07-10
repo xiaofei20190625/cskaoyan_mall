@@ -16,11 +16,20 @@ public interface AddressMapper {
 
     int updateByPrimaryKeySelective(Address record);
 
-    int updateByPrimaryKey(Address record);
+    //int updateByPrimaryKey(Address record);
 
     List<Address> findAddressPageByNameAndUserId(@Param("userId") String userId,
                                                  @Param("name") String name,
                                                  @Param("sort") String sort,
                                                  @Param("order") String order);
 
+    List addresslist(Integer userId);
+    Address addressdetail(Integer id);
+    int addressadd( Address address);
+
+    Address addressSearchId(Integer id);
+
+    int addressUpdate(Address address1);
+
+    int addressdelete(int id);
 }
